@@ -20,11 +20,11 @@ import textureClass.Texture;
 @SuppressWarnings("serial")
 public class CharacterSelectLauncher extends JPanel {
 	private GameType g;
-	Character selectedCharacter = CharacterInfo.ONE.getCharacter();
-	CharacterInfo[] characterList = {CharacterInfo.ONE,CharacterInfo.TWO,CharacterInfo.THREE,CharacterInfo.FOUR,CharacterInfo.FIVE,CharacterInfo.SIX, CharacterInfo.SEVEN, CharacterInfo.EIGHT, CharacterInfo.NINE};
-	JFrame frame;
-	CardLayout cardLayout = new CardLayout();
-	JPanel screen = new JPanel(cardLayout);
+	private Character selectedCharacter = CharacterInfo.ONE.getCharacter();
+	private CharacterInfo[] characterList = {CharacterInfo.ONE,CharacterInfo.TWO,CharacterInfo.THREE,CharacterInfo.FOUR,CharacterInfo.FIVE,CharacterInfo.SIX, CharacterInfo.SEVEN, CharacterInfo.EIGHT, CharacterInfo.NINE};
+	private JFrame frame;
+	private CardLayout cardLayout = new CardLayout();
+	private JPanel screen = new JPanel(cardLayout);
 	boolean[][] select = new boolean[Texture.characterSelectSprites.length][Texture.characterSelectSprites[0].length];
 	protected CharacterSelectLauncher(GameType g){
 		this.g = g;
@@ -54,15 +54,8 @@ public class CharacterSelectLauncher extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 0; index < Texture.characterSelectSprites.length; index++){
-					for(int subIndex = 1; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
-						if(select[index][subIndex]){
-							updateSelectedCharacter(index,subIndex);
-							repaint();
-							return;
-						}
-					}
-				}
+				new MapSelectLauncher(selectedCharacter ,g);
+				frame.dispose();
 			}
 
 		});
@@ -194,14 +187,14 @@ public class CharacterSelectLauncher extends JPanel {
 		for(int index = 0; index < Texture.characterSelectSprites.length; index++){
 			for(int subIndex = 0; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
 				if(Texture.characterSelectSprites[index][subIndex] != null){
-					g.drawImage(Texture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,null);
+					Color c;
+					if(select[index][subIndex]){
+						c = Color.BLACK;
+					}else{
+						c = Color.GRAY;
+					}
+					g.drawImage(Texture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
 				}
-				if(select[index][subIndex]){
-					g.setColor(Color.BLACK);
-				}else{
-					g.setColor(Color.GRAY);
-				}
-				g.fillRect(xBuffer, yBuffer, 200, 200);
 				xBuffer+=205; //5 pixel buffer
 			}
 			xBuffer = (int)(Constants.SCREEN_WIDTH.getIntValue()*.1);
@@ -217,14 +210,14 @@ public class CharacterSelectLauncher extends JPanel {
 		for(int index = 0; index < Texture.characterSelectSprites.length; index++){
 			for(int subIndex = 0; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
 				if(Texture.characterSelectSprites[index][subIndex] != null){
-					g.drawImage(Texture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,null);
+					Color c;
+					if(select[index][subIndex]){
+						c = Color.BLACK;
+					}else{
+						c = Color.GRAY;
+					}
+					g.drawImage(Texture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
 				}
-				if(select[index][subIndex]){
-					g.setColor(Color.BLACK);
-				}else{
-					g.setColor(Color.GRAY);
-				}
-				g.fillRect(xBuffer, yBuffer, 200, 200);
 				xBuffer+=205; //5 pixel buffer
 			}
 			xBuffer = (int)(Constants.SCREEN_WIDTH.getIntValue()*.1);

@@ -48,7 +48,7 @@ public class StreetFighterLauncher extends JPanel {
 					}
 				}
 			}
-			
+
 		});
 		getActionMap().put("A", new AbstractAction(){
 
@@ -63,7 +63,7 @@ public class StreetFighterLauncher extends JPanel {
 					}
 				}
 			}
-			
+
 		});
 		getActionMap().put("CHOOSE", new AbstractAction(){
 
@@ -87,7 +87,7 @@ public class StreetFighterLauncher extends JPanel {
 					}
 				}	
 			}
-			
+
 		});
 	}
 	void panel(){
@@ -138,5 +138,5 @@ public class StreetFighterLauncher extends JPanel {
 		g.drawImage(Texture.launcherSprites[0], 0, 0,Constants.SCREEN_WIDTH.getIntValue(),Constants.SCREEN_HEIGHT.getIntValue(), null);
 		g.drawString("choose with A,D and press Enter to start", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.9));
 	}
-	
+
 }

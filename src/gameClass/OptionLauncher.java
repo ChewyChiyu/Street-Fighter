@@ -31,13 +31,13 @@ class OptionPanel extends JPanel{
 		g.drawString("EXIT OPTIONS : A", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.6));
 
 	}
-	
+
 }
 @SuppressWarnings("serial")
 public class OptionLauncher{
-	 static OptionPanel panel = new OptionPanel();
-	 static JPanel panelMain;
-	 static CardLayout cardLayout;
+	static OptionPanel panel = new OptionPanel();
+	static JPanel panelMain;
+	static CardLayout cardLayout;
 	protected OptionLauncher(JPanel panel, CardLayout cardLayout){
 		OptionLauncher.cardLayout = cardLayout;
 		panelMain = panel;
@@ -51,7 +51,7 @@ public class OptionLauncher{
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.next(panelMain);
 			}
-			
+
 		});
 	}
 	static void changePanel(JPanel p, CardLayout c){

@@ -1,17 +1,16 @@
 package gameClass;
 
-public class Character {
+public class Map {
 	private String s = "";
-	private CharacterInfo info;
-	protected Character(int index, CharacterInfo info){
+	private MapInfo info;
+	protected Map(int index, MapInfo info){
 		s += index;
 		this.info = info;
 	}
 	public String toString(){
 		return s;
 	}
-	CharacterInfo getInfo(){
+	MapInfo getInfo(){
 		return info;
 	}
-
-}
+}		
