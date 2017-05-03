@@ -10,6 +10,9 @@ public class Texture {
 	 * 1. Start Up Image
 	 * 
 	 */
+	public static BufferedImage[][] characterSelectSprites = new BufferedImage[3][3];
+
+	
 	public Texture(){
 		load();
 	}

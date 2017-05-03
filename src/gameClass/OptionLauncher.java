@@ -27,7 +27,8 @@ class OptionPanel extends JPanel{
 		g.drawString("OPTIONS / CONTROLS", (int)(Constants.SCREEN_WIDTH.getIntValue()*.3), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.2));
 		g.drawString("PAUSE : P", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.3));
 		g.drawString("OPTIONS : O", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.4));
-		g.drawString("EXIT OPTIONS : A", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
+		g.drawString("PERV SCREEN : BACKSPACE", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
+		g.drawString("EXIT OPTIONS : A", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.6));
 
 	}
 	
