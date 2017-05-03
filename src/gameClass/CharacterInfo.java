@@ -7,10 +7,10 @@ public enum CharacterInfo {
 	private CharacterInfo(int loc){
 		location = loc;
 	}
-	public int locationInCharSelect(){
+	 int locationInCharSelect(){
 		return location;
 	}
-	public Character getCharacter(){
+	 Character getCharacter(){
 		switch(location){
 		case 1:
 			return new Character(1);

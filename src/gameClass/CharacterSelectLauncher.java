@@ -150,9 +150,7 @@ public class CharacterSelectLauncher extends JPanel {
 		});
 	}
 	void updateSelectedCharacter(int r, int c){
-		System.out.println("r " + r + " c " + c );
 		int location = (r*Texture.characterSelectSprites[0].length) + c + 1;
-		System.out.println(location);
 		for(int index = 0; index < characterList.length; index++){
 			if(location == characterList[index].locationInCharSelect()){
 				selectedCharacter = characterList[index].getCharacter();

@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 @SuppressWarnings("serial")
 class OptionPanel extends JPanel{
-	public OptionPanel(){
+	protected OptionPanel(){
 		super();
 	}
 	public void paintComponent(Graphics g){
