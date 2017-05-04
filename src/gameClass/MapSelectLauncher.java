@@ -37,13 +37,23 @@ public class MapSelectLauncher extends JPanel{
 	}
 	void keys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_BACK_SPACE), "BACK");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("ENTER"), "ENTER");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("O"), "O");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "A");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("D"), "D");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("W"), "W");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("S"), "S");
+		getActionMap().put("ENTER", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new FightPanelLauncher(c,selectedMap,g);
+				frame.dispose();
+			}
+
+		});	
 		getActionMap().put("A", new AbstractAction(){
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				for(int index = 0; index < Texture.mapSelectSprites.length; index++){
@@ -175,7 +185,7 @@ public class MapSelectLauncher extends JPanel{
 		for(int index = 0; index < Texture.mapSelectSprites.length; index++){
 			for(int subIndex = 0; subIndex < Texture.mapSelectSprites[0].length; subIndex++){
 				if(Texture.mapSelectSprites[index][subIndex] != null){
-					
+
 					g.drawImage(Texture.mapSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,null);
 					if(select[index][subIndex]){
 						g.drawImage(Texture.selector, xBuffer, yBuffer, 200, 200,null);
