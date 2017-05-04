@@ -64,6 +64,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("D"), "D");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("W"), "W");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("S"), "S");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released S"), "rS");
+
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released A"), "rA");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released D"), "rD");
 	
@@ -101,6 +103,14 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				c.sneak();
+			}
+			
+		});
+		getActionMap().put("rS", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.stand();
 			}
 			
 		});

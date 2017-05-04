@@ -9,14 +9,20 @@ import javax.swing.Timer;
 import textureClass.Texture;
 
 public class Ryu extends Character {
+	
 	int idleIndex = 0;
 	int walkIndex = 0;
 	int vertialJumpIndex = 0;
 	int diagonalJumpIndex = 0;
-	int punchIndex = 0;
-	int kickIndex = 0;
+	volatile int punchIndex = 0;
+	volatile int kickIndex = 0;
+	volatile int sneakPunchIndex = 0;
+	volatile int sneakKickIndex = 0;
+	volatile int aerialKickIndex = 0;
+	
 	boolean isPunching = false;
 	boolean isKicking = false;
+	boolean isSneaking = false;
 	protected Ryu(CharacterInfo info, int speed) {
 		super(CharacterInfo.RYU, speed);
 		Timer move = new Timer(100 , e-> {
@@ -45,16 +51,32 @@ public class Ryu extends Character {
 	@Override
 	void draw(Graphics g) {
 		if(isPunching && yVelo==0 && !isKicking){
+			if(!isSneaking)
 			g.drawImage(Texture.punchRyuRight[punchIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			else
+				g.drawImage(Texture.sneakPunchRyu[sneakPunchIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
 			return;
 		}
 		if(isKicking && yVelo==0 && !isPunching){
+			if(!isSneaking){
 			g.drawImage(Texture.kickRyuRight[kickIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			}else{
+				g.drawImage(Texture.sneakKickRyu[sneakKickIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
+			}
 			return;
 		}
-		if(xVelo==0&&yVelo==0)
+		if(isKicking && yVelo!=0 && !isPunching){
+			g.drawImage(Texture.aerialKickRyu[aerialKickIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			return;
+		}
+		if(xVelo==0&&yVelo==0){
+		if(!isSneaking){
 		g.drawImage(Texture.idleRyuRight[idleIndex],x,y, Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue(), null);
-		else if(xVelo!=0 && yVelo== 0){
+		}else{
+			g.drawImage(Texture.idleSneakRyu,x,y+(Constants.PLAYER_HEIGHT.getIntValue()/2), Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
+
+		}
+		}else if(xVelo!=0 && yVelo== 0){
 			g.drawImage(Texture.walkRyuRight[walkIndex],x,y, Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue(), null);
 		}else if(xVelo==0&&yVelo!=0){
 			g.drawImage(Texture.verticalJumpRyuRight[vertialJumpIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*.9), (int)(Constants.PLAYER_HEIGHT.getIntValue()*.9), null);
@@ -71,12 +93,12 @@ public class Ryu extends Character {
 
 	@Override
 	void sneak() {
-		
+		isSneaking = true;
 	}
 	
 	@Override
 	void incrementMoveIndex() {
-		if(xVelo==0&&yVelo==0){
+		if(xVelo==0&&yVelo==0 &&!isSneaking){
 			//idle
 			idleIndex++;
 			if(idleIndex>Texture.idleRyuRight.length-1){
@@ -107,17 +129,26 @@ public class Ryu extends Character {
 
 			@Override
 			public void run() {
-				punchIndex = 0;
 				isPunching = true;
+				if(!isSneaking){
+					punchIndex = 0;
 				for(int index = 0; index < Texture.punchRyuRight.length-1; index++){
 						punchIndex++;
 					try{
 						Thread.sleep(100);
 					}catch(Exception e) { }
 				}
+				}else{
+					sneakPunchIndex = 0;
+					for(int index = 0; index < Texture.sneakPunchRyu.length-1; index++){
+						sneakPunchIndex++;
+					try{
+						Thread.sleep(100);
+					}catch(Exception e) { }
+				}
+				}
 				isPunching = false;
 			}
-			
 		});
 		punch.start();
 		}
@@ -131,13 +162,33 @@ public class Ryu extends Character {
 
 				@Override
 				public void run() {
-					kickIndex = 0;
 					isKicking = true;
+					if(!inAir){
+					if(!isSneaking){
+					kickIndex = 0;
 					for(int index = 0; index < Texture.kickRyuRight.length-1; index++){
 							kickIndex++;
 						try{
 							Thread.sleep(100);
 						}catch(Exception e) { }
+					}
+					}else{
+						sneakKickIndex = 0;
+						for(int index = 0; index < Texture.sneakKickRyu.length-1; index++){
+							sneakKickIndex++;
+							try{
+								Thread.sleep(100);
+							}catch(Exception e) { }
+						}
+					}
+					}else{
+						aerialKickIndex = 0;
+						for(int index = 0; index < Texture.aerialKickRyu.length-1; index++){
+							aerialKickIndex++;
+							try{
+								Thread.sleep(100);
+							}catch(Exception e) { }
+						}
 					}
 					isKicking = false;
 				}
@@ -145,6 +196,11 @@ public class Ryu extends Character {
 			});
 			kick.start();
 			}
+	}
+
+	@Override
+	void stand() {
+		isSneaking = false;
 	}
 
 }

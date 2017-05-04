@@ -21,6 +21,12 @@ public class Texture {
 	public static BufferedImage[] diagonalJumpRyuRight = new BufferedImage[3];
 	public static BufferedImage[] punchRyuRight = new BufferedImage[6];
 	public static BufferedImage[] kickRyuRight = new BufferedImage[8];
+	
+	public static BufferedImage idleSneakRyu;
+	public static BufferedImage[] sneakPunchRyu = new BufferedImage[7];
+	public static BufferedImage[] sneakKickRyu = new BufferedImage[4];
+	public static BufferedImage[] aerialKickRyu = new BufferedImage[8];
+	
 	//END OF RYU CHARACTER SPRITES
 	
 	public Texture(){
@@ -131,8 +137,51 @@ public class Texture {
 			kickRyuRight[7] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,54 ,94);
 			xBuffer+=54;
 			
+			//idle sneak
 			
+			idleSneakRyu = ryuSpriteSheetRight.getSubimage(1163, 45, 41, 55);
 			
+			//sneak punch
+			xBuffer = 15;
+			yBuffer = 417;
+			
+			sneakPunchRyu[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 49, 55);
+			xBuffer += 49;
+			sneakPunchRyu[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 70, 55);
+			xBuffer += 70;
+			sneakPunchRyu[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 47, 55);
+			xBuffer += 47;
+			sneakPunchRyu[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 52, 55);
+			xBuffer += 52;
+			sneakPunchRyu[4] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 68, 55);
+			xBuffer += 68;
+			sneakPunchRyu[5] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 49, 55);
+			xBuffer += 49;
+			sneakPunchRyu[6] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 51, 55);
+			xBuffer += 51;
+			
+			//sneak kick
+			xBuffer = 613;
+			yBuffer = 407;
+			sneakKickRyu[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 48, 70);
+			xBuffer += 48;
+			sneakKickRyu[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 55, 70);
+			xBuffer += 55;
+			sneakKickRyu[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 74, 70);
+			xBuffer += 74;
+			sneakKickRyu[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 56, 70);
+			xBuffer += 56;
+			
+			//aerial kick
+			aerialKickRyu[0] = ryuSpriteSheetRight.getSubimage(946, 523, 52, 94);
+			aerialKickRyu[1] = ryuSpriteSheetRight.getSubimage(1000, 503, 44, 77);
+			aerialKickRyu[2] = ryuSpriteSheetRight.getSubimage(1050, 490, 68, 98);
+			aerialKickRyu[3] = ryuSpriteSheetRight.getSubimage(1114, 491, 45, 94);
+			aerialKickRyu[4] = ryuSpriteSheetRight.getSubimage(1156, 498, 67, 81);
+			aerialKickRyu[5] = ryuSpriteSheetRight.getSubimage(1228, 494, 51, 85);
+			aerialKickRyu[6] = ryuSpriteSheetRight.getSubimage(1286, 499, 41, 88);
+			aerialKickRyu[7] = ryuSpriteSheetRight.getSubimage(1331, 533, 37, 81);
+
 		}catch(Exception e){ }
 	}
 }

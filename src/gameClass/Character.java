@@ -53,6 +53,7 @@ public abstract class Character {
 	abstract void jump();
 	abstract void draw(Graphics g);
 	abstract void sneak();
+	abstract void stand();
 	abstract void incrementMoveIndex();
 	abstract void punch();
 	abstract void kick();
