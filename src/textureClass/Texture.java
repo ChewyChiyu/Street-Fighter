@@ -19,6 +19,8 @@ public class Texture {
 	public static BufferedImage[] walkRyuRight = new BufferedImage[6];
 	public static BufferedImage[] verticalJumpRyuRight = new BufferedImage[5];
 	public static BufferedImage[] diagonalJumpRyuRight = new BufferedImage[3];
+	public static BufferedImage[] punchRyuRight = new BufferedImage[6];
+	public static BufferedImage[] kickRyuRight = new BufferedImage[8];
 	//END OF RYU CHARACTER SPRITES
 	
 	public Texture(){
@@ -94,8 +96,43 @@ public class Texture {
 			diagonalJumpRyuRight[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 40, 85);
 			xBuffer+=40;
 			diagonalJumpRyuRight[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 67, 85);
-			xBuffer+=67;
-		
+			//punch
+			xBuffer = 0;
+			yBuffer = 127;
+			punchRyuRight[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,50 ,94);
+			xBuffer+=50;
+			punchRyuRight[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,66 ,94);
+			xBuffer+=66;
+			punchRyuRight[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,50 ,94);
+			xBuffer+=50;
+			punchRyuRight[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,50 ,94);
+			xBuffer+=50;
+			punchRyuRight[4] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,64 ,94);
+			xBuffer+=64;
+			punchRyuRight[5] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,70 ,94);
+			xBuffer+=70;
+			//kick
+			xBuffer = 0;
+			yBuffer = 250;
+			kickRyuRight[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,55 ,94);
+			xBuffer+=55;
+			kickRyuRight[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,80 ,94);
+			xBuffer+=80;
+			kickRyuRight[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,49 ,94);
+			xBuffer+=49;
+			kickRyuRight[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,57 ,94);
+			xBuffer+=57;
+			kickRyuRight[4] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,61 ,94);
+			xBuffer+=61;
+			kickRyuRight[5] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,77 ,94);
+			xBuffer+=77;
+			kickRyuRight[6] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,66 ,94);
+			xBuffer+=66;
+			kickRyuRight[7] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,54 ,94);
+			xBuffer+=54;
+			
+			
+			
 		}catch(Exception e){ }
 	}
 }

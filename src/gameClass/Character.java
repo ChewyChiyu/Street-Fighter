@@ -54,5 +54,7 @@ public abstract class Character {
 	abstract void draw(Graphics g);
 	abstract void sneak();
 	abstract void incrementMoveIndex();
+	abstract void punch();
+	abstract void kick();
 	public abstract String toString();
 }

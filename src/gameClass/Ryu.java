@@ -13,8 +13,12 @@ public class Ryu extends Character {
 	int walkIndex = 0;
 	int vertialJumpIndex = 0;
 	int diagonalJumpIndex = 0;
+	int punchIndex = 0;
+	int kickIndex = 0;
+	boolean isPunching = false;
+	boolean isKicking = false;
 	protected Ryu(CharacterInfo info, int speed) {
-		super(CharacterInfo.ONE, speed);
+		super(CharacterInfo.RYU, speed);
 		Timer move = new Timer(100 , e-> {
 			incrementMoveIndex();
 		});
@@ -40,7 +44,14 @@ public class Ryu extends Character {
 
 	@Override
 	void draw(Graphics g) {
-		
+		if(isPunching && yVelo==0 && !isKicking){
+			g.drawImage(Texture.punchRyuRight[punchIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			return;
+		}
+		if(isKicking && yVelo==0 && !isPunching){
+			g.drawImage(Texture.kickRyuRight[kickIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			return;
+		}
 		if(xVelo==0&&yVelo==0)
 		g.drawImage(Texture.idleRyuRight[idleIndex],x,y, Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue(), null);
 		else if(xVelo!=0 && yVelo== 0){
@@ -55,17 +66,16 @@ public class Ryu extends Character {
 
 	@Override
 	public String toString() {
-		return "Test Character";
+		return "RYU";
 	}
 
 	@Override
 	void sneak() {
 		
 	}
-
+	
 	@Override
 	void incrementMoveIndex() {
-		
 		if(xVelo==0&&yVelo==0){
 			//idle
 			idleIndex++;
@@ -88,6 +98,53 @@ public class Ryu extends Character {
 				diagonalJumpIndex = 0;
 			}
 		}
+	}
+
+	@Override
+	void punch() {
+		if(!isPunching){
+		Thread punch = new Thread(new Runnable(){
+
+			@Override
+			public void run() {
+				punchIndex = 0;
+				isPunching = true;
+				for(int index = 0; index < Texture.punchRyuRight.length-1; index++){
+						punchIndex++;
+					try{
+						Thread.sleep(100);
+					}catch(Exception e) { }
+				}
+				isPunching = false;
+			}
+			
+		});
+		punch.start();
+		}
+	}
+
+
+	@Override
+	void kick() {
+		if(!isKicking){
+			Thread kick = new Thread(new Runnable(){
+
+				@Override
+				public void run() {
+					kickIndex = 0;
+					isKicking = true;
+					for(int index = 0; index < Texture.kickRyuRight.length-1; index++){
+							kickIndex++;
+						try{
+							Thread.sleep(100);
+						}catch(Exception e) { }
+					}
+					isKicking = false;
+				}
+				
+			});
+			kick.start();
+			}
 	}
 
 }

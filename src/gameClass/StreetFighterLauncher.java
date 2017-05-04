@@ -120,10 +120,10 @@ public class StreetFighterLauncher extends JPanel {
 			String s = "";
 			switch(index){
 			case 0:
-				s = "TRAINING";
+				s = "SINGLEPLAYER";
 				break;
 			case 1:
-				s = "FIGHT";
+				s = "GROUP BATTLE";
 				break;
 			case 2:
 				s = "OPTIONS";

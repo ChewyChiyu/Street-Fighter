@@ -2,7 +2,8 @@ package gameClass;
 
 
 public enum CharacterInfo {
-	ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9);
+	//will change constant names when more characters are added
+	RYU(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9);
 	private int location;
 	private CharacterInfo(int loc){
 		location = loc;
@@ -13,7 +14,7 @@ public enum CharacterInfo {
 	Character getCharacter(){
 		switch(location){
 		case 1:
-			return new Ryu(CharacterInfo.ONE,5);
+			return new Ryu(CharacterInfo.RYU,5);
 		case 2:
 			return new Ryu(CharacterInfo.TWO,5);
 		case 3:

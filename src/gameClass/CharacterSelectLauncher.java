@@ -20,8 +20,8 @@ import textureClass.Texture;
 @SuppressWarnings("serial")
 public class CharacterSelectLauncher extends JPanel {
 	private GameType g;
-	private Character selectedCharacter = CharacterInfo.ONE.getCharacter();
-	private CharacterInfo[] characterList = {CharacterInfo.ONE,CharacterInfo.TWO,CharacterInfo.THREE,CharacterInfo.FOUR,CharacterInfo.FIVE,CharacterInfo.SIX, CharacterInfo.SEVEN, CharacterInfo.EIGHT, CharacterInfo.NINE};
+	private Character selectedCharacter = CharacterInfo.RYU.getCharacter();
+	private CharacterInfo[] characterList = {CharacterInfo.RYU,CharacterInfo.TWO,CharacterInfo.THREE,CharacterInfo.FOUR,CharacterInfo.FIVE,CharacterInfo.SIX, CharacterInfo.SEVEN, CharacterInfo.EIGHT, CharacterInfo.NINE};
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
