@@ -180,6 +180,16 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						else if(c.getX()+Constants.PLAYER_WIDTH.getIntValue()>Constants.SCREEN_WIDTH.getIntValue()){
 							c.setX(-c.getSpeed());
 						}
+						//if in air
+						if(c.getY()+Constants.PLAYER_HEIGHT.getIntValue()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
+							c.inAir = true;
+						}else{
+							//stuck in floor
+							c.inAir = false;
+						}
+						try{
+							Thread.sleep(1);
+						}catch(Exception e) { }
 					}
 				}
 			}
@@ -212,10 +222,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			Character c = sprites.get(index);
 			if(c.getY()+Constants.PLAYER_HEIGHT.getIntValue()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
 				c.setYVelo(Constants.GRAVITY.getIntValue());
-				c.inAir = true;
 			}else{
 				c.setYVelo(0);
-				c.inAir = false;
 			}
 			
 		}
