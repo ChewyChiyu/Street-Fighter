@@ -5,7 +5,6 @@ import java.awt.Graphics;
 import textureClass.RyuTexture;
 
 public class EnergyBall extends Projectile{
-
 	protected EnergyBall(int x, int y, int xVelo, int yVelo) {
 		super(x, y, xVelo, yVelo);
 	}

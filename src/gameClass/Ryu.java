@@ -250,7 +250,8 @@ public class Ryu extends Character {
 					Thread.sleep(100);
 				}catch(Exception e) { }
 				
-			}						
+			}		
+				isLowPunching = false;
 			}
 			
 		});
