@@ -27,6 +27,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
 	protected static ArrayList<GameObject> sprites = new ArrayList<GameObject>();
+	protected static ArrayList<GameMoves> keysPressedPlayer = new ArrayList<GameMoves>();
 	protected FightPanelLauncher(Character c, Map m, GameType g){
 		this.c = c;
 		this.m = m;
@@ -44,7 +45,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				cardLayout.next(screen);
 			}
-			
+
 		});
 		switch(g){
 		case FIGHT:
@@ -55,7 +56,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			break;
 		default:
 			break;
-		
+
 		}
 	}
 	void manyPlayerKeys(){
@@ -69,92 +70,111 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released A"), "rA");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released D"), "rD");
-	
-		
+
+
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("J"), "PUNCH");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("K"), "KICK");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("L"), "SPECIAL");
 
-		
+
 		getActionMap().put("A", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.setXVelo(-c.getSpeed());
+				//c.setXVelo(-c.getSpeed());
+				keysPressedPlayer.add(GameMoves.LEFT);
 			}
-			
+
 		});
 		getActionMap().put("D", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.setXVelo(c.getSpeed());
+				//c.setXVelo(c.getSpeed());
+				keysPressedPlayer.add(GameMoves.RIGHT);
+
 			}
-			
+
 		});
 		getActionMap().put("W", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.jump();
+				//c.jump();
+				keysPressedPlayer.add(GameMoves.JUMP);
+
 			}
-			
+
 		});
 		getActionMap().put("S", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.sneak();
+				//c.sneak();
+				keysPressedPlayer.add(GameMoves.SNEAK);
+
 			}
-			
+
 		});
 		getActionMap().put("rS", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.stand();
+				//c.stand();
+				keysPressedPlayer.add(GameMoves.STAND);
+
 			}
-			
+
 		});
 		getActionMap().put("rA", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.setXVelo(0);
+				//c.setXVelo(0);
+				keysPressedPlayer.add(GameMoves.STOP);
+
 			}
-			
+
 		});
 		getActionMap().put("rD", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.setXVelo(0);
+				//c.setXVelo(0);
+				keysPressedPlayer.add(GameMoves.STOP);
+
 			}
-			
+
 		});
 		getActionMap().put("PUNCH", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.punch();
+				//c.punch();
+				keysPressedPlayer.add(GameMoves.PUNCH);
+
 			}
-			
+
 		});
 		getActionMap().put("KICK", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.kick();
+				//	c.kick();
+				keysPressedPlayer.add(GameMoves.KICK);
+
 			}
-			
+
 		});
 		getActionMap().put("SPECIAL", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				c.special();
+				//c.special();
+				keysPressedPlayer.add(GameMoves.SPECIAL);
+
 			}
-			
+
 		});
 	}
 	void panel(){
@@ -176,6 +196,79 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		isRunning = true;
 		gameLoop.start();
 		boundsCheck();
+		readKeys();
+	}
+	void readKeys(){
+		Thread keyReading = new Thread(new Runnable(){
+			public void run(){
+				while(isRunning){
+
+						if(keysPressedPlayer.isEmpty()){
+
+							try{
+								Thread.sleep(1);
+							}catch(Exception e) { }
+							continue;
+						}
+						//reading keys
+						GameMoves g = keysPressedPlayer.remove(0);
+						switch(g){
+						case JUMP:
+							c.jump();
+							break;
+						case KICK:
+							if(!c.inAir){
+								if(c.isSneaking){
+									c.sneakKick();
+								}else{
+									c.kick();
+								}
+							}else{
+								c.aerialKick();
+							}
+							break;
+						case LEFT:
+							c.setXVelo(-c.getSpeed());
+							break;
+						case PUNCH:
+							if(!c.inAir){
+								if(c.isSneaking){
+									c.sneakPunch();
+								}else{
+									c.punch();
+								}
+							}else{
+								c.aerialPunch();
+							}							
+							break;
+						case RIGHT:
+							c.setXVelo(c.getSpeed());
+							break;
+						case SNEAK:
+							c.sneak();
+							break;
+						case SPECIAL:
+							c.special();
+							break;
+						case STAND:
+							c.stand();
+							break;
+						case STOP:
+							c.setXVelo(0);
+							break;
+						default:
+							break;
+
+						}
+
+						try{
+							Thread.sleep(1);
+						}catch(Exception e) { }
+					}
+				}
+			
+		});
+		keyReading.start();
 	}
 	void boundsCheck(){
 		Thread boundCheck = new Thread(new Runnable(){
@@ -185,12 +278,12 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					for(int index = 0; index < sprites.size(); index++){
 						GameObject c = sprites.get(index);
 						if(c.gravity){
-						if(c.getX()<0){
-							c.setX(c.getSpeed());
-						}
-						else if(c.getX()+Constants.PLAYER_WIDTH.getIntValue()>Constants.SCREEN_WIDTH.getIntValue()){
-							c.setX(-c.getSpeed());
-						}
+							if(c.getX()<0){
+								c.setX(c.getSpeed());
+							}
+							else if(c.getX()+Constants.PLAYER_WIDTH.getIntValue()>Constants.SCREEN_WIDTH.getIntValue()){
+								c.setX(-c.getSpeed());
+							}
 						}
 						//if in air
 						if(c.getY()+Constants.PLAYER_HEIGHT.getIntValue()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
@@ -222,7 +315,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 				Thread.sleep(10);
 			}catch(Exception e) { }
 		}
-		
+
 	}
 	void update(){
 		repaint();
@@ -240,7 +333,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			}else{
 				c.setYVelo(0);
 			}
-			
+
 		}
 	}
 	void updateLocations(){
@@ -264,5 +357,5 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	void drawMap(Graphics g){
 		m.drawMap(g);
 	}
-	
+
 }

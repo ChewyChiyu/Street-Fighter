@@ -1,0 +1,5 @@
+package gameClass;
+
+public enum GameMoves {
+	RIGHT, LEFT, JUMP, SNEAK, STOP, PUNCH, KICK, SPECIAL, LOWKICK, LOWPUNCH, HIGHKICK, HIGHPUNCH, STAND 
+}

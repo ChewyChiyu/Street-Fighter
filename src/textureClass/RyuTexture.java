@@ -23,9 +23,9 @@ public class RyuTexture extends Texture{
 		
 		//END OF RYU CHARACTER SPRITES
 	protected RyuTexture(){
-	load();	
+	loadRight();	
 	}
-	void load(){
+	void loadRight(){
 			try{
 				BufferedImage ryuSpriteSheetRight = ImageIO.read(getClass().getResource("/imgs/characters/RyuSpriteSheetRight.png"));
 				
