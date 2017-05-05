@@ -212,7 +212,6 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 				while(isRunning){
 
 					if(keysPressedPlayer.isEmpty()){
-
 						try{
 							Thread.sleep(1);
 						}catch(Exception e) { }

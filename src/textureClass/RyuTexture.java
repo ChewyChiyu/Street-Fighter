@@ -13,7 +13,7 @@ public class RyuTexture extends Texture{
 		public static BufferedImage[] punchRyuRight = new BufferedImage[6];
 		public static BufferedImage[] kickRyuRight = new BufferedImage[8];
 		
-		public static BufferedImage idleSneakRyuRight;
+		public static BufferedImage[] idleSneakRyuRight = new BufferedImage[1];
 		public static BufferedImage[] sneakPunchRyuRight = new BufferedImage[7];
 		public static BufferedImage[] sneakKickRyuRight = new BufferedImage[4];
 		public static BufferedImage[] aerialKickRyuRight = new BufferedImage[8];
@@ -96,7 +96,7 @@ public class RyuTexture extends Texture{
 				
 				//idle sneak
 				
-				idleSneakRyuRight = ryuSpriteSheetRight.getSubimage(1163, 45, 41, 55);
+				idleSneakRyuRight[0] = ryuSpriteSheetRight.getSubimage(1163, 45, 41, 55);
 				
 				//sneak punch
 				xBuffer = 15;

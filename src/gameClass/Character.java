@@ -45,12 +45,11 @@ public abstract class Character extends GameObject {
 	protected BufferedImage[] punch;
 	protected BufferedImage[] kick;
 	
-	protected BufferedImage idleSneak;
+	protected BufferedImage[] idleSneak;
 	protected BufferedImage[] sneakPunch;
 	protected BufferedImage[] sneakKick;
 	protected BufferedImage[] aerialKick;
 	protected BufferedImage[] special;
-	protected BufferedImage energyBall;
 	
 	protected BufferedImage[]  hitTorso;	
 	
