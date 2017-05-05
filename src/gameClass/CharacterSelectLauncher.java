@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import textureClass.MapTexture;
 import textureClass.Texture;
 
 @SuppressWarnings("serial")
@@ -25,7 +26,7 @@ public class CharacterSelectLauncher extends JPanel {
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
-	boolean[][] select = new boolean[Texture.characterSelectSprites.length][Texture.characterSelectSprites[0].length];
+	boolean[][] select = new boolean[MapTexture.characterSelectSprites.length][MapTexture.characterSelectSprites[0].length];
 	protected CharacterSelectLauncher(GameType g){
 		this.g = g;
 		select[0][0] = true;
@@ -63,8 +64,8 @@ public class CharacterSelectLauncher extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 0; index < Texture.characterSelectSprites.length; index++){
-					for(int subIndex = 1; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
+				for(int index = 0; index < MapTexture.characterSelectSprites.length; index++){
+					for(int subIndex = 1; subIndex < MapTexture.characterSelectSprites[0].length; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index][subIndex-1] = true;
@@ -81,8 +82,8 @@ public class CharacterSelectLauncher extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 0; index < Texture.characterSelectSprites.length; index++){
-					for(int subIndex = 0; subIndex < Texture.characterSelectSprites[0].length-1; subIndex++){
+				for(int index = 0; index < MapTexture.characterSelectSprites.length; index++){
+					for(int subIndex = 0; subIndex < MapTexture.characterSelectSprites[0].length-1; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index][subIndex+1] = true;
@@ -99,8 +100,8 @@ public class CharacterSelectLauncher extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 1; index < Texture.characterSelectSprites.length; index++){
-					for(int subIndex = 0; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
+				for(int index = 1; index < MapTexture.characterSelectSprites.length; index++){
+					for(int subIndex = 0; subIndex < MapTexture.characterSelectSprites[0].length; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index-1][subIndex] = true;
@@ -117,8 +118,8 @@ public class CharacterSelectLauncher extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 0; index < Texture.characterSelectSprites.length-1; index++){
-					for(int subIndex = 0; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
+				for(int index = 0; index < MapTexture.characterSelectSprites.length-1; index++){
+					for(int subIndex = 0; subIndex < MapTexture.characterSelectSprites[0].length; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index+1][subIndex] = true;
@@ -143,7 +144,7 @@ public class CharacterSelectLauncher extends JPanel {
 		});
 	}
 	void updateSelectedCharacter(int r, int c){
-		int location = (r*Texture.characterSelectSprites[0].length) + c + 1;
+		int location = (r*MapTexture.characterSelectSprites[0].length) + c + 1;
 		for(int index = 0; index < characterList.length; index++){
 			if(location == characterList[index].locationInCharSelect()){
 				selectedCharacter = characterList[index].getCharacter();
@@ -184,16 +185,16 @@ public class CharacterSelectLauncher extends JPanel {
 		g.drawString("FIGHT CHARACTER SELECT", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1),  (int)(Constants.SCREEN_HEIGHT.getIntValue()*.1));
 		int xBuffer = (int)(Constants.SCREEN_WIDTH.getIntValue()*.1);
 		int yBuffer = (int)(Constants.SCREEN_HEIGHT.getIntValue()*.15);
-		for(int index = 0; index < Texture.characterSelectSprites.length; index++){
-			for(int subIndex = 0; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
-				if(Texture.characterSelectSprites[index][subIndex] != null){
+		for(int index = 0; index < MapTexture.characterSelectSprites.length; index++){
+			for(int subIndex = 0; subIndex < MapTexture.characterSelectSprites[0].length; subIndex++){
+				if(MapTexture.characterSelectSprites[index][subIndex] != null){
 					Color c;
 					if(select[index][subIndex]){
 						c = Color.BLACK;
 					}else{
 						c = Color.GRAY;
 					}
-					g.drawImage(Texture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
+					g.drawImage(MapTexture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
 				}
 				xBuffer+=205; //5 pixel buffer
 			}
@@ -207,16 +208,16 @@ public class CharacterSelectLauncher extends JPanel {
 		g.drawString("TRAINING CHARACTER SELECT", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1),  (int)(Constants.SCREEN_HEIGHT.getIntValue()*.1));
 		int xBuffer = (int)(Constants.SCREEN_WIDTH.getIntValue()*.1);
 		int yBuffer = (int)(Constants.SCREEN_HEIGHT.getIntValue()*.15);
-		for(int index = 0; index < Texture.characterSelectSprites.length; index++){
-			for(int subIndex = 0; subIndex < Texture.characterSelectSprites[0].length; subIndex++){
-				if(Texture.characterSelectSprites[index][subIndex] != null){
+		for(int index = 0; index < MapTexture.characterSelectSprites.length; index++){
+			for(int subIndex = 0; subIndex < MapTexture.characterSelectSprites[0].length; subIndex++){
+				if(MapTexture.characterSelectSprites[index][subIndex] != null){
 					Color c;
 					if(select[index][subIndex]){
 						c = Color.BLACK;
 					}else{
 						c = Color.GRAY;
 					}
-					g.drawImage(Texture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
+					g.drawImage(MapTexture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
 				}
 				xBuffer+=205; //5 pixel buffer
 			}

@@ -2,6 +2,7 @@ package gameClass;
 
 import java.awt.Graphics;
 
+import textureClass.MapTexture;
 import textureClass.Texture;
 
 public class Map {
@@ -19,8 +20,8 @@ public class Map {
 	}
 	void drawMap(Graphics g){
 		int indexTemp = index- 1;
-		int row = (int)(indexTemp/ Texture.mapSelectSprites[0].length);
-		int col = (indexTemp % Texture.mapSelectSprites[0].length);
-		g.drawImage(Texture.mapSelectSprites[row][col], 0, 0,Constants.SCREEN_WIDTH.getIntValue(),Constants.SCREEN_HEIGHT.getIntValue(), null);
+		int row = (int)(indexTemp/ MapTexture.mapSelectSprites[0].length);
+		int col = (indexTemp % MapTexture.mapSelectSprites[0].length);
+		g.drawImage(MapTexture.mapSelectSprites[row][col], 0, 0,Constants.SCREEN_WIDTH.getIntValue(),Constants.SCREEN_HEIGHT.getIntValue(), null);
 	}
 }		

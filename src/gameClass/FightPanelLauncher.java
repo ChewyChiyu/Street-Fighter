@@ -13,7 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import textureClass.Texture;
+import textureClass.RyuTexture;
+
 
 @SuppressWarnings("serial")
 public class FightPanelLauncher extends JPanel implements Runnable{
@@ -25,7 +26,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
-	private ArrayList<Character> sprites = new ArrayList<Character>();
+	protected static ArrayList<GameObject> sprites = new ArrayList<GameObject>();
 	protected FightPanelLauncher(Character c, Map m, GameType g){
 		this.c = c;
 		this.m = m;
@@ -72,6 +73,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("J"), "PUNCH");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("K"), "KICK");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("L"), "SPECIAL");
 
 		
 		getActionMap().put("A", new AbstractAction(){
@@ -146,6 +148,14 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			}
 			
 		});
+		getActionMap().put("SPECIAL", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				c.special();
+			}
+			
+		});
 	}
 	void panel(){
 		frame = new JFrame();
@@ -173,12 +183,14 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 				while(isRunning){
 					//out of bounds check
 					for(int index = 0; index < sprites.size(); index++){
-						Character c = sprites.get(index);
+						GameObject c = sprites.get(index);
+						if(c.gravity){
 						if(c.getX()<0){
 							c.setX(c.getSpeed());
 						}
 						else if(c.getX()+Constants.PLAYER_WIDTH.getIntValue()>Constants.SCREEN_WIDTH.getIntValue()){
 							c.setX(-c.getSpeed());
+						}
 						}
 						//if in air
 						if(c.getY()+Constants.PLAYER_HEIGHT.getIntValue()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
@@ -219,7 +231,10 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	}
 	void physics(){
 		for(int index = 0; index < sprites.size(); index++){
-			Character c = sprites.get(index);
+			GameObject c = sprites.get(index);
+			if(!c.gravity){
+				continue;
+			}
 			if(c.getY()+Constants.PLAYER_HEIGHT.getIntValue()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
 				c.setYVelo(Constants.GRAVITY.getIntValue());
 			}else{
@@ -230,7 +245,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	}
 	void updateLocations(){
 		for(int index = 0; index < sprites.size(); index++){
-			Character c = sprites.get(index);
+			GameObject c = sprites.get(index);
 			c.setX(c.getXVelo());
 			c.setY(c.getYVelo());
 		}
@@ -242,7 +257,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	}
 	void drawCharacters(Graphics g){
 		for(int index = 0; index < sprites.size(); index++){
-			Character c = sprites.get(index);
+			GameObject c = sprites.get(index);
 			c.draw(g);
 		}
 	}

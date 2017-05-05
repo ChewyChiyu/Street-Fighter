@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import textureClass.MapTexture;
 import textureClass.Texture;
 @SuppressWarnings("serial")
 public class StreetFighterLauncher extends JPanel {
@@ -25,7 +26,8 @@ public class StreetFighterLauncher extends JPanel {
 		new StreetFighterLauncher();
 	}
 	protected StreetFighterLauncher(){
-		new Texture();
+		Texture.loadMapTextures();
+		Texture.loadRyuTextures();
 		panel();
 		keys();
 		repaint();
@@ -135,7 +137,7 @@ public class StreetFighterLauncher extends JPanel {
 	}
 	void drawBackDrops(Graphics g){
 		g.setFont(new Font("Arial",Font.BOLD,40));
-		g.drawImage(Texture.launcherSprites[0], 0, 0,Constants.SCREEN_WIDTH.getIntValue(),Constants.SCREEN_HEIGHT.getIntValue(), null);
+		g.drawImage(MapTexture.launcherSprites[0], 0, 0,Constants.SCREEN_WIDTH.getIntValue(),Constants.SCREEN_HEIGHT.getIntValue(), null);
 		g.drawString("choose with A,D and press Enter to start", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.9));
 	}
 

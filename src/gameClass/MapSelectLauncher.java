@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import textureClass.MapTexture;
 import textureClass.Texture;
 @SuppressWarnings("serial")
 public class MapSelectLauncher extends JPanel{
@@ -25,7 +26,7 @@ public class MapSelectLauncher extends JPanel{
 	private JPanel screen = new JPanel(cardLayout);
 	private Map selectedMap = MapInfo.ONE.getMap();
 	private MapInfo[] mapList = {MapInfo.ONE,MapInfo.TWO,MapInfo.THREE,MapInfo.FOUR,MapInfo.FIVE,MapInfo.SIX, MapInfo.SEVEN, MapInfo.EIGHT, MapInfo.NINE};
-	private boolean[][] select = new boolean[Texture.mapSelectSprites.length][Texture.mapSelectSprites[0].length];
+	private boolean[][] select = new boolean[MapTexture.mapSelectSprites.length][MapTexture.mapSelectSprites[0].length];
 
 	protected MapSelectLauncher(Character c, GameType g){
 		select[0][0] = true;
@@ -56,8 +57,8 @@ public class MapSelectLauncher extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 0; index < Texture.mapSelectSprites.length; index++){
-					for(int subIndex = 1; subIndex < Texture.mapSelectSprites[0].length; subIndex++){
+				for(int index = 0; index < MapTexture.mapSelectSprites.length; index++){
+					for(int subIndex = 1; subIndex < MapTexture.mapSelectSprites[0].length; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index][subIndex-1] = true;
@@ -74,8 +75,8 @@ public class MapSelectLauncher extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 0; index < Texture.mapSelectSprites.length; index++){
-					for(int subIndex = 0; subIndex < Texture.mapSelectSprites[0].length-1; subIndex++){
+				for(int index = 0; index < MapTexture.mapSelectSprites.length; index++){
+					for(int subIndex = 0; subIndex < MapTexture.mapSelectSprites[0].length-1; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index][subIndex+1] = true;
@@ -92,8 +93,8 @@ public class MapSelectLauncher extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 1; index < Texture.mapSelectSprites.length; index++){
-					for(int subIndex = 0; subIndex < Texture.mapSelectSprites[0].length; subIndex++){
+				for(int index = 1; index < MapTexture.mapSelectSprites.length; index++){
+					for(int subIndex = 0; subIndex < MapTexture.mapSelectSprites[0].length; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index-1][subIndex] = true;
@@ -110,8 +111,8 @@ public class MapSelectLauncher extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				for(int index = 0; index < Texture.mapSelectSprites.length-1; index++){
-					for(int subIndex = 0; subIndex < Texture.mapSelectSprites[0].length; subIndex++){
+				for(int index = 0; index < MapTexture.mapSelectSprites.length-1; index++){
+					for(int subIndex = 0; subIndex < MapTexture.mapSelectSprites[0].length; subIndex++){
 						if(select[index][subIndex]){
 							select[index][subIndex] = false;
 							select[index+1][subIndex] = true;
@@ -159,7 +160,7 @@ public class MapSelectLauncher extends JPanel{
 		cardLayout.show(screen, null);
 	}
 	void updateSelectedCharacter(int r, int c){
-		int location = (r*Texture.mapSelectSprites[0].length) + c + 1;
+		int location = (r*MapTexture.mapSelectSprites[0].length) + c + 1;
 		for(int index = 0; index < mapList.length; index++){
 			if(location == mapList[index].locationInMapSelect()){
 				selectedMap = mapList[index].getMap();
@@ -182,13 +183,13 @@ public class MapSelectLauncher extends JPanel{
 		g.drawString("MAP SELECT", (int)(Constants.SCREEN_WIDTH.getIntValue()*.1),  (int)(Constants.SCREEN_HEIGHT.getIntValue()*.1));
 		int xBuffer = (int)(Constants.SCREEN_WIDTH.getIntValue()*.1);
 		int yBuffer = (int)(Constants.SCREEN_HEIGHT.getIntValue()*.15);
-		for(int index = 0; index < Texture.mapSelectSprites.length; index++){
-			for(int subIndex = 0; subIndex < Texture.mapSelectSprites[0].length; subIndex++){
-				if(Texture.mapSelectSprites[index][subIndex] != null){
+		for(int index = 0; index < MapTexture.mapSelectSprites.length; index++){
+			for(int subIndex = 0; subIndex < MapTexture.mapSelectSprites[0].length; subIndex++){
+				if(MapTexture.mapSelectSprites[index][subIndex] != null){
 
-					g.drawImage(Texture.mapSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,null);
+					g.drawImage(MapTexture.mapSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,null);
 					if(select[index][subIndex]){
-						g.drawImage(Texture.selector, xBuffer, yBuffer, 200, 200,null);
+						g.drawImage(MapTexture.selector, xBuffer, yBuffer, 200, 200,null);
 					}
 				}
 				xBuffer+=205; //5 pixel buffer
