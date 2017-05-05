@@ -14,23 +14,23 @@ public enum CharacterInfo {
 	Character getCharacter(){
 		switch(location){
 		case 1:
-			return new Ryu(CharacterInfo.RYU,5);
+			return new Ryu(CharacterInfo.RYU,5,true);
 		case 2:
-			return new Ryu(CharacterInfo.TWO,5);
+			return new Ryu(CharacterInfo.TWO,5,true);
 		case 3:
-			return new Ryu(CharacterInfo.THREE,5);
+			return new Ryu(CharacterInfo.THREE,5,true);
 		case 4:
-			return new Ryu(CharacterInfo.FOUR,5);
+			return new Ryu(CharacterInfo.FOUR,5,true);
 		case 5:
-			return new Ryu(CharacterInfo.FIVE,5);
+			return new Ryu(CharacterInfo.FIVE,5,true);
 		case 6:
-			return new Ryu(CharacterInfo.SIX,5);
+			return new Ryu(CharacterInfo.SIX,5,true);
 		case 7:
-			return new Ryu(CharacterInfo.SEVEN,5);
+			return new Ryu(CharacterInfo.SEVEN,5,true);
 		case 8:
-			return new Ryu(CharacterInfo.EIGHT,5);
+			return new Ryu(CharacterInfo.EIGHT,5,true);
 		case 9:
-			return new Ryu(CharacterInfo.NINE,5);
+			return new Ryu(CharacterInfo.NINE,5,true);
 		}
 		return null;
 	}

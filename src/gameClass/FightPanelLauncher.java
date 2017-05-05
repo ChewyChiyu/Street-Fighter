@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import textureClass.RyuTexture;
+import textureClass.Texture;
 
 
 @SuppressWarnings("serial")
@@ -32,11 +33,18 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		this.c = c;
 		this.m = m;
 		this.g = g;
+		loadCharacterImages();
 		sprites.add(c);
 		panel();
 		keys();
 		start();
 	}
+	void loadCharacterImages(){
+		
+	Texture.loadRyuTextures();
+		
+	}
+
 	void keys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("O"), "O");
 		getActionMap().put("O", new AbstractAction(){
@@ -203,70 +211,70 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void run(){
 				while(isRunning){
 
-						if(keysPressedPlayer.isEmpty()){
-
-							try{
-								Thread.sleep(1);
-							}catch(Exception e) { }
-							continue;
-						}
-						//reading keys
-						GameMoves g = keysPressedPlayer.remove(0);
-						switch(g){
-						case JUMP:
-							c.jump();
-							break;
-						case KICK:
-							if(!c.inAir){
-								if(c.isSneaking){
-									c.sneakKick();
-								}else{
-									c.kick();
-								}
-							}else{
-								c.aerialKick();
-							}
-							break;
-						case LEFT:
-							c.setXVelo(-c.getSpeed());
-							break;
-						case PUNCH:
-							if(!c.inAir){
-								if(c.isSneaking){
-									c.sneakPunch();
-								}else{
-									c.punch();
-								}
-							}else{
-								c.aerialPunch();
-							}							
-							break;
-						case RIGHT:
-							c.setXVelo(c.getSpeed());
-							break;
-						case SNEAK:
-							c.sneak();
-							break;
-						case SPECIAL:
-							c.special();
-							break;
-						case STAND:
-							c.stand();
-							break;
-						case STOP:
-							c.setXVelo(0);
-							break;
-						default:
-							break;
-
-						}
+					if(keysPressedPlayer.isEmpty()){
 
 						try{
 							Thread.sleep(1);
 						}catch(Exception e) { }
+						continue;
 					}
+					//reading keys
+					GameMoves g = keysPressedPlayer.remove(0);
+					switch(g){
+					case JUMP:
+						c.jump();
+						break;
+					case KICK:
+						if(!c.inAir){
+							if(c.isSneaking){
+								c.sneakKick();
+							}else{
+								c.kick();
+							}
+						}else{
+							c.aerialKick();
+						}
+						break;
+					case LEFT:
+						c.setXVelo(-c.getSpeed());
+						break;
+					case PUNCH:
+						if(!c.inAir){
+							if(c.isSneaking){
+								c.sneakPunch();
+							}else{
+								c.punch();
+							}
+						}else{
+							c.aerialPunch();
+						}							
+						break;
+					case RIGHT:
+						c.setXVelo(c.getSpeed());
+						break;
+					case SNEAK:
+						c.sneak();
+						break;
+					case SPECIAL:
+						c.special();
+						break;
+					case STAND:
+						c.stand();
+						break;
+					case STOP:
+						c.setXVelo(0);
+						break;
+					default:
+						break;
+
+					}
+
+					try{
+						Thread.sleep(1);
+					}catch(Exception e) { }
 				}
-			
+			}
+
 		});
 		keyReading.start();
 	}

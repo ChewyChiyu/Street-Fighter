@@ -21,9 +21,15 @@ public class RyuTexture extends Texture{
 		public static BufferedImage[] speicalRyuRight = new BufferedImage[5];
 		public static BufferedImage energyBallRyuRight;
 		
+		public static BufferedImage[] ryuTorsoHitRight = new BufferedImage[4];
+		
 		//END OF RYU CHARACTER SPRITES
 	protected RyuTexture(){
 	loadRight();	
+	loadLeft();
+	}
+	void loadLeft(){
+		
 	}
 	void loadRight(){
 			try{
@@ -141,6 +147,13 @@ public class RyuTexture extends Texture{
 				speicalRyuRight[4]  = ryuSpriteSheetRight.getSubimage(304,641,67,73);
 				//energy ball
 				energyBallRyuRight = ryuSpriteSheetRight.getSubimage(420, 650, 42, 29);
+				
+				//torso hit right
+				ryuTorsoHitRight[0] = ryuSpriteSheetRight.getSubimage(0,760,47,70);
+				ryuTorsoHitRight[1] = ryuSpriteSheetRight.getSubimage(47,759,53,70);
+				ryuTorsoHitRight[2] = ryuSpriteSheetRight.getSubimage(100,768,53,65);
+				ryuTorsoHitRight[3] = ryuSpriteSheetRight.getSubimage(160,750,50,81);
+
 			}catch(Exception e){ }
 		
 	}

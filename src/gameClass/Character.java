@@ -1,5 +1,7 @@
 package gameClass;
 
+import java.awt.image.BufferedImage;
+
 import javax.swing.Timer;
 public abstract class Character extends GameObject {
 	
@@ -17,6 +19,7 @@ public abstract class Character extends GameObject {
 	protected volatile int aerialKickIndex = 0;
 	protected volatile int specialIndex = 0;
 	
+	protected volatile int gettingHitTorsoIndex = 0;
 	
 	protected volatile boolean isAttacking = false;
 
@@ -30,6 +33,28 @@ public abstract class Character extends GameObject {
 	protected volatile boolean isLowKicking = false;
 	protected volatile boolean isAerialPunching = false;
 	protected volatile boolean isAerialKicking = false;
+	
+	protected volatile boolean isGettingHitTorso = false;
+	
+	
+	
+	protected BufferedImage[] idle;
+	protected BufferedImage[] walk;
+	protected BufferedImage[] verticalJump;
+	protected BufferedImage[] diagonalJump;
+	protected BufferedImage[] punch;
+	protected BufferedImage[] kick;
+	
+	protected BufferedImage idleSneak;
+	protected BufferedImage[] sneakPunch;
+	protected BufferedImage[] sneakKick;
+	protected BufferedImage[] aerialKick;
+	protected BufferedImage[] special;
+	protected BufferedImage energyBall;
+	
+	protected BufferedImage[]  hitTorso;	
+	
+	
 	protected Character(CharacterInfo info, int speed){
 		this.info = info;
 		this.speed = speed;
@@ -60,5 +85,6 @@ public abstract class Character extends GameObject {
 	abstract void sneakPunch();
 	abstract void sneakKick();
 	abstract void special();
+	abstract void getHitTorso();
 	public abstract String toString();
 }

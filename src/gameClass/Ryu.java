@@ -1,22 +1,43 @@
 package gameClass;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
-import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
 import textureClass.RyuTexture;
-import textureClass.Texture;
 
 public class Ryu extends Character {
 	
-	protected Ryu(CharacterInfo info, int speed) {
+	protected Ryu(CharacterInfo info, int speed, boolean right) {
 		super(CharacterInfo.RYU, speed);
 		Timer move = new Timer(100 , e-> {
 			incrementMoveIndex();
 		});
 		move.start();
+		
+		
+		if(right){
+			idle = RyuTexture.idleRyuRight;
+			walk =  RyuTexture.walkRyuRight;
+			verticalJump =  RyuTexture.verticalJumpRyuRight;
+			diagonalJump =  RyuTexture.diagonalJumpRyuRight;
+			punch = RyuTexture.punchRyuRight;
+			kick =  RyuTexture.kickRyuRight;
+			
+			idleSneak =  RyuTexture.idleSneakRyuRight;;
+			sneakPunch =  RyuTexture.sneakPunchRyuRight;
+			sneakKick =  RyuTexture.sneakKickRyuRight;
+			 aerialKick = RyuTexture.aerialKickRyuRight;
+			 special = RyuTexture.speicalRyuRight;
+			 energyBall = RyuTexture.energyBallRyuRight;
+			
+			 hitTorso = RyuTexture.ryuTorsoHitRight;
+			
+		}
+		if(!right){
+			
+		}
+		
 	}
 
 	@Override
@@ -38,52 +59,59 @@ public class Ryu extends Character {
 
 	@Override
 	void draw(Graphics g) {
+		
+		if(isGettingHitTorso){
+			g.drawImage(hitTorso[gettingHitTorsoIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			return;
+		}
+		
+		
 		if(isSpecial){
-			if(specialIndex!=RyuTexture.speicalRyuRight.length-2){
-			g.drawImage(RyuTexture.speicalRyuRight[specialIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			if(specialIndex!=special.length-2){
+			g.drawImage(special[specialIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
 			}else{
-				g.drawImage(RyuTexture.speicalRyuRight[specialIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.7), Constants.PLAYER_HEIGHT.getIntValue(), null);
+				g.drawImage(special[specialIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.7), Constants.PLAYER_HEIGHT.getIntValue(), null);
 			}
 			return;
 		}
 		if(isPunching){
-				g.drawImage(RyuTexture.punchRyuRight[punchIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
+				g.drawImage(punch[punchIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
 				return;
 		}
 		if(isLowPunching){
-				g.drawImage(RyuTexture.sneakPunchRyuRight[sneakPunchIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
+				g.drawImage(sneakPunch[sneakPunchIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
 			return;
 		
 		}
 		if(isAerialPunching){
-			g.drawImage(RyuTexture.sneakKickRyuRight[sneakKickIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.7), (int)(Constants.PLAYER_HEIGHT.getIntValue()*.7), null);
+			g.drawImage(sneakKick[sneakKickIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.7), (int)(Constants.PLAYER_HEIGHT.getIntValue()*.7), null);
 			return;
 		}
 		if(isAerialKicking){
-			g.drawImage(RyuTexture.aerialKickRyuRight[aerialKickIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			g.drawImage(aerialKick[aerialKickIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
 			return;
 		}
 		if(isLowKicking){
-				g.drawImage(RyuTexture.sneakKickRyuRight[sneakKickIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
+				g.drawImage(sneakKick[sneakKickIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
 			return;
 		}
 		if(isKicking){
-				g.drawImage(RyuTexture.kickRyuRight[kickIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
+				g.drawImage(kick[kickIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.1), Constants.PLAYER_HEIGHT.getIntValue(), null);
 				return;
 		}
 		if(xVelo==0&&yVelo==0){
 		if(!isSneaking){
-		g.drawImage(RyuTexture.idleRyuRight[idleIndex],x,y, Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue(), null);
+		g.drawImage(idle[idleIndex],x,y, Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue(), null);
 		}else{
-			g.drawImage(RyuTexture.idleSneakRyuRight,x,y+(Constants.PLAYER_HEIGHT.getIntValue()/2), Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
+			g.drawImage(idleSneak,x,y+(Constants.PLAYER_HEIGHT.getIntValue()/2), Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
 
 		}
 		}else if(xVelo!=0 && yVelo== 0){
-			g.drawImage(RyuTexture.walkRyuRight[walkIndex],x,y, Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			g.drawImage(walk[walkIndex],x,y, Constants.PLAYER_WIDTH.getIntValue(), Constants.PLAYER_HEIGHT.getIntValue(), null);
 		}else if(xVelo==0&&yVelo!=0){
-			g.drawImage(RyuTexture.verticalJumpRyuRight[vertialJumpIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*.9), (int)(Constants.PLAYER_HEIGHT.getIntValue()*.9), null);
+			g.drawImage(verticalJump[vertialJumpIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*.9), (int)(Constants.PLAYER_HEIGHT.getIntValue()*.9), null);
 		}else if(xVelo!=0&&yVelo!=0){
-			g.drawImage(RyuTexture.diagonalJumpRyuRight[diagonalJumpIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.05), (int)(Constants.PLAYER_HEIGHT.getIntValue()*1.05), null);
+			g.drawImage(diagonalJump[diagonalJumpIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()*1.05), (int)(Constants.PLAYER_HEIGHT.getIntValue()*1.05), null);
 		}
 			
 	}
@@ -98,22 +126,22 @@ public class Ryu extends Character {
 		if(xVelo==0&&yVelo==0 &&!isSneaking&&!isSpecial&&!isPunching&&!isKicking){
 			//idle
 			idleIndex++;
-			if(idleIndex>RyuTexture.idleRyuRight.length-1){
+			if(idleIndex>idle.length-1){
 				idleIndex = 0;
 			}
 		}else if(xVelo!=0&&yVelo==0&&!isSpecial&&!isPunching&&!isKicking){
 			walkIndex++;
-			if(walkIndex>RyuTexture.walkRyuRight.length-1){
+			if(walkIndex>walk.length-1){
 				walkIndex = 0;
 			}
 		}else if(xVelo==0&&yVelo!=0&&!isSpecial&&!isPunching&&!isKicking){
 			vertialJumpIndex++;
-			if(vertialJumpIndex>RyuTexture.verticalJumpRyuRight.length-1){
+			if(vertialJumpIndex>verticalJump.length-1){
 				vertialJumpIndex = 0;
 			}
 		}else if(xVelo!=0&&yVelo!=0&&!isSpecial&&!isPunching&&!isKicking){
 			diagonalJumpIndex++;
-			if(diagonalJumpIndex>RyuTexture.diagonalJumpRyuRight.length-1){
+			if(diagonalJumpIndex>diagonalJump.length-1){
 				diagonalJumpIndex = 0;
 			}
 		}
@@ -286,6 +314,26 @@ public class Ryu extends Character {
 	@Override
 	void sneak() {
 		isSneaking = true;
+	}
+
+	@Override
+	void getHitTorso() {
+	
+			Thread gettingHit = new Thread(new Runnable(){
+				public void run(){
+					isGettingHitTorso = true;
+					gettingHitTorsoIndex = 0;
+					for(int index = 0; index < RyuTexture.ryuTorsoHitRight.length-1; index++){
+						gettingHitTorsoIndex++;
+						try{
+							Thread.sleep(100);
+						}catch(Exception e) { }
+					}		
+					isGettingHitTorso = false;
+				}
+			});
+			gettingHit.start();
+			
 	}
 
 }

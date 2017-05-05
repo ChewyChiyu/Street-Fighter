@@ -27,7 +27,6 @@ public class StreetFighterLauncher extends JPanel {
 	}
 	protected StreetFighterLauncher(){
 		Texture.loadMapTextures();
-		Texture.loadRyuTextures();
 		panel();
 		keys();
 		repaint();
