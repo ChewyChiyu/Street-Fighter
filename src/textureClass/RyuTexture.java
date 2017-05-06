@@ -22,6 +22,9 @@ public class RyuTexture extends Texture{
 		public static BufferedImage energyBallRyuRight;
 		
 		public static BufferedImage[] ryuTorsoHitRight = new BufferedImage[4];
+		public static BufferedImage[] ryuHeadHitRight = new BufferedImage[5];
+		public static BufferedImage[] knockDownRyuRight = new BufferedImage[11];
+		public static BufferedImage[] defeatRyuRight = new BufferedImage[5];
 		
 		//END OF RYU CHARACTER SPRITES
 	protected RyuTexture(){
@@ -154,6 +157,36 @@ public class RyuTexture extends Texture{
 				ryuTorsoHitRight[2] = ryuSpriteSheetRight.getSubimage(100,768,53,65);
 				ryuTorsoHitRight[3] = ryuSpriteSheetRight.getSubimage(160,750,50,81);
 
+				//hit head right
+				xBuffer = 164;
+				yBuffer = 752;
+				for(int index = 0; index < ryuHeadHitRight.length; index++ ){
+					ryuHeadHitRight[index] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 53, 80);
+					xBuffer+=53;
+
+				}
+				//knocked down ryu right
+				knockDownRyuRight[0] =  ryuSpriteSheetRight.getSubimage(390,755,42,80);
+				knockDownRyuRight[1] =  ryuSpriteSheetRight.getSubimage(448,772,40,65);
+				knockDownRyuRight[2] =  ryuSpriteSheetRight.getSubimage(506,760,54,70);
+				knockDownRyuRight[3] =  ryuSpriteSheetRight.getSubimage(565,755,47,76);
+				knockDownRyuRight[4] =  ryuSpriteSheetRight.getSubimage(618,779,70,45);
+				knockDownRyuRight[5] =  ryuSpriteSheetRight.getSubimage(696,803, 75,27);
+				knockDownRyuRight[6] =  ryuSpriteSheetRight.getSubimage(771,767,38,65);
+				knockDownRyuRight[7] =  ryuSpriteSheetRight.getSubimage(830,733,28,103);
+				knockDownRyuRight[8] =  ryuSpriteSheetRight.getSubimage(887,760,47,64);
+				knockDownRyuRight[9] =  ryuSpriteSheetRight.getSubimage(955,740,28,67);
+				knockDownRyuRight[10] =  ryuSpriteSheetRight.getSubimage(1008,754,45,77);
+
+				//defeat ryu right
+				
+				defeatRyuRight[0] = ryuSpriteSheetRight.getSubimage(1105,750,53,79);
+				defeatRyuRight[1] = ryuSpriteSheetRight.getSubimage(1158,764,60,88);
+				defeatRyuRight[2] = ryuSpriteSheetRight.getSubimage(1215,783,75,45);
+				defeatRyuRight[3] = ryuSpriteSheetRight.getSubimage(1370,780,79,51);
+				defeatRyuRight[4] = ryuSpriteSheetRight.getSubimage(1447,799,79,35);
+
+				
 			}catch(Exception e){ }
 		
 	}

@@ -51,7 +51,9 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				cardLayout.next(screen);
+				//cardLayout.next(screen);
+				//c.getKnockedDown();
+				c.defeated();
 			}
 
 		});

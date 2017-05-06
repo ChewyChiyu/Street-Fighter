@@ -20,6 +20,11 @@ public abstract class Character extends GameObject {
 	protected volatile int specialIndex = 0;
 	
 	protected volatile int gettingHitTorsoIndex = 0;
+	protected volatile int gettingHitHeadIndex = 0;
+	protected volatile int gettingKnockedDownIndex = 0;
+	protected volatile int defeatedIndex = 0;
+	
+	
 	
 	protected volatile boolean isAttacking = false;
 
@@ -35,7 +40,9 @@ public abstract class Character extends GameObject {
 	protected volatile boolean isAerialKicking = false;
 	
 	protected volatile boolean isGettingHitTorso = false;
-	
+	protected volatile boolean isGettingHitHead = false;
+	protected volatile boolean isGettingKnockedDown = false;
+	protected volatile boolean defeated = false;
 	
 	
 	protected BufferedImage[] idle;
@@ -52,6 +59,10 @@ public abstract class Character extends GameObject {
 	protected BufferedImage[] special;
 	
 	protected BufferedImage[]  hitTorso;	
+	protected BufferedImage[]  hitHead;
+	protected BufferedImage[] knockDown;
+	protected BufferedImage[] defeat;
+	
 	
 	
 	protected Character(CharacterInfo info, int speed){
@@ -85,5 +96,8 @@ public abstract class Character extends GameObject {
 	abstract void sneakKick();
 	abstract void special();
 	abstract void getHitTorso();
+	abstract void getHitHead();
+	abstract void getKnockedDown();
+	abstract void defeated();
 	public abstract String toString();
 }

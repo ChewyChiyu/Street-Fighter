@@ -34,6 +34,12 @@ public class Ryu extends Character {
 			hitTorso = RyuTexture.ryuTorsoHitRight;
 			idleSneak =  RyuTexture.idleSneakRyuRight;
 			
+			hitHead = RyuTexture.ryuHeadHitRight;
+			knockDown = RyuTexture.knockDownRyuRight;
+			defeat = RyuTexture.defeatRyuRight;
+			
+			
+			
 		}
 		if(!right){
 
@@ -60,9 +66,34 @@ public class Ryu extends Character {
 
 	@Override
 	void draw(Graphics g) {
-
+		if(defeated){
+			if(defeatedIndex<2){
+				g.drawImage(defeat[defeatedIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), (int) (Constants.PLAYER_HEIGHT.getIntValue()*.8), null);
+				}else if(defeatedIndex<6){
+					g.drawImage(defeat[defeatedIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.7), (int)(Constants.PLAYER_HEIGHT.getIntValue()), (int)(Constants.PLAYER_WIDTH.getIntValue()*.8), null);
+				}
+				return;
+			
+		}
+		if(isGettingKnockedDown){
+			if(gettingKnockedDownIndex<5){
+			g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
+			}else if(gettingKnockedDownIndex<6){
+				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.75), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/4, null);
+			}else if(gettingKnockedDownIndex<10){
+				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()/2.5), (int)(Constants.PLAYER_WIDTH.getIntValue()), (int)(Constants.PLAYER_HEIGHT.getIntValue()/1.9), null);
+			}else{
+				g.drawImage(knockDown[gettingKnockedDownIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			}
+			return;
+		}
 		if(isGettingHitTorso){
 			g.drawImage(hitTorso[gettingHitTorsoIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
+			return;
+		}
+
+		if(isGettingHitHead){
+			g.drawImage(hitHead[gettingHitHeadIndex],x,y, (int)(Constants.PLAYER_WIDTH.getIntValue()), Constants.PLAYER_HEIGHT.getIntValue(), null);
 			return;
 		}
 
@@ -335,6 +366,62 @@ public class Ryu extends Character {
 		});
 		gettingHit.start();
 
+	}
+
+	@Override
+	void getHitHead() {
+		Thread gettingHit = new Thread(new Runnable(){
+			public void run(){
+				isGettingHitHead = true;
+				gettingHitHeadIndex = 0;
+				for(int index = 0; index < RyuTexture.ryuHeadHitRight.length-1; index++){
+					gettingHitHeadIndex++;
+					try{
+						Thread.sleep(100);
+					}catch(Exception e) { }
+				}		
+				isGettingHitHead = false;
+			}
+		});
+		gettingHit.start();
+
+	}
+
+	@Override
+	void getKnockedDown() {
+		Thread gettingKnocked = new Thread(new Runnable(){
+			public void run(){
+				isGettingKnockedDown = true;
+				gettingKnockedDownIndex = 0;
+				for(int index = 0; index < RyuTexture.knockDownRyuRight.length-1; index++){
+					gettingKnockedDownIndex++;
+					try{
+						Thread.sleep(200);
+					}catch(Exception e) { }
+				}		
+				isGettingKnockedDown = false;
+			}
+		});
+		gettingKnocked.start();
+		
+	}
+
+	@Override
+	void defeated() {
+		Thread defeat = new Thread(new Runnable(){
+			public void run(){
+				defeated = true;
+				defeatedIndex = 0;
+				for(int index = 0; index < RyuTexture.defeatRyuRight.length-1; index++){
+					defeatedIndex++;
+					try{
+						Thread.sleep(500);
+					}catch(Exception e) { }
+				}		
+				defeated = false;
+			}
+		});
+		defeat.start();		
 	}
 
 }
