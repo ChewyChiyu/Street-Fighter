@@ -13,7 +13,7 @@ public class Map {
 		this.info = info;
 	}
 	public String toString(){
-		return ""+index;
+		return ""+info.toString();
 	}
 	MapInfo getInfo(){
 		return info;

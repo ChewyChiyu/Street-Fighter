@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -174,9 +175,42 @@ public class MapSelectLauncher extends JPanel{
 	}
 	void drawSelection(Graphics g){
 		g.setColor(Color.GRAY);
+		BufferedImage display  = MapTexture.mapSelectSprites[0][0];
+		switch(selectedMap.getInfo()){
+		case EIGHT:
+			display = MapTexture.mapSelectSprites[2][1];
+			break;
+		case FIVE:
+			display = MapTexture.mapSelectSprites[1][1];
+			break;
+		case FOUR:
+			display = MapTexture.mapSelectSprites[1][0];
+			break;
+		case NINE:
+			display = MapTexture.mapSelectSprites[2][2];
+			break;
+		case ONE:
+			display = MapTexture.mapSelectSprites[0][0];
+			break;
+		case SEVEN:
+			display = MapTexture.mapSelectSprites[2][0];
+			break;
+		case SIX:
+			display = MapTexture.mapSelectSprites[1][2];
+			break;
+		case THREE:
+			display = MapTexture.mapSelectSprites[0][2];
+			break;
+		case TWO:
+			display = MapTexture.mapSelectSprites[0][1];
+			break;
+		default:
+			break;
+		}
+		g.drawImage(display,(int)(Constants.SCREEN_WIDTH.getIntValue()*.6),0,500,600,null);
 		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.6),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.6), 500, 50);
 		g.setFont(new Font("Arial",Font.BOLD,40));
-		g.drawString("Selected Map " + selectedMap.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.6), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.8));
+		g.drawString("Selected Map " + selectedMap, (int)(Constants.SCREEN_WIDTH.getIntValue()*.6), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.9));
 	}
 	void drawMapSelect(Graphics g){
 		g.setFont(new Font("Arial",Font.BOLD,40));

@@ -8,8 +8,8 @@ import textureClass.RyuTexture;
 
 public class Ryu extends Character {
 	boolean right;
-	protected Ryu(CharacterInfo info, int speed, boolean right) {
-		super(CharacterInfo.RYU, speed);
+	protected Ryu(CharacterInfo info, int speed, boolean right,boolean isAutomated) {
+		super(CharacterInfo.RYU, speed, right, isAutomated);
 		this.right = right;
 		Timer move = new Timer(100 , e-> {
 			incrementMoveIndex();

@@ -8,6 +8,7 @@ import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
@@ -16,23 +17,29 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
 import textureClass.MapTexture;
+import textureClass.RyuTexture;
 import textureClass.Texture;
 
 @SuppressWarnings("serial")
 public class CharacterSelectLauncher extends JPanel {
 	private GameType g;
-	private Character selectedCharacter = CharacterInfo.RYU.getCharacter();
+	private Character selectedCharacter = CharacterInfo.RYU.getCharacter(true);
 	private CharacterInfo[] characterList = {CharacterInfo.RYU,CharacterInfo.TWO,CharacterInfo.THREE,CharacterInfo.FOUR,CharacterInfo.FIVE,CharacterInfo.SIX, CharacterInfo.SEVEN, CharacterInfo.EIGHT, CharacterInfo.NINE};
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
 	boolean[][] select = new boolean[MapTexture.characterSelectSprites.length][MapTexture.characterSelectSprites[0].length];
 	protected CharacterSelectLauncher(GameType g){
+		loadCharacterImages();
 		this.g = g;
 		select[0][0] = true;
 		panel();
 		keys();
 		repaint();
+	}
+	void loadCharacterImages(){
+		Texture.loadRyuTextures();
+
 	}
 	void keys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("O"), "O");
@@ -55,6 +62,9 @@ public class CharacterSelectLauncher extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if(selectedCharacter == null){
+					return;
+				}
 				new MapSelectLauncher(selectedCharacter ,g);
 				frame.dispose();
 			}
@@ -147,7 +157,7 @@ public class CharacterSelectLauncher extends JPanel {
 		int location = (r*MapTexture.characterSelectSprites[0].length) + c + 1;
 		for(int index = 0; index < characterList.length; index++){
 			if(location == characterList[index].locationInCharSelect()){
-				selectedCharacter = characterList[index].getCharacter();
+				selectedCharacter = characterList[index].getCharacter(true);
 			}
 		}
 	}
@@ -176,9 +186,21 @@ public class CharacterSelectLauncher extends JPanel {
 	}
 	void drawSelect(Graphics g){
 		g.setColor(Color.GRAY);
+		BufferedImage display = RyuTexture.idleRyuRight[0];
+		if(selectedCharacter!=null){
+		switch(selectedCharacter.getInfo()){
+		case RYU:
+			display = RyuTexture.idleRyuRight[0];
+			break;
+		default:
+			g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
+			break;
+		}
+		}
+		g.drawImage(display,(int)(Constants.SCREEN_WIDTH.getIntValue()*.7),0,Constants.PLAYER_WIDTH.getIntValue(),Constants.PLAYER_HEIGHT.getIntValue(),null);
 		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.6),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.6), 500, 50);
 		g.setFont(new Font("Arial",Font.BOLD,40));
-		g.drawString("Selected Character " + selectedCharacter.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.6), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.8));
+		g.drawString("Selected Character " + selectedCharacter, (int)(Constants.SCREEN_WIDTH.getIntValue()*.6), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.8));
 	}
 	void drawFightSelect(Graphics g){
 		g.setFont(new Font("Arial",Font.BOLD,40));

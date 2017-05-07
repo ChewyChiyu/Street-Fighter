@@ -5,6 +5,8 @@ import java.awt.image.BufferedImage;
 import javax.swing.Timer;
 public abstract class Character extends GameObject {
 	
+	private boolean isAutomated;
+	
 	private CharacterInfo info;
 
 
@@ -65,9 +67,16 @@ public abstract class Character extends GameObject {
 	
 	
 	
-	protected Character(CharacterInfo info, int speed){
+	protected Character(CharacterInfo info, int speed, boolean right, boolean isAutomated){
 		this.info = info;
 		this.speed = speed;
+		this.isAutomated = isAutomated;
+		
+		if(!right){
+			x = (int)(Constants.SCREEN_WIDTH.getIntValue()*.8);
+		}
+		
+		
 		gravity = true;
 		Timer checkIfAttack = new Timer(1 , e->{
 			if(isPunching||isKicking||isSpecial||isLowPunching||isLowKicking||isAerialPunching||isAerialKicking){

@@ -1,10 +1,12 @@
 package gameClass;
 
 public enum MapInfo {
-	ONE(1), TWO(2), THREE(3), FOUR(4), FIVE(5), SIX(6), SEVEN(7), EIGHT(8), NINE(9);
+	ONE(1,"Brazil"), TWO(2,"Thailand"), THREE(3,"Japan"), FOUR(4,"Castle"), FIVE(5,"Harbor"), SIX(6,"Vegas"), SEVEN(7,"Japan2"), EIGHT(8,"Buddha"), NINE(9,"City");
 	private int location;
-	private MapInfo(int loc){
+	private String name;
+	private MapInfo(int loc, String name){
 		location = loc;
+		this.name = name;
 	}
 	int locationInMapSelect(){
 		return location;
@@ -32,8 +34,10 @@ public enum MapInfo {
 		}
 		return null;
 	}
+	
+	
 	public String toString(){
-		return ""+location;
+		return name;
 	}
 	
 }

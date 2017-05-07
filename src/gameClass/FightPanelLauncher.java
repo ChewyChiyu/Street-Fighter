@@ -29,21 +29,30 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	private JPanel screen = new JPanel(cardLayout);
 	protected static ArrayList<GameObject> sprites = new ArrayList<GameObject>();
 	protected static ArrayList<GameMoves> keysPressedPlayer = new ArrayList<GameMoves>();
+	protected Character c2;
 	protected FightPanelLauncher(Character c, Map m, GameType g){
+		//Player 1
 		this.c = c;
+		switch(g){
+		case FIGHT:
+			c2 = new Ryu(CharacterInfo.RYU, 5, false, true);
+			break;
+		case TRAINING:
+			c2 = new Ryu(CharacterInfo.RYU, 5, false, false);
+			break;
+		default:
+			break;
+		
+		}
 		this.m = m;
 		this.g = g;
-		loadCharacterImages();
 		sprites.add(c);
+		sprites.add(c2);
 		panel();
 		keys();
 		start();
 	}
-	void loadCharacterImages(){
-		
-	Texture.loadRyuTextures();
-		
-	}
+	
 
 	void keys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("O"), "O");
