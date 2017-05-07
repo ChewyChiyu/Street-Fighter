@@ -11,11 +11,8 @@ public class Ryu extends Character {
 	protected Ryu(CharacterInfo info, int speed, boolean right,boolean isAutomated) {
 		super(CharacterInfo.RYU, speed, right, isAutomated);
 		this.right = right;
-		Timer move = new Timer(100 , e-> {
-			incrementMoveIndex();
-		});
-		move.start();
-
+	
+		
 
 		if(right){
 			idle = RyuTexture.idleRyuRight;

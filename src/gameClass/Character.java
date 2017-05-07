@@ -65,7 +65,34 @@ public abstract class Character extends GameObject {
 	protected BufferedImage[] knockDown;
 	protected BufferedImage[] defeat;
 	
-	
+	protected void characterLoops(){
+		Thread move = new Thread(new Runnable(){
+			public void run(){
+				while(FightPanelLauncher.isRunning){
+				incrementMoveIndex();
+				try{
+					Thread.sleep(100);
+				}catch(Exception e) { } 
+				}
+			}
+		});
+		Thread checkIfAttack = new Thread(new Runnable(){
+			public void run(){
+				while(FightPanelLauncher.isRunning){
+					if(isPunching||isKicking||isSpecial||isLowPunching||isLowKicking||isAerialPunching||isAerialKicking){
+						isAttacking = true;
+					}else{
+						isAttacking = false;
+					}
+					try{
+						Thread.sleep(1);
+					}catch(Exception e) { } 
+				}
+			}
+		});
+		move.start();
+		checkIfAttack.start();
+	}
 	
 	protected Character(CharacterInfo info, int speed, boolean right, boolean isAutomated){
 		this.info = info;
@@ -78,14 +105,6 @@ public abstract class Character extends GameObject {
 		
 		
 		gravity = true;
-		Timer checkIfAttack = new Timer(1 , e->{
-			if(isPunching||isKicking||isSpecial||isLowPunching||isLowKicking||isAerialPunching||isAerialKicking){
-				isAttacking = true;
-			}else{
-				isAttacking = false;
-			}
-		});
-		checkIfAttack.start();
 		
 	}
 	

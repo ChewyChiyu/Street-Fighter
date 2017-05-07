@@ -1,7 +1,9 @@
 package gameClass;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -13,14 +15,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
-import textureClass.RyuTexture;
-import textureClass.Texture;
-
 
 @SuppressWarnings("serial")
 public class FightPanelLauncher extends JPanel implements Runnable{
 	private Thread gameLoop;
-	private boolean isRunning;
+	public static boolean isRunning;
 	private Character c;
 	private Map m;
 	private GameType g;
@@ -60,9 +59,24 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//cardLayout.next(screen);
-				//c.getKnockedDown();
-				c.defeated();
+				stop();
+				cardLayout.next(screen);
+			}
+
+		});
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("P"), "PAUSE");
+		getActionMap().put("PAUSE", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning){
+					System.out.println("stopping");
+					stop();
+				}else{
+					System.out.println("starting");
+					start();
+				}
+				
 			}
 
 		});
@@ -101,6 +115,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(-c.getSpeed());
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.LEFT);
 			}
 
@@ -110,6 +125,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(c.getSpeed());
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.RIGHT);
 
 			}
@@ -120,6 +136,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.jump();
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.JUMP);
 
 			}
@@ -130,6 +147,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.sneak();
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.SNEAK);
 
 			}
@@ -140,6 +158,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.stand();
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.STAND);
 
 			}
@@ -150,6 +169,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(0);
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.STOP);
 
 			}
@@ -160,6 +180,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(0);
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.STOP);
 
 			}
@@ -170,6 +191,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.punch();
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.PUNCH);
 
 			}
@@ -180,6 +202,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//	c.kick();
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.KICK);
 
 			}
@@ -190,6 +213,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.special();
+				if(isRunning)
 				keysPressedPlayer.add(GameMoves.SPECIAL);
 
 			}
@@ -214,6 +238,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		gameLoop = new Thread(this);
 		isRunning = true;
 		gameLoop.start();
+		c.characterLoops();
+		c2.characterLoops();
 		boundsCheck();
 		readKeys();
 	}
@@ -321,8 +347,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	}
 	synchronized void stop(){
 		try{
-			gameLoop.join();
 			isRunning = false;
+			repaint();
 		}catch(Exception e) { }
 	}
 	@Override
@@ -365,12 +391,18 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		super.paintComponent(g);
 		drawMap(g);
 		drawCharacters(g);
+		if(!isRunning){
+			g.setFont(new Font("Aerial",Font.BOLD,100));
+			g.setColor(Color.WHITE);
+			g.drawString("PRESS P TO UNPAUSE", (int)(Constants.SCREEN_WIDTH.getIntValue()*.05), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.3));
+		}
 	}
 	void drawCharacters(Graphics g){
 		for(int index = 0; index < sprites.size(); index++){
 			GameObject c = sprites.get(index);
 			c.draw(g);
 		}
+		
 	}
 	void drawMap(Graphics g){
 		m.drawMap(g);
