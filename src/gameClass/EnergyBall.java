@@ -11,16 +11,17 @@ public class EnergyBall extends Projectile{
 
 	@Override
 	void draw(Graphics g) {
-		//if(xVelo>=0)
-		g.drawImage(RyuTexture.energyBallRyuRight, x, y,Constants.ENERGYBALL_WIDTH.getIntValue(),Constants.ENERGYBALL_HEIGHT.getIntValue(), null);
-		
-	
-	//self removal
-	if(x<0||x>Constants.SCREEN_WIDTH.getIntValue()){
-		FightPanelLauncher.sprites.remove(this);
-	}
-	
-	
+		if(xVelo>=0)
+			g.drawImage(RyuTexture.energyBallRyuRight, x, y,Constants.ENERGYBALL_WIDTH.getIntValue(),Constants.ENERGYBALL_HEIGHT.getIntValue(), null);
+		else
+			g.drawImage(RyuTexture.energyBallRyuLeft, x, y,Constants.ENERGYBALL_WIDTH.getIntValue(),Constants.ENERGYBALL_HEIGHT.getIntValue(), null);
+
+		//self removal
+		if(x<0||x>Constants.SCREEN_WIDTH.getIntValue()){
+			FightPanelLauncher.sprites.remove(this);
+		}
+
+
 	}
 
 }

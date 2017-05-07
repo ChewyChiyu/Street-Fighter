@@ -14,7 +14,7 @@ public enum CharacterInfo {
 	Character getCharacter(){
 		switch(location){
 		case 1:
-			return new Ryu(CharacterInfo.RYU,5,true);
+			return new Ryu(CharacterInfo.RYU,5,false);
 		case 2:
 			return new Ryu(CharacterInfo.TWO,5,true);
 		case 3:
