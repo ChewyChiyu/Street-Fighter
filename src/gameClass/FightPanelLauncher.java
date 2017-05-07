@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -27,7 +29,6 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
 	protected static ArrayList<GameObject> sprites = new ArrayList<GameObject>();
-	protected static ArrayList<GameMoves> keysPressedPlayer = new ArrayList<GameMoves>();
 	protected Character c2;
 	protected FightPanelLauncher(Character c, Map m, GameType g){
 		//Player 1
@@ -48,7 +49,6 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		sprites.add(c);
 		sprites.add(c2);
 		panel();
-		keys();
 		start();
 	}
 	
@@ -70,10 +70,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isRunning){
-					System.out.println("stopping");
 					stop();
 				}else{
-					System.out.println("starting");
 					start();
 				}
 				
@@ -92,8 +90,38 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 
 		}
 	}
-	void manyPlayerKeys(){
-	}
+
+	protected boolean A = false;
+	protected boolean D = false;
+	protected boolean S = false;
+	protected boolean W = false;
+	
+	protected boolean rA = false;
+	protected boolean rD = false;
+	protected boolean rS = false;
+	
+	protected boolean PUNCHR = false;
+	protected boolean KICKR = false;
+	protected boolean SPECIALR = false;
+	
+	
+	protected boolean UP = false;
+	protected boolean DOWN = false;
+	protected boolean LEFT = false;
+	protected boolean RIGHT = false;
+	
+	protected boolean rRIGHT = false;
+	protected boolean rLEFT = false;
+	protected boolean rDOWN = false;
+	
+	protected boolean PUNCHL = false;
+	protected boolean KICKL = false;
+	protected boolean SPECIALL = false;
+	
+	
+	
+	
+	
 	void singlePlayerKeys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "A");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("D"), "D");
@@ -109,14 +137,144 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("K"), "KICK");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("L"), "SPECIAL");
 
+		
+		
+		getActionMap().put("A", new AbstractAction(){
 
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+				A = true;
+			}
+
+		});
+		getActionMap().put("D", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+				D = true;
+			}
+
+		});
+		getActionMap().put("W", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+				W = true;
+				
+			}
+
+		});
+		getActionMap().put("S", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+					S = true;
+			}
+
+		});
+		getActionMap().put("rS", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+					rS = true;
+			}
+
+		});
+		getActionMap().put("rA", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+					rA = true;
+			}
+
+		});
+		getActionMap().put("rD", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+					rD = true;
+			}
+
+		});
+		getActionMap().put("PUNCH", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+					PUNCHR = true;
+			}
+
+		});
+		getActionMap().put("KICK", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+					KICKR = true;
+			}
+
+		});
+		getActionMap().put("SPECIAL", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(isRunning)
+					SPECIALR = true;
+			}
+
+		});
+		
+	}
+	void manyPlayerKeys(){
+
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "A");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("D"), "D");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("W"), "W");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("S"), "S");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released S"), "rS");
+
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released A"), "rA");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("released D"), "rD");
+
+
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("F"), "PUNCHR");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("G"), "KICKR");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("H"), "SPECIALR");
+
+		//PLAYER TWO
+		
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_LEFT, 0, false), "LEFT");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_RIGHT, 0 , false), "RIGHT");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_UP, 0 ,false), "UP");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_DOWN, 0 , false), "SNEAK");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_DOWN, 0 , true), "rSNEAK");
+
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_LEFT, 0, true), "rLEFT");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_RIGHT, 0 , true), "rRIGHT");
+
+
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("B"), "PUNCHL");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("N"), "KICKL");
+		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("M"), "SPECIALL");
+		
+		
+		
+		
+		
 		getActionMap().put("A", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(-c.getSpeed());
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.LEFT);
+					A = true;
 			}
 
 		});
@@ -126,8 +284,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(c.getSpeed());
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.RIGHT);
-
+					D = true;
 			}
 
 		});
@@ -137,8 +294,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//c.jump();
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.JUMP);
-
+					W = true;
 			}
 
 		});
@@ -148,8 +304,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//c.sneak();
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.SNEAK);
-
+					S = true;
 			}
 
 		});
@@ -159,8 +314,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//c.stand();
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.STAND);
-
+					rS = true;
 			}
 
 		});
@@ -170,8 +324,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(0);
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.STOP);
-
+					rA = true;
 			}
 
 		});
@@ -181,44 +334,149 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//c.setXVelo(0);
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.STOP);
-
+					rD = true;
 			}
 
 		});
-		getActionMap().put("PUNCH", new AbstractAction(){
+		getActionMap().put("PUNCHR", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.punch();
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.PUNCH);
-
+					PUNCHR = true;
 			}
 
 		});
-		getActionMap().put("KICK", new AbstractAction(){
+		getActionMap().put("KICKR", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//	c.kick();
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.KICK);
-
+					KICKR = true;
 			}
 
 		});
-		getActionMap().put("SPECIAL", new AbstractAction(){
+		getActionMap().put("SPECIALR", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.special();
 				if(isRunning)
-				keysPressedPlayer.add(GameMoves.SPECIAL);
-
+					SPECIALR = true;
 			}
 
 		});
+		
+		
+		
+		getActionMap().put("LEFT", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.setXVelo(-c.getSpeed());
+				if(isRunning)
+					LEFT = true;
+			}
+
+		});
+		getActionMap().put("RIGHT", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.setXVelo(c.getSpeed());
+				if(isRunning)
+					RIGHT = true;
+			}
+
+		});
+		getActionMap().put("UP", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.jump();
+				if(isRunning)
+					UP = true;
+			}
+
+		});
+		getActionMap().put("SNEAK", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.sneak();
+				if(isRunning)
+					DOWN = true;
+			}
+
+		});
+		getActionMap().put("rSNEAK", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.stand();
+				if(isRunning)
+					rDOWN = true;
+			}
+
+		});
+		getActionMap().put("rLEFT", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.setXVelo(0);
+				if(isRunning)
+					rLEFT = true;
+			}
+
+		});
+		getActionMap().put("rRIGHT", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.setXVelo(0);
+				if(isRunning)
+					rRIGHT = true;
+			}
+
+		});
+		
+		
+		
+		
+		getActionMap().put("PUNCHL", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.punch();
+				if(isRunning)
+				PUNCHL = true;
+			}
+
+		});
+		getActionMap().put("KICKL", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//	c.kick();
+				if(isRunning)
+				KICKL = true;
+			}
+
+		});
+		getActionMap().put("SPECIALL", new AbstractAction(){
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				//c.special();
+				if(isRunning)
+				SPECIALL = true;
+			}
+
+		});
+		
+	
 	}
 	void panel(){
 		frame = new JFrame();
@@ -242,69 +500,93 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		c2.characterLoops();
 		boundsCheck();
 		readKeys();
+		keys();
 	}
 	void readKeys(){
 		Thread keyReading = new Thread(new Runnable(){
 			public void run(){
 				while(isRunning){
 
-					if(keysPressedPlayer.isEmpty()){
-						try{
-							Thread.sleep(1);
-						}catch(Exception e) { }
-						continue;
-					}
-					//reading keys
-					GameMoves g = keysPressedPlayer.remove(0);
-					switch(g){
-					case JUMP:
-						c.jump();
-						break;
-					case KICK:
-						if(!c.inAir){
-							if(c.isSneaking){
-								c.sneakKick();
-							}else{
-								c.kick();
-							}
-						}else{
-							c.aerialKick();
-						}
-						break;
-					case LEFT:
+					if(A){
 						c.setXVelo(-c.getSpeed());
-						break;
-					case PUNCH:
-						if(!c.inAir){
-							if(c.isSneaking){
-								c.sneakPunch();
-							}else{
-								c.punch();
-							}
-						}else{
-							c.aerialPunch();
-						}							
-						break;
-					case RIGHT:
-						c.setXVelo(c.getSpeed());
-						break;
-					case SNEAK:
-						c.sneak();
-						break;
-					case SPECIAL:
-						c.special();
-						break;
-					case STAND:
-						c.stand();
-						break;
-					case STOP:
-						c.setXVelo(0);
-						break;
-					default:
-						break;
-
+						A = false;
 					}
-
+					if(D){
+						c.setXVelo(c.getSpeed());
+						D = false;
+					}
+					if(W){
+						c.jump();
+						W = false;
+					}
+					if(S){
+						c.sneak();
+						S = false;
+					}
+					if(rS){
+						c.stand();
+						rS = false;
+					}
+					if(rA || rD){
+						c.setXVelo(0);
+						rA = false;
+						rD = false;
+					}
+				    if(PUNCHR){
+				    	c.punch();
+				    	PUNCHR = false;
+				    }
+				    if(KICKR){
+				    	c.kick();
+				    	KICKR = false;
+				    }
+				    if(SPECIALR){
+				    	c.special();
+				    	SPECIALR = false;
+				    }
+				    
+				    
+				    //PLAYER 2
+				    if(UP){
+				    	c2.jump();
+				    	UP = false;
+				    }
+				    if(DOWN){
+				    	c2.sneak();
+				    	DOWN = false;
+				    }
+				    if(LEFT){
+				    	c2.setXVelo(-c2.getSpeed());
+				    	LEFT = false;
+				    }
+				    if(RIGHT){
+				    	c2.setXVelo(c2.getSpeed());
+				    	RIGHT = false;
+				    }
+				    if(rRIGHT){
+				    	c2.setXVelo(0);
+				    	rRIGHT = false;
+				    }
+				    if(rLEFT){
+				    	c2.setXVelo(0);
+				    	rLEFT = false;
+				    }
+				    if(rDOWN){
+				    	c2.stand();
+				    	rDOWN = false;
+				    }
+				    if(PUNCHL){
+				    	c2.punch();
+				    	PUNCHL = false;
+				    }
+				    if(KICKL){
+				    	c2.kick();
+				    	KICKL = false;
+				    }
+				    if(SPECIALL){
+				    	c2.special();
+				    	SPECIALL = false;
+				    }
 					try{
 						Thread.sleep(1);
 					}catch(Exception e) { }
