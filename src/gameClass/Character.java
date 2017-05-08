@@ -27,7 +27,7 @@ public abstract class Character extends GameObject {
 	protected volatile int gettingKnockedDownIndex = 0;
 	protected volatile int defeatedIndex = 0;
 
-
+	protected volatile int health = 100;
 
 	protected volatile boolean isAttacking = false;
 
@@ -139,6 +139,15 @@ public abstract class Character extends GameObject {
 
 		gravity = true;
 
+	}
+	int getHealth(){
+		return health;
+	}
+	boolean isDead(int power){
+		if((health-=power)<=0){
+			return true;
+		}
+		return false;
 	}
 	HitBox getHead(){
 		return head;

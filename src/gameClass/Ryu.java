@@ -233,10 +233,10 @@ public class Ryu extends Character {
 			int xBuffer = 0;
 			if(right){
 				energyBallXVelo = 10;
-				xBuffer = x+(2*Constants.ENERGYBALL_WIDTH.getIntValue());
+				xBuffer = x+(Constants.ENERGYBALL_WIDTH.getIntValue());
 			}else{
 				energyBallXVelo = -10;
-				xBuffer = x-(2*Constants.ENERGYBALL_WIDTH.getIntValue());
+				xBuffer = x-(Constants.ENERGYBALL_WIDTH.getIntValue());
 			}
 			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
 			Thread special = new Thread(new Runnable(){
