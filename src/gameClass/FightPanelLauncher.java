@@ -629,7 +629,6 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 				while(isRunning){
 					//out of bounds check
 					for(int index = 0; index < sprites.size(); index++){
-						
 						GameObject c = sprites.get(index);
 						if(c==null){
 							continue;
@@ -718,64 +717,72 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					for(int index = 0; index < sprites.size(); index++ ){
 						GameObject o = sprites.get(index);
 						if(o.getType().equals(GameType.PROJECTILE)){
-							if(c.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),false)||c.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),false)||c.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),false)){
+							if(c.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
 								c.justAttacked = true;
 								c.getHitTorso();
 								sprites.remove(o);
 							}
-							if(c2.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),true)||c2.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),true)||c2.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),true)){
+							if(c2.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c2.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c2.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
 								c2.justAttacked = true;
 								c2.getHitTorso();
 								sprites.remove(o);
 							}
 						}
 					}
-					//player one hits
+					//player one/two hits
 					int attackX = 0;
 					int attackY = 0;
 
 					if(c.isPunching){
-						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7)*2;
 						attackY = c.getBody().getCenterY();
 
 					}
 					if(c2.isPunching){
-						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7);
+						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7)*2;
 						attackY = c2.getBody().getCenterY();
 					}
 
 					if(c.isKicking){
-						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7)*2;
 						attackY = c.getBody().getY()-c.getHead().getHeight()/2;
 
 					}
 					if(c2.isKicking){
-						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7);
+						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7)*2;
 						attackY = c.getBody().getY()-c.getHead().getHeight()/2;
 					}
-					if(c.isLowKicking||c.isLowPunching){
+					if(c.isLowPunching){
 						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
 						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
 
 					}
-					if(c2.isLowKicking||c2.isLowPunching){
-						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth() ;
+					if(c2.isLowPunching){
+						attackX = c2.getLegs().getCenterX() - (int)(c.getLegs().getWidth()*2);
 						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+					}
+					if(c.isLowKicking){
+							attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
+							attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
+					}
+					if(c2.isLowKicking){
+							attackX = c2.getLegs().getCenterX() - (int)(c.getLegs().getWidth()*2);
+							attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
 					}
 					if(c.isAerialPunching){
-						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
-						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2)*3;
+						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight();
 					}
 					if(c2.isAerialPunching){
-						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth() ;
-						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+						attackX = c2.getLegs().getCenterX() - (int)(c.getLegs().getWidth()*2);
+						attackY = c2.getLegs().getCenterY()+(int)(c2.getLegs().getHeight());
 					}
 					if(c.isAerialKicking){
-						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2)*2;
 						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
 					}
 					if(c2.isAerialKicking){
-						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth() ;
+						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth()*2 ;
 						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
 					}
 					if(c.isAttacking){
@@ -785,8 +792,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 							c2.justAttacked = true;
 						}
 						if(c2.getLegs().isTouching(attackX, attackY,true)&&!c2.justAttacked&&!c2.isGettingKnockedDown){
-								c2.getKnockedDown();
-								c2.justAttacked = true;
+							c2.getKnockedDown();
+							c2.justAttacked = true;
 
 						}
 						if(c2.getHead().isTouching(attackX, attackY,true)&&!c2.justAttacked&&!c2.isGettingHitHead){
@@ -800,8 +807,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 							c.justAttacked = true;
 						}
 						if(c.getLegs().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingKnockedDown){
-								c.getKnockedDown();
-								c.justAttacked = true;
+							c.getKnockedDown();
+							c.justAttacked = true;
 						}
 						if(c.getHead().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingHitHead){
 							c.getHitHead();

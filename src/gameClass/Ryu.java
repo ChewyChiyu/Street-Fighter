@@ -135,7 +135,7 @@ public class Ryu extends Character {
 
 		}
 		if(isAerialPunching){
-			g.drawImage(sneakKick[sneakKickIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.7), (int)(Constants.PLAYER_HEIGHT.getIntValue()*.7), null);
+			g.drawImage(sneakKick[sneakKickIndex],x,y + (int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
 			return;
 		}
 		if(isAerialKicking){

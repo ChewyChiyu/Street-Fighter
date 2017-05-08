@@ -58,6 +58,17 @@ public class HitBox {
 		}
 		return false;
 	}
+	boolean isTouching(int dubX, int dubY){
+		int x1 = x;
+		int x2 = x + w;
+		int y1 = y;
+		int y2 = y + h;
+		if(dubX<x2&&dubX>x1&&dubY>y1&&dubY<y2){
+			return true;
+		}
+		
+		return false;
+	}
 	void draw(Graphics g, Color c){
 		//testing out hitbox
 		g.setColor(c);
