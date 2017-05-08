@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -22,7 +23,7 @@ import javax.swing.KeyStroke;
 public class FightPanelLauncher extends JPanel implements Runnable{
 	private Thread gameLoop;
 	public static boolean isRunning;
-	private Character c;
+	protected Character c;
 	private Map m;
 	private GameType g;
 	private JFrame frame;
@@ -42,7 +43,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			break;
 		default:
 			break;
-		
+
 		}
 		this.m = m;
 		this.g = g;
@@ -51,7 +52,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		panel();
 		start();
 	}
-	
+
 
 	void keys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("O"), "O");
@@ -74,7 +75,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 				}else{
 					start();
 				}
-				
+
 			}
 
 		});
@@ -95,33 +96,33 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	protected boolean D = false;
 	protected boolean S = false;
 	protected boolean W = false;
-	
+
 	protected boolean rA = false;
 	protected boolean rD = false;
 	protected boolean rS = false;
-	
+
 	protected boolean PUNCHR = false;
 	protected boolean KICKR = false;
 	protected boolean SPECIALR = false;
-	
-	
+
+
 	protected boolean UP = false;
 	protected boolean DOWN = false;
 	protected boolean LEFT = false;
 	protected boolean RIGHT = false;
-	
+
 	protected boolean rRIGHT = false;
 	protected boolean rLEFT = false;
 	protected boolean rDOWN = false;
-	
+
 	protected boolean PUNCHL = false;
 	protected boolean KICKL = false;
 	protected boolean SPECIALL = false;
-	
-	
-	
-	
-	
+
+
+
+
+
 	void singlePlayerKeys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("A"), "A");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("D"), "D");
@@ -137,14 +138,14 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("K"), "KICK");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("L"), "SPECIAL");
 
-		
-		
+
+
 		getActionMap().put("A", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isRunning)
-				A = true;
+					A = true;
 			}
 
 		});
@@ -153,7 +154,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isRunning)
-				D = true;
+					D = true;
 			}
 
 		});
@@ -162,8 +163,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(isRunning)
-				W = true;
-				
+					W = true;
+
 			}
 
 		});
@@ -230,7 +231,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			}
 
 		});
-		
+
 	}
 	void manyPlayerKeys(){
 
@@ -249,7 +250,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("H"), "SPECIALR");
 
 		//PLAYER TWO
-		
+
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_LEFT, 0, false), "LEFT");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_RIGHT, 0 , false), "RIGHT");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke((char) KeyEvent.VK_UP, 0 ,false), "UP");
@@ -263,11 +264,11 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("B"), "PUNCHL");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("N"), "KICKL");
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("M"), "SPECIALL");
-		
-		
-		
-		
-		
+
+
+
+
+
 		getActionMap().put("A", new AbstractAction(){
 
 			@Override
@@ -368,9 +369,9 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			}
 
 		});
-		
-		
-		
+
+
+
 		getActionMap().put("LEFT", new AbstractAction(){
 
 			@Override
@@ -441,17 +442,17 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			}
 
 		});
-		
-		
-		
-		
+
+
+
+
 		getActionMap().put("PUNCHL", new AbstractAction(){
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				//c.punch();
 				if(isRunning)
-				PUNCHL = true;
+					PUNCHL = true;
 			}
 
 		});
@@ -461,7 +462,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//	c.kick();
 				if(isRunning)
-				KICKL = true;
+					KICKL = true;
 			}
 
 		});
@@ -471,12 +472,12 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			public void actionPerformed(ActionEvent e) {
 				//c.special();
 				if(isRunning)
-				SPECIALL = true;
+					SPECIALL = true;
 			}
 
 		});
-		
-	
+
+
 	}
 	void panel(){
 		frame = new JFrame();
@@ -532,61 +533,89 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						rA = false;
 						rD = false;
 					}
-				    if(PUNCHR){
-				    	c.punch();
-				    	PUNCHR = false;
-				    }
-				    if(KICKR){
-				    	c.kick();
-				    	KICKR = false;
-				    }
-				    if(SPECIALR){
-				    	c.special();
-				    	SPECIALR = false;
-				    }
-				    
-				    
-				    //PLAYER 2
-				    if(UP){
-				    	c2.jump();
-				    	UP = false;
-				    }
-				    if(DOWN){
-				    	c2.sneak();
-				    	DOWN = false;
-				    }
-				    if(LEFT){
-				    	c2.setXVelo(-c2.getSpeed());
-				    	LEFT = false;
-				    }
-				    if(RIGHT){
-				    	c2.setXVelo(c2.getSpeed());
-				    	RIGHT = false;
-				    }
-				    if(rRIGHT){
-				    	c2.setXVelo(0);
-				    	rRIGHT = false;
-				    }
-				    if(rLEFT){
-				    	c2.setXVelo(0);
-				    	rLEFT = false;
-				    }
-				    if(rDOWN){
-				    	c2.stand();
-				    	rDOWN = false;
-				    }
-				    if(PUNCHL){
-				    	c2.punch();
-				    	PUNCHL = false;
-				    }
-				    if(KICKL){
-				    	c2.kick();
-				    	KICKL = false;
-				    }
-				    if(SPECIALL){
-				    	c2.special();
-				    	SPECIALL = false;
-				    }
+					if(PUNCHR){
+						if(!c.inAir){
+							if(c.isSneaking)
+								c.sneakPunch();
+							else
+								c.punch();
+						}else{
+							c.aerialPunch();
+						}
+						PUNCHR = false;
+					}
+					if(KICKR){
+						if(!c.inAir){
+							if(c.isSneaking)
+								c.sneakKick();
+							else
+								c.kick();
+						}else{
+							c.aerialKick();
+						}
+						KICKR = false;
+					}
+					if(SPECIALR){
+						c.special();
+						SPECIALR = false;
+					}
+
+
+					//PLAYER 2
+					if(UP){
+						c2.jump();
+						UP = false;
+					}
+					if(DOWN){
+						c2.sneak();
+						DOWN = false;
+					}
+					if(LEFT){
+						c2.setXVelo(-c2.getSpeed());
+						LEFT = false;
+					}
+					if(RIGHT){
+						c2.setXVelo(c2.getSpeed());
+						RIGHT = false;
+					}
+					if(rRIGHT){
+						c2.setXVelo(0);
+						rRIGHT = false;
+					}
+					if(rLEFT){
+						c2.setXVelo(0);
+						rLEFT = false;
+					}
+					if(rDOWN){
+						c2.stand();
+						rDOWN = false;
+					}
+					if(PUNCHL){
+						if(!c2.inAir){
+							if(c2.isSneaking)
+								c2.sneakPunch();
+							else
+								c2.punch();
+						}else{
+							c2.aerialPunch();
+						}
+						PUNCHL = false;
+					}
+					if(KICKL){
+						if(!c2.inAir){
+							if(c2.isSneaking)
+								c2.sneakKick();
+							else
+								c2.kick();
+						}else{
+							c2.aerialKick();
+						}
+						KICKL = false;
+					}
+					if(SPECIALL){
+						c2.special();
+						SPECIALL = false;
+					}
 					try{
 						Thread.sleep(1);
 					}catch(Exception e) { }
@@ -603,6 +632,15 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					//out of bounds check
 					for(int index = 0; index < sprites.size(); index++){
 						GameObject c = sprites.get(index);
+						if(c==null){
+							continue;
+						}
+						if(c.getType().equals(GameType.PROJECTILE)){
+							//self removal
+							if(c.getX()<0||c.getX()>Constants.SCREEN_WIDTH.getIntValue()){
+								sprites.remove(c);
+							}
+						}
 						if(c.gravity){
 							if(c.getX()<0){
 								c.setX(c.getSpeed());
@@ -618,14 +656,181 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 							//stuck in floor
 							c.inAir = false;
 						}
-						try{
-							Thread.sleep(1);
-						}catch(Exception e) { }
+
 					}
 				}
 			}
 		});
+		Thread moveHitBox = new Thread(new Runnable(){
+			public void run(){
+				while(isRunning){
+					for(int index = 0; index < sprites.size(); index++){
+						//Move Body HitBoxes
+						GameObject c = sprites.get(index);
+						if(c.getType().equals(GameType.PLAYER)){
+							//movements
+							//body, head
+
+							Character c2 = ((Character ) c ); 
+
+							c2.getBody().setX(c2.getX()+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2)); //constant body x axis
+							c2.getHead().setX(c2.getX()+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2)); //constant body y axis
+							c2.getLegs().setX(c2.getX()+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2)); //constant body legs
+							if(!((Character)c2).isSneaking){ //character is not sneaking
+								c2.getBody().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.2)); //standard body placement
+								if(!c2.inAir){ //character is on ground
+									c2.getHead().setY(c2.getY()); //standard head placement
+									c2.getLegs().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.6));
+								}else{ //character is in air
+									c2.getHead().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.3)); //tuck head for roll
+									c2.getLegs().setY(c2.getY());
+								}
+							}else{ //character is sneaking 
+								c2.getBody().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.5)); //head and body tucked for sneak
+								c2.getHead().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.5));
+								c2.getLegs().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.5));
+							}
+
+
+						}
+						if(c.getType().equals(GameType.PROJECTILE)){
+							c.getBody().setX(c.getX());
+							c.getBody().setY(c.getY());
+						}
+					}
+					//player increment check
+					if(c2.getX()-c.getX()<60){ //60 pixel buffer
+						c.setX(-c.getSpeed());
+						c2.setX(c.getSpeed());
+						//players never cross
+					}
+					try{
+						Thread.sleep(1);
+					}catch(Exception e) { }
+				}
+
+
+			}
+
+		});
+		Thread hitCheck = new Thread(new Runnable(){
+			public void run(){
+				while(isRunning){
+					for(int index = 0; index < sprites.size(); index++ ){
+						GameObject o = sprites.get(index);
+						if(o.getType().equals(GameType.PROJECTILE)){
+							if(c.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),false)||c.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),false)||c.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),false)){
+								c.justAttacked = true;
+								c.getHitTorso();
+								sprites.remove(o);
+							}
+							if(c2.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),true)||c2.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),true)||c2.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY(),true)){
+								c2.justAttacked = true;
+								c2.getHitTorso();
+								sprites.remove(o);
+							}
+						}
+					}
+					//player one hits
+					int attackX = 0;
+					int attackY = 0;
+
+					if(c.isPunching){
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
+						attackY = c.getBody().getCenterY();
+
+					}
+					if(c2.isPunching){
+						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7);
+						attackY = c2.getBody().getCenterY();
+					}
+
+					if(c.isKicking){
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
+						attackY = c.getBody().getY()-c.getHead().getHeight()/2;
+
+					}
+					if(c2.isKicking){
+						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7);
+						attackY = c.getBody().getY()-c.getHead().getHeight()/2;
+					}
+					if(c.isLowKicking||c.isLowPunching){
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
+						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
+
+					}
+					if(c2.isLowKicking||c2.isLowPunching){
+						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth() ;
+						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+					}
+					if(c.isAerialPunching){
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
+						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
+					}
+					if(c2.isAerialPunching){
+						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth() ;
+						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+					}
+					if(c.isAerialKicking){
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
+						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
+					}
+					if(c2.isAerialKicking){
+						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth() ;
+						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+					}
+					if(c.isAttacking){
+
+						if(c2.getBody().isTouching(attackX, attackY,true)&&!c2.justAttacked){
+							if(!c2.isGettingHitTorso){
+							c2.getHitTorso();
+							c2.justAttacked = true;
+							}
+						}
+						if(c2.getLegs().isTouching(attackX, attackY,true)&&!c2.justAttacked){
+							if(!c2.isGettingKnockedDown){
+								c2.getKnockedDown();
+								c2.justAttacked = true;
+							}
+
+						}
+						if(c2.getHead().isTouching(attackX, attackY,true)&&!c2.justAttacked){
+							if(!c2.isGettingHitHead){
+							c2.getHitHead();
+							c2.justAttacked = true;
+							}
+						}
+					}
+					if(c2.isAttacking){
+						if(c.getBody().isTouching(attackX, attackY,false)&&!c.justAttacked){
+							if(!c.isGettingHitTorso){
+							c.getHitTorso();
+							c.justAttacked = true;
+							}
+						}
+						if(c.getLegs().isTouching(attackX, attackY,false)&&!c.justAttacked){
+							if(!c.isGettingKnockedDown){
+								c.getKnockedDown();
+								c.justAttacked = true;
+							}
+						}
+						if(c.getHead().isTouching(attackX, attackY,false)&&!c.justAttacked){
+							if(!c.isGettingHitHead){
+							c.getHitHead();
+							c.justAttacked = true;
+							}
+						}
+					}
+
+					try{
+						Thread.sleep(1);
+					}catch(Exception e) { }
+				}
+			}
+		});
+		hitCheck.start();
 		boundCheck.start();
+		moveHitBox.start();
 	}
 	synchronized void stop(){
 		try{
@@ -673,6 +878,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		super.paintComponent(g);
 		drawMap(g);
 		drawCharacters(g);
+		//drawHitBoxes(g);
 		if(!isRunning){
 			g.setFont(new Font("Aerial",Font.BOLD,100));
 			g.setColor(Color.WHITE);
@@ -684,10 +890,21 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			GameObject c = sprites.get(index);
 			c.draw(g);
 		}
-		
+
 	}
 	void drawMap(Graphics g){
 		m.drawMap(g);
 	}
+	void drawHitBoxes(Graphics g){
+		for(int index = 0; index < sprites.size(); index++){
+			GameObject o = sprites.get(index);
+			o.getBody().draw(g,Color.GREEN);
+			if(o.getType().equals(GameType.PLAYER)){
+				//only players have heads and legs
+				((Character) o).head.draw(g,Color.RED);
+				((Character) o).legs.draw(g,Color.PINK);
+			}
+		}
 
+	}
 }

@@ -11,8 +11,8 @@ public class Ryu extends Character {
 	protected Ryu(CharacterInfo info, int speed, boolean right,boolean isAutomated) {
 		super(CharacterInfo.RYU, speed, right, isAutomated);
 		this.right = right;
-	
-		
+
+
 
 		if(right){
 			idle = RyuTexture.idleRyuRight;
@@ -31,13 +31,13 @@ public class Ryu extends Character {
 
 			hitTorso = RyuTexture.ryuTorsoHitRight;
 			idleSneak =  RyuTexture.idleSneakRyuRight;
-			
+
 			hitHead = RyuTexture.ryuHeadHitRight;
 			knockDown = RyuTexture.knockDownRyuRight;
 			defeat = RyuTexture.defeatRyuRight;
-			
-			
-			
+
+
+
 		}
 		if(!right){
 			idle = RyuTexture.idleRyuLeft;
@@ -56,11 +56,11 @@ public class Ryu extends Character {
 
 			hitTorso = RyuTexture.ryuTorsoHitLeft;
 			idleSneak =  RyuTexture.idleSneakRyuLeft;
-			
+
 			hitHead = RyuTexture.ryuHeadHitLeft;
 			knockDown = RyuTexture.knockDownRyuLeft;
 			defeat = RyuTexture.defeatRyuLeft;
-			
+
 		}
 
 	}
@@ -87,16 +87,16 @@ public class Ryu extends Character {
 		if(defeated){
 			if(defeatedIndex<5){
 				g.drawImage(defeat[defeatedIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
-				}else if(defeatedIndex<5){
-					g.drawImage(defeat[defeatedIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_HEIGHT.getIntValue()), Constants.PLAYER_WIDTH.getIntValue()/2, null);
-				}else if(defeatedIndex<7){
-					g.drawImage(defeat[defeatedIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.8), (int)(Constants.PLAYER_HEIGHT.getIntValue()), (int)(Constants.PLAYER_WIDTH.getIntValue()/2), null);
-				}
-				return;
+			}else if(defeatedIndex<5){
+				g.drawImage(defeat[defeatedIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_HEIGHT.getIntValue()), Constants.PLAYER_WIDTH.getIntValue()/2, null);
+			}else if(defeatedIndex<7){
+				g.drawImage(defeat[defeatedIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.8), (int)(Constants.PLAYER_HEIGHT.getIntValue()), (int)(Constants.PLAYER_WIDTH.getIntValue()/2), null);
+			}
+			return;
 		}
 		if(isGettingKnockedDown){
 			if(gettingKnockedDownIndex<5){
-			g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
+				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()/2), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/2, null);
 			}else if(gettingKnockedDownIndex<6){
 				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.75), (int)(Constants.PLAYER_WIDTH.getIntValue()*1.5), Constants.PLAYER_HEIGHT.getIntValue()/4, null);
 			}else if(gettingKnockedDownIndex<10){
@@ -172,31 +172,7 @@ public class Ryu extends Character {
 		return "RYU";
 	}
 
-	@Override
-	void incrementMoveIndex() {
-		if(xVelo==0&&yVelo==0 &&!isSneaking&&!isSpecial&&!isPunching&&!isKicking){
-			//idle
-			idleIndex++;
-			if(idleIndex>idle.length-1){
-				idleIndex = 0;
-			}
-		}else if(xVelo!=0&&yVelo==0&&!isSpecial&&!isPunching&&!isKicking){
-			walkIndex++;
-			if(walkIndex>walk.length-1){
-				walkIndex = 0;
-			}
-		}else if(xVelo==0&&yVelo!=0&&!isSpecial&&!isPunching&&!isKicking){
-			vertialJumpIndex++;
-			if(vertialJumpIndex>verticalJump.length-1){
-				vertialJumpIndex = 0;
-			}
-		}else if(xVelo!=0&&yVelo!=0&&!isSpecial&&!isPunching&&!isKicking){
-			diagonalJumpIndex++;
-			if(diagonalJumpIndex>diagonalJump.length-1){
-				diagonalJumpIndex = 0;
-			}
-		}
-	}
+
 
 	@Override
 	void punch() {
@@ -254,12 +230,15 @@ public class Ryu extends Character {
 	void special() {
 		if(!isAttacking){
 			int energyBallXVelo = 0;
+			int xBuffer = 0;
 			if(right){
 				energyBallXVelo = 10;
+				xBuffer = x+(2*Constants.ENERGYBALL_WIDTH.getIntValue());
 			}else{
 				energyBallXVelo = -10;
+				xBuffer = x-(2*Constants.ENERGYBALL_WIDTH.getIntValue());
 			}
-			FightPanelLauncher.sprites.add(new EnergyBall(x+(Constants.ENERGYBALL_WIDTH.getIntValue()),y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
+			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
 			Thread special = new Thread(new Runnable(){
 
 				@Override
@@ -416,10 +395,12 @@ public class Ryu extends Character {
 	void getKnockedDown() {
 		Thread gettingKnocked = new Thread(new Runnable(){
 			public void run(){
+			
 				isGettingKnockedDown = true;
 				gettingKnockedDownIndex = 0;
 				for(int index = 0; index < RyuTexture.knockDownRyuRight.length-1; index++){
 					gettingKnockedDownIndex++;
+					
 					try{
 						Thread.sleep(200);
 					}catch(Exception e) { }
@@ -427,8 +408,27 @@ public class Ryu extends Character {
 				isGettingKnockedDown = false;
 			}
 		});
-		gettingKnocked.start();
 		
+		Thread knockBack = new Thread(new Runnable(){
+			public void run(){
+			for(int index = 0; index < 50; index++){	
+				y -= Constants.GRAVITY.getIntValue();
+				if(!right){
+					setX(5);
+				}
+				else{
+					setX(-5);
+				}
+				try{
+					Thread.sleep(1);
+				}catch(Exception e) { }
+			}
+			}
+		});
+		
+		knockBack.start();
+		gettingKnocked.start();
+
 	}
 
 	@Override

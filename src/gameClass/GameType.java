@@ -1,5 +1,5 @@
 package gameClass;
 
 public enum GameType {
-	TRAINING, FIGHT;
+	TRAINING, FIGHT, PLAYER, PROJECTILE;
 }

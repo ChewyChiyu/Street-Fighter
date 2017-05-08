@@ -16,10 +16,7 @@ public class EnergyBall extends Projectile{
 		else
 			g.drawImage(RyuTexture.energyBallRyuLeft, x, y,Constants.ENERGYBALL_WIDTH.getIntValue(),Constants.ENERGYBALL_HEIGHT.getIntValue(), null);
 
-		//self removal
-		if(x<0||x>Constants.SCREEN_WIDTH.getIntValue()){
-			FightPanelLauncher.sprites.remove(this);
-		}
+	
 
 
 	}
