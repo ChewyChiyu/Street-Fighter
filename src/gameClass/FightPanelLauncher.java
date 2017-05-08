@@ -5,11 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.ArrayList;
 
 import javax.swing.AbstractAction;
@@ -631,6 +629,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 				while(isRunning){
 					//out of bounds check
 					for(int index = 0; index < sprites.size(); index++){
+						
 						GameObject c = sprites.get(index);
 						if(c==null){
 							continue;
@@ -781,44 +780,32 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					}
 					if(c.isAttacking){
 
-						if(c2.getBody().isTouching(attackX, attackY,true)&&!c2.justAttacked){
-							if(!c2.isGettingHitTorso){
+						if(c2.getBody().isTouching(attackX, attackY,true)&&!c2.justAttacked&&!c2.isGettingHitTorso){
 							c2.getHitTorso();
 							c2.justAttacked = true;
-							}
 						}
-						if(c2.getLegs().isTouching(attackX, attackY,true)&&!c2.justAttacked){
-							if(!c2.isGettingKnockedDown){
+						if(c2.getLegs().isTouching(attackX, attackY,true)&&!c2.justAttacked&&!c2.isGettingKnockedDown){
 								c2.getKnockedDown();
 								c2.justAttacked = true;
-							}
 
 						}
-						if(c2.getHead().isTouching(attackX, attackY,true)&&!c2.justAttacked){
-							if(!c2.isGettingHitHead){
+						if(c2.getHead().isTouching(attackX, attackY,true)&&!c2.justAttacked&&!c2.isGettingHitHead){
 							c2.getHitHead();
 							c2.justAttacked = true;
-							}
 						}
 					}
 					if(c2.isAttacking){
-						if(c.getBody().isTouching(attackX, attackY,false)&&!c.justAttacked){
-							if(!c.isGettingHitTorso){
+						if(c.getBody().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingHitTorso){
 							c.getHitTorso();
 							c.justAttacked = true;
-							}
 						}
-						if(c.getLegs().isTouching(attackX, attackY,false)&&!c.justAttacked){
-							if(!c.isGettingKnockedDown){
+						if(c.getLegs().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingKnockedDown){
 								c.getKnockedDown();
 								c.justAttacked = true;
-							}
 						}
-						if(c.getHead().isTouching(attackX, attackY,false)&&!c.justAttacked){
-							if(!c.isGettingHitHead){
+						if(c.getHead().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingHitHead){
 							c.getHitHead();
 							c.justAttacked = true;
-							}
 						}
 					}
 
