@@ -433,6 +433,9 @@ public class Ryu extends Character {
 
 	@Override
 	void defeated() {
+		if(defeated){
+			return;
+		}
 		Thread defeat = new Thread(new Runnable(){
 			public void run(){
 				defeated = true;
@@ -443,7 +446,6 @@ public class Ryu extends Character {
 						Thread.sleep(200);
 					}catch(Exception e) { }
 				}		
-				defeated = false;
 			}
 		});
 		defeat.start();		

@@ -505,7 +505,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		Thread keyReading = new Thread(new Runnable(){
 			public void run(){
 				while(isRunning){
-
+					if(!c.defeated){
 					if(A){
 						c.setXVelo(-c.getSpeed());
 						A = false;
@@ -557,8 +557,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						c.special();
 						SPECIALR = false;
 					}
-
-
+					}
+					if(!c2.defeated){
 					//PLAYER 2
 					if(UP){
 						c2.jump();
@@ -613,6 +613,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					if(SPECIALL){
 						c2.special();
 						SPECIALL = false;
+					}
 					}
 					try{
 						Thread.sleep(1);
@@ -697,7 +698,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						}
 					}
 					//player increment check
-					if(c2.getX()-c.getX()<60){ //60 pixel buffer
+					if(c2.getX()-c.getX()<60&&(!c2.defeated&&!c.defeated)){ //60 pixel buffer
 						c.setX(-c.getSpeed());
 						c2.setX(c.getSpeed());
 						//players never cross
@@ -762,11 +763,11 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					}
 					if(c.isAerialPunching){
 						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*1.5);
-						attackY = c.getLegs().getCenterY()+(int)(c.getLegs().getHeight()*2);
+						attackY = c.getLegs().getCenterY()+(int)(c.getLegs().getHeight()*2.5);
 					}
 					if(c2.isAerialPunching){
 						attackX2 = c2.getLegs().getCenterX() - (int)(c2.getLegs().getWidth()*1.5);
-						attackY2 = c2.getLegs().getCenterY()+(int)(c2.getLegs().getHeight()*2);
+						attackY2 = c2.getLegs().getCenterY()+(int)(c2.getLegs().getHeight()*2.5);
 					}
 					if(c.isAerialKicking){
 						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth());
@@ -776,7 +777,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						attackX2 = c2.getLegs().getCenterX() - c2.getLegs().getWidth() ;
 						attackY2 = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
 					}
-					if(c.isAttacking){
+					if(c.isAttacking&&!c2.defeated){
 
 						if(c2.getBody().isTouching(attackX, attackY,true)&&!c2.justAttacked&&!c2.isGettingHitTorso){
 							c2.getHitTorso();
@@ -795,7 +796,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 							c2.justAttacked = true;
 						}
 					}
-					if(c2.isAttacking){
+					if(c2.isAttacking&&!c.defeated){
 						if(c.getBody().isTouching(attackX2, attackY2,false)&&!c.justAttacked&&!c.isGettingHitTorso){
 							c.getHitTorso();
 							c.isDead(10);
@@ -903,6 +904,9 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		for(int index = 0; index < sprites.size(); index++){
 			GameObject c = sprites.get(index);
 			if(c.getType().equals(GameType.PLAYER)&&!((Character)c).isGettingHitHead&&!((Character)c).isGettingHitTorso&&!((Character)c).isGettingKnockedDown&&!((Character)c).isAttacking){
+			if(((Character)c).defeated){
+				continue;
+			}
 			c.setX(c.getXVelo());
 			}else if(c.getType().equals(GameType.PROJECTILE)){
 				c.setX(c.getXVelo());

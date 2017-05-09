@@ -145,6 +145,7 @@ public abstract class Character extends GameObject {
 	}
 	boolean isDead(int power){
 		if((health-=power)<=0){
+			defeated();
 			return true;
 		}
 		return false;
