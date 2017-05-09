@@ -187,7 +187,7 @@ public class Ryu extends Character {
 					for(int index = 0; index < RyuTexture.punchRyuRight.length-1; index++){
 						punchIndex++;
 						try{
-							Thread.sleep(100);
+							Thread.sleep(50);
 						}catch(Exception e) { }
 					}
 
@@ -228,7 +228,7 @@ public class Ryu extends Character {
 
 	@Override
 	void special() {
-		if(!isAttacking){
+		if(!isAttacking&&!isGettingKnockedDown){
 			int energyBallXVelo = 0;
 			int xBuffer = 0;
 			if(right){

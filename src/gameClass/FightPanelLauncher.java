@@ -714,78 +714,67 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		Thread hitCheck = new Thread(new Runnable(){
 			public void run(){
 				while(isRunning){
-					for(int index = 0; index < sprites.size(); index++ ){
-						GameObject o = sprites.get(index);
-						if(o.getType().equals(GameType.PROJECTILE)){
-							if(c.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
-								c.justAttacked = true;
-								c.isDead(10);
-								c.getHitTorso();
-								sprites.remove(o);
-							}
-							if(c2.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c2.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())||c2.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
-								c2.justAttacked = true;
-								c2.isDead(10);
-								c2.getHitTorso();
-								sprites.remove(o);
-							}
-						}
-					}
+					
 					//player one/two hits
-					int attackX = 0;
+					
+					int attackX = c.getBody().getCenterX();
 					int attackY = 0;
-
+					
+					int attackX2 = c2.getBody().getCenterX();
+					int attackY2 = 0;
+					
+					
 					if(c.isPunching){
-						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7)*2;
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
 						attackY = c.getBody().getCenterY();
 
 					}
 					if(c2.isPunching){
-						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7)*2;
-						attackY = c2.getBody().getCenterY();
+						attackX2 = c2.getBody().getCenterX() - (int)(c2.getBody().getWidth()*.7);
+						attackY2 = c2.getBody().getCenterY();
 					}
 
 					if(c.isKicking){
-						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7)*2;
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
 						attackY = c.getBody().getY()-c.getHead().getHeight()/2;
 
 					}
 					if(c2.isKicking){
-						attackX = c2.getBody().getCenterX() - (int)(c.getBody().getWidth()*.7)*2;
-						attackY = c.getBody().getY()-c.getHead().getHeight()/2;
+						attackX2= c2.getBody().getCenterX() - (int)(c2.getBody().getWidth()*.7);
+						attackY2 = c2.getBody().getY()-c2.getHead().getHeight()/2;
 					}
 					if(c.isLowPunching){
-						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth());
 						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
 
 					}
 					if(c2.isLowPunching){
-						attackX = c2.getLegs().getCenterX() - (int)(c.getLegs().getWidth()*2);
-						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+						attackX2 = c2.getLegs().getCenterX() - (int)(c2.getLegs().getWidth());
+						attackY2 = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
 					}
 					if(c.isLowKicking){
-							attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2);
+							attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth());
 							attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
 					}
 					if(c2.isLowKicking){
-							attackX = c2.getLegs().getCenterX() - (int)(c.getLegs().getWidth()*2);
-							attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+							attackX2 = c2.getLegs().getCenterX() - (int)(c2.getLegs().getWidth());
+							attackY2 = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
 					}
 					if(c.isAerialPunching){
-						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2)*3;
-						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight();
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*1.5);
+						attackY = c.getLegs().getCenterY()+(int)(c.getLegs().getHeight()*2);
 					}
 					if(c2.isAerialPunching){
-						attackX = c2.getLegs().getCenterX() - (int)(c.getLegs().getWidth()*2);
-						attackY = c2.getLegs().getCenterY()+(int)(c2.getLegs().getHeight());
+						attackX2 = c2.getLegs().getCenterX() - (int)(c2.getLegs().getWidth()*1.5);
+						attackY2 = c2.getLegs().getCenterY()+(int)(c2.getLegs().getHeight()*2);
 					}
 					if(c.isAerialKicking){
-						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth()*2)*2;
+						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth());
 						attackY = c.getLegs().getCenterY()+c.getLegs().getHeight()/2;
 					}
 					if(c2.isAerialKicking){
-						attackX = c2.getLegs().getCenterX() - c.getLegs().getWidth()*2 ;
-						attackY = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
+						attackX2 = c2.getLegs().getCenterX() - c2.getLegs().getWidth() ;
+						attackY2 = c2.getLegs().getCenterY()+c2.getLegs().getHeight()/2;
 					}
 					if(c.isAttacking){
 
@@ -807,23 +796,64 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						}
 					}
 					if(c2.isAttacking){
-						if(c.getBody().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingHitTorso){
+						if(c.getBody().isTouching(attackX2, attackY2,false)&&!c.justAttacked&&!c.isGettingHitTorso){
 							c.getHitTorso();
 							c.isDead(10);
 							c.justAttacked = true;
 						}
-						if(c.getLegs().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingKnockedDown){
+						if(c.getLegs().isTouching(attackX2, attackY2,false)&&!c.justAttacked&&!c.isGettingKnockedDown){
 							c.getKnockedDown();
 							c.isDead(10);
 							c.justAttacked = true;
 						}
-						if(c.getHead().isTouching(attackX, attackY,false)&&!c.justAttacked&&!c.isGettingHitHead){
+						if(c.getHead().isTouching(attackX2, attackY2,false)&&!c.justAttacked&&!c.isGettingHitHead){
 							c.getHitHead();
 							c.isDead(10);
 							c.justAttacked = true;
 						}
+						
 					}
-
+					for(int index = 0; index < sprites.size(); index++ ){
+						GameObject o = sprites.get(index);
+						if(o.getType().equals(GameType.PROJECTILE)){
+							if(c.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
+								c.justAttacked = true;
+								c.isDead(10);
+								c.getHitTorso();
+								sprites.remove(o);
+							}
+							if(c.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
+								c.justAttacked = true;
+								c.isDead(10);
+								c.getHitHead();
+								sprites.remove(o);
+							}
+							if(c.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
+								c.justAttacked = true;
+								c.isDead(10);
+								c.getKnockedDown();
+								sprites.remove(o);
+							}
+							if(c2.getBody().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
+								c2.justAttacked = true;
+								c2.isDead(10);
+								c2.getHitTorso();
+								sprites.remove(o);
+							}
+							if(c2.getHead().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
+								c2.justAttacked = true;
+								c2.isDead(10);
+								c2.getHitHead();
+								sprites.remove(o);
+							}
+							if(c2.getLegs().isTouching(o.getBody().getCenterX(),o.getBody().getCenterY())){
+								c2.justAttacked = true;
+								c2.isDead(10);
+								c2.getKnockedDown();
+								sprites.remove(o);
+							}
+						}
+					}
 					try{
 						Thread.sleep(1);
 					}catch(Exception e) { }
@@ -872,7 +902,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	void updateLocations(){
 		for(int index = 0; index < sprites.size(); index++){
 			GameObject c = sprites.get(index);
-			if(c.getType().equals(GameType.PLAYER)&&!((Character)c).isGettingHitHead&&!((Character)c).isGettingHitTorso&&!((Character)c).isGettingKnockedDown){
+			if(c.getType().equals(GameType.PLAYER)&&!((Character)c).isGettingHitHead&&!((Character)c).isGettingHitTorso&&!((Character)c).isGettingKnockedDown&&!((Character)c).isAttacking){
 			c.setX(c.getXVelo());
 			}else if(c.getType().equals(GameType.PROJECTILE)){
 				c.setX(c.getXVelo());
@@ -895,9 +925,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	void drawCharacterHealth(Graphics g){
 		//player one health
 		g.setColor(Color.RED);
-		g.fillRect(0, 0, (int) ((double)(((double)c.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.49)), 90);
+		g.fillRect(Constants.SCREEN_WIDTH.getIntValue()/2 - (int) ((double)(((double)c.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.49)), 0, (int) ((double)(((double)c.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.49)), 90);
 		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.55), 0, (int) ((double)(((double)c2.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.49)), 90);
-		System.out.println(c2.getHealth());
 	}
 	void drawCharacters(Graphics g){
 		for(int index = 0; index < sprites.size(); index++){

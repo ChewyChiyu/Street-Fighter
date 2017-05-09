@@ -100,7 +100,7 @@ public abstract class Character extends GameObject {
 						justAttacked = false;
 					}
 					try{
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					}catch(Exception e) { }
 				}
 			}
@@ -159,23 +159,27 @@ public abstract class Character extends GameObject {
 		return info;
 	}
 	void incrementMoveIndex() {
-		if(xVelo==0&&yVelo==0 &&!isSneaking&&!isSpecial&&!isPunching&&!isKicking){
+		if(isAttacking||isGettingHitHead||isGettingHitTorso||isGettingKnockedDown){
+			return;
+		}
+			
+		if(xVelo==0&&yVelo==0 &&!isSneaking){
 			//idle
 			idleIndex++;
 			if(idleIndex>idle.length-1){
 				idleIndex = 0;
 			}
-		}else if(xVelo!=0&&yVelo==0&&!isSpecial&&!isPunching&&!isKicking){
+		}else if(xVelo!=0&&yVelo==0){
 			walkIndex++;
 			if(walkIndex>walk.length-1){
 				walkIndex = 0;
 			}
-		}else if(xVelo==0&&yVelo!=0&&!isSpecial&&!isPunching&&!isKicking){
+		}else if(xVelo==0&&yVelo!=0){
 			vertialJumpIndex++;
 			if(vertialJumpIndex>verticalJump.length-1){
 				vertialJumpIndex = 0;
 			}
-		}else if(xVelo!=0&&yVelo!=0&&!isSpecial&&!isPunching&&!isKicking){
+		}else if(xVelo!=0&&yVelo!=0){
 			diagonalJumpIndex++;
 			if(diagonalJumpIndex>diagonalJump.length-1){
 				diagonalJumpIndex = 0;
