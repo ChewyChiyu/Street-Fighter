@@ -10,8 +10,10 @@ public abstract class Projectile extends GameObject {
 		this.y = y;
 		this.xVelo = xVelo;
 		this.yVelo = yVelo;
+		width = 100;
+		height = 100;
 		gravity = false;
-		body = new HitBox(x,y,Constants.ENERGYBALL_WIDTH.getIntValue(),Constants.ENERGYBALL_HEIGHT.getIntValue());
+		body = new HitBox(x,y,width,height);
 	}
 	
 	 

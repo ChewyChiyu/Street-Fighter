@@ -644,12 +644,13 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 							if(c.getX()<0){
 								c.setX(c.getSpeed());
 							}
-							else if(c.getX()+Constants.PLAYER_WIDTH.getIntValue()>Constants.SCREEN_WIDTH.getIntValue()){
+							else if(c.getX()+((Character)c).getInfo().getWidth()>Constants.SCREEN_WIDTH.getIntValue()){
 								c.setX(-c.getSpeed());
 							}
 						}
+						
 						//if in air
-						if(c.getY()+Constants.PLAYER_HEIGHT.getIntValue()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
+						if(c.getType().equals(GameType.PLAYER)&&c.getY()+((Character)c).getInfo().getHeight()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
 							c.inAir = true;
 						}else{
 							//stuck in floor
@@ -672,22 +673,22 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 
 							Character c2 = ((Character ) c ); 
 
-							c2.getBody().setX(c2.getX()+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2)); //constant body x axis
-							c2.getHead().setX(c2.getX()+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2)); //constant body y axis
-							c2.getLegs().setX(c2.getX()+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2)); //constant body legs
+							c2.getBody().setX(c2.getX()+(int)(((Character)c).getInfo().getWidth()*.2)); //constant body x axis
+							c2.getHead().setX(c2.getX()+(int)(((Character)c).getInfo().getWidth()*.2)); //constant body y axis
+							c2.getLegs().setX(c2.getX()+(int)(((Character)c).getInfo().getWidth()*.2)); //constant body legs
 							if(!((Character)c2).isSneaking){ //character is not sneaking
-								c2.getBody().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.2)); //standard body placement
+								c2.getBody().setY(c2.getY()+(int)(((Character)c).getInfo().getHeight()*.2)); //standard body placement
 								if(!c2.inAir){ //character is on ground
 									c2.getHead().setY(c2.getY()); //standard head placement
-									c2.getLegs().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.6));
+									c2.getLegs().setY(c2.getY()+(int)(((Character)c).getInfo().getHeight()*.6));
 								}else{ //character is in air
-									c2.getHead().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.3)); //tuck head for roll
+									c2.getHead().setY(c2.getY()+(int)(((Character)c).getInfo().getHeight()*.3)); //tuck head for roll
 									c2.getLegs().setY(c2.getY());
 								}
 							}else{ //character is sneaking 
-								c2.getBody().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.5)); //head and body tucked for sneak
-								c2.getHead().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.5));
-								c2.getLegs().setY(c2.getY()+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.5));
+								c2.getBody().setY(c2.getY()+(int)(((Character)c).getInfo().getHeight()*.5)); //head and body tucked for sneak
+								c2.getHead().setY(c2.getY()+(int)(((Character)c).getInfo().getHeight()*.5));
+								c2.getLegs().setY(c2.getY()+(int)(((Character)c).getInfo().getHeight()*.5));
 							}
 
 
@@ -892,7 +893,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			if(!c.gravity){
 				continue;
 			}
-			if(c.getY()+Constants.PLAYER_HEIGHT.getIntValue()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
+			if(c.getY()+((Character)c).getInfo().getHeight()<(int)(Constants.SCREEN_HEIGHT.getIntValue()*.9)){
 				c.setYVelo(Constants.GRAVITY.getIntValue());
 			}else{
 				c.setYVelo(0);
@@ -928,9 +929,18 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	}
 	void drawCharacterHealth(Graphics g){
 		//player one health
+		g.setColor(Color.YELLOW);
+		g.fillRect(0, 0, (int)(Constants.SCREEN_WIDTH.getIntValue()*.45), 90);
+		g.fillRect( (int)(Constants.SCREEN_WIDTH.getIntValue()*.55), 0, (int)(Constants.SCREEN_WIDTH.getIntValue()*.45), 90);
 		g.setColor(Color.RED);
-		g.fillRect(Constants.SCREEN_WIDTH.getIntValue()/2 - (int) ((double)(((double)c.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.49)), 0, (int) ((double)(((double)c.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.49)), 90);
-		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.55), 0, (int) ((double)(((double)c2.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.49)), 90);
+		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.45) - (int) ((double)(((double)c.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.45)), 0, (int) ((double)(((double)c.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.45)), 90);
+		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.55), 0, (int) ((double)(((double)c2.getHealth())/100)*(Constants.SCREEN_WIDTH.getIntValue()*.50)), 90);
+		
+		g.setColor(Color.DARK_GRAY);
+		g.setFont(new Font("Aerial",Font.BOLD,40));
+		g.drawString(c.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.35), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.2));
+		g.drawString(c2.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.55), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.2));
+
 	}
 	void drawCharacters(Graphics g){
 		for(int index = 0; index < sprites.size(); index++){

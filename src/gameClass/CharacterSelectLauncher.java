@@ -24,7 +24,7 @@ import textureClass.Texture;
 public class CharacterSelectLauncher extends JPanel {
 	private GameType g;
 	private Character selectedCharacter = CharacterInfo.RYU.getCharacter(true);
-	private CharacterInfo[] characterList = {CharacterInfo.RYU,CharacterInfo.TWO,CharacterInfo.THREE,CharacterInfo.FOUR,CharacterInfo.FIVE,CharacterInfo.SIX, CharacterInfo.SEVEN, CharacterInfo.EIGHT, CharacterInfo.NINE};
+	private CharacterInfo[] characterList = {CharacterInfo.RYU,CharacterInfo.EHONDA,CharacterInfo.THREE,CharacterInfo.FOUR,CharacterInfo.FIVE,CharacterInfo.SIX, CharacterInfo.SEVEN, CharacterInfo.EIGHT, CharacterInfo.NINE};
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
@@ -39,7 +39,7 @@ public class CharacterSelectLauncher extends JPanel {
 	}
 	void loadCharacterImages(){
 		Texture.loadRyuTextures();
-
+		Texture.loadEHondaTextures();
 	}
 	void keys(){
 		getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("O"), "O");
@@ -192,15 +192,20 @@ public class CharacterSelectLauncher extends JPanel {
 		case RYU:
 			display = RyuTexture.idleRyuRight[0];
 			break;
+		case EHONDA:
+			g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
+			break;
 		default:
 			g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
 			break;
 		}
 		}
-		g.drawImage(display,(int)(Constants.SCREEN_WIDTH.getIntValue()*.7),0,Constants.PLAYER_WIDTH.getIntValue(),Constants.PLAYER_HEIGHT.getIntValue(),null);
+		g.drawImage(display,(int)(Constants.SCREEN_WIDTH.getIntValue()*.7),0,selectedCharacter.getInfo().getWidth(),selectedCharacter.getInfo().getHeight(),null);
 		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.6),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.6), 500, 50);
 		g.setFont(new Font("Arial",Font.BOLD,40));
-		g.drawString("Selected Character " + selectedCharacter, (int)(Constants.SCREEN_WIDTH.getIntValue()*.6), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.8));
+		g.drawString("Selected Character ", (int)(Constants.SCREEN_WIDTH.getIntValue()*.55), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.85));
+		g.drawString(selectedCharacter.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.55), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.9));
+
 	}
 	void drawFightSelect(Graphics g){
 		g.setFont(new Font("Arial",Font.BOLD,40));
@@ -209,7 +214,6 @@ public class CharacterSelectLauncher extends JPanel {
 		int yBuffer = (int)(Constants.SCREEN_HEIGHT.getIntValue()*.15);
 		for(int index = 0; index < MapTexture.characterSelectSprites.length; index++){
 			for(int subIndex = 0; subIndex < MapTexture.characterSelectSprites[0].length; subIndex++){
-				if(MapTexture.characterSelectSprites[index][subIndex] != null){
 					Color c;
 					if(select[index][subIndex]){
 						c = Color.BLACK;
@@ -217,7 +221,6 @@ public class CharacterSelectLauncher extends JPanel {
 						c = Color.GRAY;
 					}
 					g.drawImage(MapTexture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
-				}
 				xBuffer+=205; //5 pixel buffer
 			}
 			xBuffer = (int)(Constants.SCREEN_WIDTH.getIntValue()*.1);

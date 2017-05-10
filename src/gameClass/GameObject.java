@@ -8,6 +8,8 @@ public abstract class GameObject {
 	
 	 protected int x;
 	 protected int y;
+	 protected int width;
+	 protected int height;
 	 protected int speed;
 	 protected int xVelo;
 	 protected int yVelo;
@@ -28,6 +30,12 @@ public abstract class GameObject {
 		}
 		void setY(int inc){
 			y += inc;
+		}
+		int getWidth(){
+			return width;
+		}
+		int getHeight(){
+			return height;
 		}
 		int getX(){
 			return x;

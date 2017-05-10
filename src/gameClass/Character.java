@@ -7,7 +7,7 @@ public abstract class Character extends GameObject {
 
 	private boolean isAutomated;
 	protected boolean right;
-	private CharacterInfo info;
+	protected CharacterInfo info;
 
 	protected HitBox head;
 	protected HitBox legs;
@@ -120,13 +120,13 @@ public abstract class Character extends GameObject {
 		g = GameType.PLAYER;
 		final int leftStart = (int)(Constants.SCREEN_WIDTH.getIntValue()*.8);
 		if(right){
-			body = new HitBox(x+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2),y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.2),(int)(Constants.PLAYER_WIDTH.getIntValue()*.5),(int)(Constants.PLAYER_HEIGHT.getIntValue()*.50));
-			head = new HitBox(x+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2),y,(int)(Constants.PLAYER_WIDTH.getIntValue()*.5),(int)(Constants.PLAYER_HEIGHT.getIntValue()*.2));
-			legs = new HitBox(x+(int)(Constants.PLAYER_WIDTH.getIntValue()*.6),y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.8),(int)(Constants.PLAYER_WIDTH.getIntValue()*.5),(int)(Constants.PLAYER_HEIGHT.getIntValue()*.3));
+			body = new HitBox(x+(int)(getInfo().getWidth()*.2),y+(int)(getInfo().getHeight()*.2),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.50));
+			head = new HitBox(x+(int)(getInfo().getWidth()*.2),y,(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.2));
+			legs = new HitBox(x+(int)(getInfo().getWidth()*.6),y+(int)(getInfo().getHeight()*.8),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.3));
 		}else{
-			body =  new HitBox(leftStart+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2),y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.2),(int)(Constants.PLAYER_WIDTH.getIntValue()*.5),(int)(Constants.PLAYER_HEIGHT.getIntValue()*.50));
-			head = new HitBox(leftStart+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2),y,(int)(Constants.PLAYER_WIDTH.getIntValue()*.5),(int)(Constants.PLAYER_HEIGHT.getIntValue()*.2));
-			legs = new HitBox(leftStart+(int)(Constants.PLAYER_WIDTH.getIntValue()*.2),y+(int)(Constants.PLAYER_HEIGHT.getIntValue()*.8),(int)(Constants.PLAYER_WIDTH.getIntValue()*.5),(int)(Constants.PLAYER_HEIGHT.getIntValue()*.3));
+			body =  new HitBox(leftStart+(int)(getInfo().getWidth()*.2),y+(int)(getInfo().getHeight()*.2),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.50));
+			head = new HitBox(leftStart+(int)(getInfo().getWidth()*.2),y,(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.2));
+			legs = new HitBox(leftStart+(int)(getInfo().getWidth()*.2),y+(int)(getInfo().getHeight()*.8),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.3));
 
 		}
 
@@ -143,12 +143,10 @@ public abstract class Character extends GameObject {
 	int getHealth(){
 		return health;
 	}
-	boolean isDead(int power){
+	void isDead(int power){
 		if((health-=power)<=0){
 			defeated();
-			return true;
 		}
-		return false;
 	}
 	HitBox getHead(){
 		return head;
