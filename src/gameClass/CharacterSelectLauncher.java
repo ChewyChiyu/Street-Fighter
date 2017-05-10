@@ -193,7 +193,7 @@ public class CharacterSelectLauncher extends JPanel {
 			display = RyuTexture.idleRyuRight[0];
 			break;
 		case EHONDA:
-			g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
+		//	g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
 			break;
 		default:
 			g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
@@ -235,7 +235,6 @@ public class CharacterSelectLauncher extends JPanel {
 		int yBuffer = (int)(Constants.SCREEN_HEIGHT.getIntValue()*.15);
 		for(int index = 0; index < MapTexture.characterSelectSprites.length; index++){
 			for(int subIndex = 0; subIndex < MapTexture.characterSelectSprites[0].length; subIndex++){
-				if(MapTexture.characterSelectSprites[index][subIndex] != null){
 					Color c;
 					if(select[index][subIndex]){
 						c = Color.BLACK;
@@ -243,7 +242,7 @@ public class CharacterSelectLauncher extends JPanel {
 						c = Color.GRAY;
 					}
 					g.drawImage(MapTexture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
-				}
+				
 				xBuffer+=205; //5 pixel buffer
 			}
 			xBuffer = (int)(Constants.SCREEN_WIDTH.getIntValue()*.1);

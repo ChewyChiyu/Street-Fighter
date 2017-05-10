@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.Timer;
 public abstract class Character extends GameObject {
 
-	private boolean isAutomated;
+	protected boolean isAutomated;
 	protected boolean right;
 	protected CharacterInfo info;
 
@@ -105,6 +105,18 @@ public abstract class Character extends GameObject {
 				}
 			}
 		});
+		Thread mindAI = new Thread(new Runnable(){
+			public void run(){
+				while(FightPanelLauncher.isRunning){
+					System.out.println("AI GOES HERE");
+					try{
+						Thread.sleep(500);
+					}catch(Exception e) { }
+				}
+			}
+		});
+		if(isAutomated)
+			mindAI.start();
 		recentAttack.start();
 		move.start();
 		checkIfAttack.start();
