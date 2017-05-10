@@ -13,7 +13,7 @@ public class MapTexture extends Texture{
 	public static BufferedImage[][] characterSelectSprites = new BufferedImage[3][3];
 	public static BufferedImage[][] mapSelectSprites = new BufferedImage[3][3];
 	public static BufferedImage selector;
-	
+	public static BufferedImage koLogo;
 	protected MapTexture(){
 		characterHeadSprites();
 		mapSprites();
@@ -38,6 +38,11 @@ public class MapTexture extends Texture{
 	}
 	void mapSprites(){
 		try{
+			
+			//KO LOGO
+			koLogo = ImageIO.read(getClass().getResource("/imgs/maps/KO.png"));
+			koLogo = koLogo.getSubimage(0, 0, 460, 180);
+			
 			//maps
 			mapSelectSprites[0][0] = ImageIO.read(getClass().getResource("/imgs/maps/BrazilBackDrop.png"));
 			mapSelectSprites[0][1] = ImageIO.read(getClass().getResource("/imgs/maps/ThailandBackDrop.png"));

@@ -16,6 +16,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import textureClass.MapTexture;
+
 
 @SuppressWarnings("serial")
 public class FightPanelLauncher extends JPanel implements Runnable{
@@ -940,7 +942,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		g.setFont(new Font("Aerial",Font.BOLD,40));
 		g.drawString(c.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.35), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.2));
 		g.drawString(c2.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.55), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.2));
-
+		g.drawImage(MapTexture.koLogo, (int)(Constants.SCREEN_WIDTH.getIntValue()*.45),0,(int)(Constants.SCREEN_WIDTH.getIntValue()*.1),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.1),null);
 	}
 	void drawCharacters(Graphics g){
 		for(int index = 0; index < sprites.size(); index++){
