@@ -3,7 +3,7 @@ package gameClass;
 
 public enum CharacterInfo {
 	//will change constant names when more characters are added
-	RYU(1,200,500), EHONDA(2,200,500), THREE(3,200,500), FOUR(4,200,500), FIVE(5,200,500), SIX(6,200,500), SEVEN(7,200,500), EIGHT(8,200,500), NINE(9,200,500);
+	RYU(1,200,500), EHONDA(2,400,500), THREE(3,200,500), FOUR(4,200,500), FIVE(5,200,500), SIX(6,200,500), SEVEN(7,200,500), EIGHT(8,200,500), NINE(9,200,500);
 	private int location;
 	private int height;
 	private int width;

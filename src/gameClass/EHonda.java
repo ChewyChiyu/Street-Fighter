@@ -94,15 +94,16 @@ public class EHonda extends Character {
 			return;
 		}
 		if(isGettingKnockedDown){
-			if(gettingKnockedDownIndex<5){
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()/2), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/2, null);
-			}else if(gettingKnockedDownIndex<6){
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()*.75), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/4, null);
-			}else if(gettingKnockedDownIndex<10){
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()/2.5), (int)(getInfo().getWidth()), (int)(getInfo().getHeight()/1.9), null);
-			}else{
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y, (int)(getInfo().getWidth()), getInfo().getHeight(), null);
-			}
+//			if(gettingKnockedDownIndex<5){
+//				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()/2), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/2, null);
+//			}else if(gettingKnockedDownIndex<6){
+//				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()*.75), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/4, null);
+//			}else if(gettingKnockedDownIndex<10){
+//				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()/2.5), (int)(getInfo().getWidth()), (int)(getInfo().getHeight()/1.9), null);
+//			}else{
+//				g.drawImage(knockDown[gettingKnockedDownIndex],x,y, (int)(getInfo().getWidth()), getInfo().getHeight(), null);
+//			}
+			g.drawImage(knockDown[gettingKnockedDownIndex],x,y, getInfo().getWidth(), getInfo().getHeight(), null);
 			return;
 		}
 		if(isGettingHitTorso){
@@ -186,7 +187,7 @@ public class EHonda extends Character {
 					for(int index = 0; index < EHondaTexture.punchEHondaRight.length-1; index++){
 						punchIndex++;
 						try{
-							Thread.sleep(50);
+							Thread.sleep(100);
 						}catch(Exception e) { }
 					}
 
@@ -232,10 +233,10 @@ public class EHonda extends Character {
 			int xBuffer = 0;
 			if(right){
 				energyBallXVelo = 10;
-				xBuffer = x+(Constants.ENERGYBALL_WIDTH.getIntValue());
+				xBuffer = (int) (x+(getInfo().getWidth()*.6));
 			}else{
 				energyBallXVelo = -10;
-				xBuffer = x-(Constants.ENERGYBALL_WIDTH.getIntValue());
+				xBuffer = x-(getInfo().getWidth()/2);
 			}
 			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
 			Thread special = new Thread(new Runnable(){
