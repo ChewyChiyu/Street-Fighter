@@ -233,10 +233,10 @@ public class EHonda extends Character {
 			int xBuffer = 0;
 			if(right){
 				energyBallXVelo = 10;
-				xBuffer = (int) (x+(getInfo().getWidth()*.6));
+				xBuffer = (int) (x+(getInfo().getWidth()));
 			}else{
 				energyBallXVelo = -10;
-				xBuffer = x-(getInfo().getWidth()/2);
+				xBuffer = x-(getInfo().getWidth());
 			}
 			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
 			Thread special = new Thread(new Runnable(){
@@ -289,7 +289,7 @@ public class EHonda extends Character {
 					for(int index = 0; index < EHondaTexture.aerialkickEHondaRight.length-1; index++){
 						aerialKickIndex++;
 						try{
-							Thread.sleep(100);
+							Thread.sleep(200);
 						}catch(Exception e) { }
 					}		
 					isAerialKicking = false;

@@ -109,9 +109,10 @@ public class EHondaTexture extends Texture{
 			sneakkickEHondaLeft[3] = EHondaSpriteSheetLeft.getSubimage(xStart-628-68, 407, 68, 63);
 			sneakkickEHondaLeft[4] = EHondaSpriteSheetLeft.getSubimage(xStart-746-48, 409, 48, 64);
 
-			aerialkickEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(xStart-812-60, 403, 60, 66);
-			aerialkickEHondaLeft[1] = EHondaSpriteSheetLeft.getSubimage(xStart-874-44,403,44,68);
-			aerialkickEHondaLeft[2] = EHondaSpriteSheetLeft.getSubimage(xStart-964-64, 401, 64, 68);
+			aerialkickEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(xStart-815-(872-815), 408, (872-815), (463-408));
+			aerialkickEHondaLeft[1] = EHondaSpriteSheetLeft.getSubimage(xStart-876-(965-876),402,(965-876),(470-402));
+			aerialkickEHondaLeft[2] = EHondaSpriteSheetLeft.getSubimage(xStart-964-(1031-964), 399, (1031-964), (463-399));
+
 
 			EHondaTorsoHitLeft[0] = EHondaSpriteSheetLeft.getSubimage(xStart-6-70, 919, 70, 75);
 			EHondaTorsoHitLeft[1] = EHondaSpriteSheetLeft.getSubimage(xStart-80-68, 924, 68, 69);
@@ -187,9 +188,9 @@ public class EHondaTexture extends Texture{
 				sneakkickEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(628, 407, 68, 63);
 				sneakkickEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(746, 409, 48, 64);
 
-				aerialkickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(812, 403, 60, 66);
-				aerialkickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(874,403,44,68);
-				aerialkickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(964, 401, 64, 68);
+				aerialkickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(815, 408, (872-815), (463-408));
+				aerialkickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(876,402,(965-876),(470-402));
+				aerialkickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(964, 399, (1031-964), (463-399));
 
 				EHondaTorsoHitRight[0] = EHondaSpriteSheetRight.getSubimage(6, 919, 70, 75);
 				EHondaTorsoHitRight[1] = EHondaSpriteSheetRight.getSubimage(80, 924, 68, 69);

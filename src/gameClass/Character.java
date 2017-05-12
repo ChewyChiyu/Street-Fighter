@@ -134,13 +134,13 @@ public abstract class Character extends GameObject {
 		g = GameType.PLAYER;
 		final int leftStart = (int)(Constants.SCREEN_WIDTH.getIntValue()*.8);
 		if(right){
-			body = new HitBox(x+(int)(getInfo().getWidth()*.2),y+(int)(getInfo().getHeight()*.2),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.50));
-			head = new HitBox(x+(int)(getInfo().getWidth()*.2),y,(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.2));
-			legs = new HitBox(x+(int)(getInfo().getWidth()*.6),y+(int)(getInfo().getHeight()*.8),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.3));
+			body = new HitBox(x,y,(int)(getInfo().getWidth()*.75),(int)(getInfo().getHeight()*.50));
+			head = new HitBox(x,y,(int)(getInfo().getWidth()*.75),(int)(getInfo().getHeight()*.2));
+			legs = new HitBox(x,y,(int)(getInfo().getWidth()*.75),(int)(getInfo().getHeight()*.3));
 		}else{
-			body =  new HitBox(leftStart+(int)(getInfo().getWidth()*.2),y+(int)(getInfo().getHeight()*.2),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.50));
-			head = new HitBox(leftStart+(int)(getInfo().getWidth()*.2),y,(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.2));
-			legs = new HitBox(leftStart+(int)(getInfo().getWidth()*.2),y+(int)(getInfo().getHeight()*.8),(int)(getInfo().getWidth()*.5),(int)(getInfo().getHeight()*.3));
+			body =  new HitBox(leftStart,y,(int)(getInfo().getWidth()*.75),(int)(getInfo().getHeight()*.50));
+			head = new HitBox(leftStart,y,(int)(getInfo().getWidth()*.75),(int)(getInfo().getHeight()*.2));
+			legs = new HitBox(leftStart,y,(int)(getInfo().getWidth()*.75),(int)(getInfo().getHeight()*.3));
 
 		}
 

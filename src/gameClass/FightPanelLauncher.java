@@ -701,7 +701,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						}
 					}
 					//player increment check
-					if(c2.getX()-c.getX()<60&&(!c2.defeated&&!c.defeated)){ //60 pixel buffer
+					if(c2.getX()-c.getX()<(c.getWidth()/2+c2.getWidth()/2)*1.3&&(!c2.defeated&&!c.defeated)){ //60 pixel buffer
 						c.setX(-c.getSpeed());
 						c2.setX(c.getSpeed());
 						//players never cross
