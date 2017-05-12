@@ -36,10 +36,10 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		this.c = c;
 		switch(g){
 		case FIGHT:
-			c2 = new Ryu(CharacterInfo.RYU, 5, false, false);
+			c2 = new EHonda(CharacterInfo.EHONDA, 5, false, false);
 			break;
 		case TRAINING:
-			c2 = new Ryu(CharacterInfo.RYU, 5, false, true);
+			c2 = new EHonda(CharacterInfo.EHONDA, 5, false, true);
 			break;
 		default:
 			break;

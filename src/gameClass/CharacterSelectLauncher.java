@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 
+import textureClass.EHondaTexture;
 import textureClass.MapTexture;
 import textureClass.RyuTexture;
 import textureClass.Texture;
@@ -193,7 +194,7 @@ public class CharacterSelectLauncher extends JPanel {
 			display = RyuTexture.idleRyuRight[0];
 			break;
 		case EHONDA:
-		//	g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));
+			display = EHondaTexture.idleEHondaRight[0];
 			break;
 		default:
 			g.drawString("Not Avaiable", (int)(Constants.SCREEN_WIDTH.getIntValue()*.7),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.5));

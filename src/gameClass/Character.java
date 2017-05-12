@@ -108,7 +108,9 @@ public abstract class Character extends GameObject {
 		Thread mindAI = new Thread(new Runnable(){
 			public void run(){
 				while(FightPanelLauncher.isRunning){
+					//AI GOES HERE 
 					System.out.println("AI GOES HERE");
+					
 					try{
 						Thread.sleep(500);
 					}catch(Exception e) { }
