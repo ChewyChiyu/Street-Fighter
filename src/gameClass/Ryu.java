@@ -236,11 +236,11 @@ public class Ryu extends Character {
 				xBuffer = (int) (x+(getInfo().getWidth()));
 			}else{
 				energyBallXVelo = -10;
-				xBuffer = x-(getInfo().getWidth());
+				xBuffer = x-(getInfo().getWidth()/2);
 			}
 			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
 			Thread special = new Thread(new Runnable(){
-
+				
 				@Override
 				public void run() {
 					isSpecial = true;
@@ -251,6 +251,9 @@ public class Ryu extends Character {
 							Thread.sleep(100);
 						}catch(Exception e) { }
 					}
+					try{
+						Thread.sleep(250);
+					}catch(Exception e) { }
 					isSpecial = false;
 				}
 

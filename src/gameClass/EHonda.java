@@ -236,7 +236,7 @@ public class EHonda extends Character {
 				xBuffer = (int) (x+(getInfo().getWidth()));
 			}else{
 				energyBallXVelo = -10;
-				xBuffer = x-(getInfo().getWidth());
+				xBuffer = x-(getInfo().getWidth()/2);
 			}
 			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
 			Thread special = new Thread(new Runnable(){
@@ -248,7 +248,7 @@ public class EHonda extends Character {
 					for(int index = 0; index < EHondaTexture.speicalEHondaRight.length-1; index++){
 						specialIndex++;
 						try{
-							Thread.sleep(100);
+							Thread.sleep(500);
 						}catch(Exception e) { }
 					}
 					isSpecial = false;

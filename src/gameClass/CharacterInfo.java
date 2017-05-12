@@ -26,7 +26,7 @@ public enum CharacterInfo {
 		case 1:
 			return new Ryu(CharacterInfo.RYU,5,right,false);
 		case 2:
-			return new EHonda(CharacterInfo.EHONDA,5,right,false);
+			return new EHonda(CharacterInfo.EHONDA,3,right,false);
 		case 3:
 			return new EHonda(CharacterInfo.EHONDA,5,right,false);
 		case 4:
