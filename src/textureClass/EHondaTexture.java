@@ -18,8 +18,7 @@ public class EHondaTexture extends Texture{
 		public static BufferedImage[] sneakkickEHondaRight = new BufferedImage[5];
 		public static BufferedImage[] aerialkickEHondaRight = new BufferedImage[3];
 		
-		public static BufferedImage[] speicalEHondaRight = new BufferedImage[3];
-		public static BufferedImage energyBallEHondaRight;
+		public static BufferedImage[] speicalEHondaRight = punchEHondaRight;
 		
 		public static BufferedImage[] EHondaTorsoHitRight = new BufferedImage[3];
 		public static BufferedImage[] EHondaHeadHitRight = new BufferedImage[2];
@@ -44,8 +43,7 @@ public class EHondaTexture extends Texture{
 		public static BufferedImage[] sneakkickEHondaLeft = new BufferedImage[5];
 		public static BufferedImage[] aerialkickEHondaLeft = new BufferedImage[3];
 		
-		public static BufferedImage[] speicalEHondaLeft = new BufferedImage[3];
-		public static BufferedImage energyBallEHondaLeft;
+		public static BufferedImage[] speicalEHondaLeft = punchEHondaLeft;
 		
 		public static BufferedImage[] EHondaTorsoHitLeft = new BufferedImage[3];
 		public static BufferedImage[] EHondaHeadHitLeft = new BufferedImage[2];

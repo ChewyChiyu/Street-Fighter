@@ -1,5 +1,7 @@
 package gameClass;
 
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 import javax.swing.Timer;
@@ -108,9 +110,84 @@ public abstract class Character extends GameObject {
 		Thread mindAI = new Thread(new Runnable(){
 			public void run(){
 				while(FightPanelLauncher.isRunning){
-					//AI GOES HERE 
 					System.out.println("AI GOES HERE");
+					/*
+					*move , xVelo(speed)
+					* 
+					* 
+					* 
+					* 
+					*/
+					int rand=(int) (Math.random()*8);
+					if(!defeated){
+						if(FightPanelLauncher.c2.getX()>500 && FightPanelLauncher.c.getX()!=0)
+							setXVelo(-speed);
+
+
+						if(Math.abs(FightPanelLauncher.c.getX()-FightPanelLauncher.c2.getX())<=150){
+							setXVelo(-speed);
+							if(Math.abs(FightPanelLauncher.c.getX()-FightPanelLauncher.c2.getX())<=70){
+								setXVelo(0);
+							}
+							if(rand!=0){
+								if(isAttacking){
+									sneak();
+									stand();
+								}
+//								if()
+								if(rand==1)
+									kick();
+								else if(rand==2)
+									kick();
+								else if(rand==3)
+									special();
+								else if(rand==4){
+									jump();
+									aerialKick();
+									stand();
+								}
+								else if(rand==5){
+									jump();
+									aerialPunch();
+									stand();
+								}
+								else if(rand==6){
+									sneak();
+									sneakPunch();
+									stand();
+								}
+								else if(rand==7){
+									sneak();
+									sneakKick();
+									stand();
+								}
+									
+								else if(rand==8)
+									punch();
+							}
+							
+						}
+						if(FightPanelLauncher.c2.getHealth()<70 && FightPanelLauncher.c2.getX()<500){
+//							while(FightPanelLauncher.c2.getX()<500)
+							setXVelo(speed);
+							if(!isSneaking)
+								special();
+							else{
+								sneak();
+								sneakPunch();
+								sneakKick();
+								stand();
+							}
+						}
+						System.out.println("C getX: "+FightPanelLauncher.c.getX());
+						System.out.println("C2 getX: "+FightPanelLauncher.c2.getX());
 					
+					}
+//					punch();
+					
+				
+					
+//					System.out.println("Distance: "+ FightPanelLauncher.c.getBody()-FightPanelLauncher.c2.getBody() );
 					try{
 						Thread.sleep(500);
 					}catch(Exception e) { }
@@ -199,6 +276,73 @@ public abstract class Character extends GameObject {
 			}
 		}
 	}
+	void draw(Graphics g) {
+		final int SCALE = 5;
+		if(defeated){
+			g.drawImage(defeat[defeatedIndex].getScaledInstance(defeat[defeatedIndex].getWidth()*SCALE,defeat[defeatedIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,(int) (y+(defeat[defeatedIndex].getHeight()*SCALE)*.7), null);
+
+			return;
+		}
+		if(isGettingKnockedDown){
+			g.drawImage(knockDown[gettingKnockedDownIndex].getScaledInstance(knockDown[gettingKnockedDownIndex].getWidth()*SCALE,knockDown[gettingKnockedDownIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x, (int) (y+(knockDown[gettingKnockedDownIndex].getHeight()*SCALE)*.15), null);
+			return;
+		}
+		if(isGettingHitTorso){
+			g.drawImage(hitTorso[gettingHitTorsoIndex].getScaledInstance(hitTorso[gettingHitTorsoIndex].getWidth()*SCALE,hitTorso[gettingHitTorsoIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+			return;
+		}
+
+		if(isGettingHitHead){
+			g.drawImage(hitHead[gettingHitHeadIndex].getScaledInstance(hitHead[gettingHitHeadIndex].getWidth()*SCALE,hitHead[gettingHitHeadIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+			return;
+		}
+
+
+		if(isSpecial){
+			g.drawImage(special[specialIndex].getScaledInstance(special[specialIndex].getWidth()*SCALE,special[specialIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+			return;
+		}
+		if(isPunching){
+			g.drawImage(punch[punchIndex].getScaledInstance(punch[punchIndex].getWidth()*SCALE,punch[punchIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+			return;
+		}
+		if(isLowPunching){
+			g.drawImage(sneakPunch[sneakPunchIndex].getScaledInstance(sneakPunch[sneakPunchIndex].getWidth()*SCALE,sneakPunch[sneakPunchIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,(int) (y+(sneakPunch[sneakPunchIndex].getHeight()*SCALE)*.15), null);
+			return;
+
+		}
+		if(isAerialPunching){
+			g.drawImage(sneakKick[sneakKickIndex].getScaledInstance(sneakKick[sneakKickIndex].getWidth()*SCALE,sneakKick[sneakKickIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,(int) (y+(sneakKick[sneakKickIndex].getHeight()*SCALE)*.15), null);
+			return;
+		}
+		if(isAerialKicking){
+			g.drawImage(aerialKick[aerialKickIndex].getScaledInstance(aerialKick[aerialKickIndex].getWidth()*SCALE,aerialKick[aerialKickIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+			return;
+		}
+		if(isLowKicking){
+			g.drawImage(sneakKick[sneakKickIndex].getScaledInstance(sneakKick[sneakKickIndex].getWidth()*SCALE,sneakKick[sneakKickIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,(int) (y+(sneakKick[sneakKickIndex].getHeight()*SCALE)*.15), null);
+			return;
+		}
+		if(isKicking){
+			g.drawImage(kick[kickIndex].getScaledInstance(kick[kickIndex].getWidth()*SCALE,kick[kickIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+			return;
+		}
+		if(xVelo==0&&yVelo==0){
+			if(!isSneaking){
+				g.drawImage(idle[idleIndex].getScaledInstance(idle[idleIndex].getWidth()*SCALE,idle[idleIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+			}else{
+				g.drawImage(idleSneak[0].getScaledInstance(idleSneak[0].getWidth()*SCALE,idleSneak[0].getHeight()*SCALE, Image.SCALE_DEFAULT),x,(int) (y+(idleSneak[0].getHeight()*SCALE)*.15), null);
+			}
+		}else if(xVelo!=0 && yVelo== 0){
+			g.drawImage(walk[walkIndex].getScaledInstance(walk[walkIndex].getWidth()*SCALE,walk[walkIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+		}else if(xVelo==0&&yVelo!=0){
+			g.drawImage(verticalJump[vertialJumpIndex].getScaledInstance(verticalJump[vertialJumpIndex].getWidth()*SCALE,verticalJump[vertialJumpIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+		}else if(xVelo!=0&&yVelo!=0){
+			g.drawImage(diagonalJump[diagonalJumpIndex].getScaledInstance(diagonalJump[diagonalJumpIndex].getWidth()*SCALE,diagonalJump[diagonalJumpIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
+		}
+
+	}
+
 	abstract void jump();
 	abstract void sneak();
 	abstract void stand();

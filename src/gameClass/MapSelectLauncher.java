@@ -20,7 +20,7 @@ import textureClass.MapTexture;
 import textureClass.Texture;
 @SuppressWarnings("serial")
 public class MapSelectLauncher extends JPanel{
-	private Character c;
+	private Character c, c2;
 	private GameType g;
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
@@ -29,9 +29,10 @@ public class MapSelectLauncher extends JPanel{
 	private MapInfo[] mapList = {MapInfo.ONE,MapInfo.TWO,MapInfo.THREE,MapInfo.FOUR,MapInfo.FIVE,MapInfo.SIX, MapInfo.SEVEN, MapInfo.EIGHT, MapInfo.NINE};
 	private boolean[][] select = new boolean[MapTexture.mapSelectSprites.length][MapTexture.mapSelectSprites[0].length];
 
-	protected MapSelectLauncher(Character c, GameType g){
+	protected MapSelectLauncher(Character c, Character c2, GameType g){
 		select[0][0] = true;
 		this.c = c;
+		this.c2 = c2;
 		this.g = g;
 		keys();
 		panel();
@@ -49,7 +50,7 @@ public class MapSelectLauncher extends JPanel{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FightPanelLauncher(c,selectedMap,g);
+				new FightPanelLauncher(c,c2,selectedMap,g);
 				frame.dispose();
 			}
 
@@ -170,6 +171,11 @@ public class MapSelectLauncher extends JPanel{
 	}
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
+		
+		g.drawImage(MapTexture.characterSelectBackground, 0, 0,Constants.SCREEN_WIDTH.getIntValue(),Constants.SCREEN_HEIGHT.getIntValue(), null);
+		
+		
+		
 		drawMapSelect(g);
 		drawSelection(g);
 	}
@@ -208,7 +214,6 @@ public class MapSelectLauncher extends JPanel{
 			break;
 		}
 		g.drawImage(display,(int)(Constants.SCREEN_WIDTH.getIntValue()*.6),0,500,600,null);
-		g.fillRect((int)(Constants.SCREEN_WIDTH.getIntValue()*.6),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.6), 500, 50);
 		g.setFont(new Font("Arial",Font.BOLD,40));
 		g.drawString("Selected Map " + selectedMap, (int)(Constants.SCREEN_WIDTH.getIntValue()*.6), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.9));
 	}

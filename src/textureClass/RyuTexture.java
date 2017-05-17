@@ -24,7 +24,7 @@ public class RyuTexture extends Texture{
 		public static BufferedImage[] ryuTorsoHitRight = new BufferedImage[4];
 		public static BufferedImage[] ryuHeadHitRight = new BufferedImage[5];
 		public static BufferedImage[] knockDownRyuRight = new BufferedImage[11];
-		public static BufferedImage[] defeatRyuRight = new BufferedImage[6];
+		public static BufferedImage[] defeatRyuRight = new BufferedImage[3];
 		
 		//END OF RYU CHARACTER SPRITES RIGHT
 		
@@ -50,7 +50,7 @@ public class RyuTexture extends Texture{
 				public static BufferedImage[] ryuTorsoHitLeft = new BufferedImage[4];
 				public static BufferedImage[] ryuHeadHitLeft = new BufferedImage[5];
 				public static BufferedImage[] knockDownRyuLeft = new BufferedImage[11];
-				public static BufferedImage[] defeatRyuLeft = new BufferedImage[6];
+				public static BufferedImage[] defeatRyuLeft = new BufferedImage[3];
 				
 				//END OF RYU CHARACTER SPRITES LEFT
 	protected RyuTexture(){
@@ -109,46 +109,46 @@ public class RyuTexture extends Texture{
 		punchRyuLeft[5] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,70 ,94);
 		//kick
 		xBuffer = xStart;
-		yBuffer = 250;
+		yBuffer = 260;
 		xBuffer-=52;
-		kickRyuLeft[0] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,52 ,94);
+		kickRyuLeft[0] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,52 ,84);
 		xBuffer-=80;
-		kickRyuLeft[1] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,80 ,94);
+		kickRyuLeft[1] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,80 ,84);
 		xBuffer-=49;
-		kickRyuLeft[2] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,49 ,94);
+		kickRyuLeft[2] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,49 ,84);
 		xBuffer-=57;
-		kickRyuLeft[3] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,57 ,94);
+		kickRyuLeft[3] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,57 ,84);
 		xBuffer-=61;
-		kickRyuLeft[4] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,61 ,94);
+		kickRyuLeft[4] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,61 ,84);
 		xBuffer-=77;
-		kickRyuLeft[5] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,77 ,94);
+		kickRyuLeft[5] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,77 ,84);
 		xBuffer-=66;
-		kickRyuLeft[6] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,66 ,94);
+		kickRyuLeft[6] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,66 ,84);
 		xBuffer-=54;
-		kickRyuLeft[7] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,54 ,94);
+		kickRyuLeft[7] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer,54 ,84);
 		
 		//idle sneak
 		
-		idleSneakRyuLeft[0] = ryuSpriteSheetLeft.getSubimage(xStart-1163-41, 45, 41, 55);
+		idleSneakRyuLeft[0] = ryuSpriteSheetLeft.getSubimage(xStart-1163-41, 30, 41, 70);
 		
 		//sneak punch
 		xBuffer = xStart-15;
-		yBuffer = 417;
+		yBuffer = 407;
 		
 		xBuffer-=48;
-		sneakPunchRyuLeft[0] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 48, 55);
+		sneakPunchRyuLeft[0] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 48, 65);
 		xBuffer-=70;
-		sneakPunchRyuLeft[1] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 70, 55);
+		sneakPunchRyuLeft[1] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 70, 65);
 		xBuffer-=47;
-		sneakPunchRyuLeft[2] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 47, 55);
+		sneakPunchRyuLeft[2] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 47, 65);
 		xBuffer-=52;
-		sneakPunchRyuLeft[3] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 52, 55);
+		sneakPunchRyuLeft[3] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 52, 65);
 		xBuffer-=68;
-		sneakPunchRyuLeft[4] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 68, 55);
+		sneakPunchRyuLeft[4] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 68, 65);
 		xBuffer-=49;
-		sneakPunchRyuLeft[5] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 49, 55);
+		sneakPunchRyuLeft[5] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 49, 65);
 		xBuffer-=51;
-		sneakPunchRyuLeft[6] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 51, 55);
+		sneakPunchRyuLeft[6] = ryuSpriteSheetLeft.getSubimage(xBuffer, yBuffer, 51, 65);
 
 		//sneak kick
 		xBuffer = xStart-613;
@@ -220,6 +220,13 @@ public class RyuTexture extends Texture{
 		defeatRyuLeft[4] =  ryuSpriteSheetLeft.getSubimage(xStart-618-70,779,70,45);
 		defeatRyuLeft[5] =  ryuSpriteSheetLeft.getSubimage(xStart-696-75,803, 75,27);
 
+		
+		defeatRyuLeft[0] =  ryuSpriteSheetLeft.getSubimage(xStart-1160-1215-1160,776,1215-1160,841-776);
+		defeatRyuLeft[1] =  ryuSpriteSheetLeft.getSubimage(xStart-1213-1291-1213,787,1291-1213,832-787);
+		defeatRyuLeft[2] =  ryuSpriteSheetLeft.getSubimage(xStart-1292-1371-1292,803+20,1371-1292,832-803-20);
+
+		
+		
 		}catch(Exception e) { }
 	}
 	void loadRight(){
@@ -267,45 +274,45 @@ public class RyuTexture extends Texture{
 				xBuffer+=70;
 				//kick
 				xBuffer = 0;
-				yBuffer = 250;
-				kickRyuRight[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,55 ,94);
+				yBuffer = 260;
+				kickRyuRight[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,55 ,84);
 				xBuffer+=55;
-				kickRyuRight[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,80 ,94);
+				kickRyuRight[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,80 ,84);
 				xBuffer+=80;
-				kickRyuRight[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,49 ,94);
+				kickRyuRight[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,49 ,84);
 				xBuffer+=49;
-				kickRyuRight[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,57 ,94);
+				kickRyuRight[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,57 ,84);
 				xBuffer+=57;
-				kickRyuRight[4] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,61 ,94);
+				kickRyuRight[4] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,61 ,84);
 				xBuffer+=61;
-				kickRyuRight[5] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,77 ,94);
+				kickRyuRight[5] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,77 ,84);
 				xBuffer+=77;
-				kickRyuRight[6] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,66 ,94);
+				kickRyuRight[6] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,66 ,84);
 				xBuffer+=66;
-				kickRyuRight[7] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,54 ,94);
+				kickRyuRight[7] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer,54 ,84);
 				xBuffer+=54;
 				
 				//idle sneak
 				
-				idleSneakRyuRight[0] = ryuSpriteSheetRight.getSubimage(1163, 45, 41, 55);
+				idleSneakRyuRight[0] = ryuSpriteSheetRight.getSubimage(1163, 30, 41, 70);
 				
 				//sneak punch
 				xBuffer = 15;
-				yBuffer = 417;
+				yBuffer = 397;
 				
-				sneakPunchRyuRight[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 49, 55);
+				sneakPunchRyuRight[0] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 49, 75);
 				xBuffer += 49;
-				sneakPunchRyuRight[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 70, 55);
+				sneakPunchRyuRight[1] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 70, 75);
 				xBuffer += 70;
-				sneakPunchRyuRight[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 47, 55);
+				sneakPunchRyuRight[2] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 47, 75);
 				xBuffer += 47;
-				sneakPunchRyuRight[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 52, 55);
+				sneakPunchRyuRight[3] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 52, 75);
 				xBuffer += 52;
-				sneakPunchRyuRight[4] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 68, 55);
+				sneakPunchRyuRight[4] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 68, 75);
 				xBuffer += 68;
-				sneakPunchRyuRight[5] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 49, 55);
+				sneakPunchRyuRight[5] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 49, 75);
 				xBuffer += 49;
-				sneakPunchRyuRight[6] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 51, 55);
+				sneakPunchRyuRight[6] = ryuSpriteSheetRight.getSubimage(xBuffer, yBuffer, 51, 75);
 				xBuffer += 51;
 				
 				//sneak kick
@@ -368,12 +375,10 @@ public class RyuTexture extends Texture{
 
 				//defeat ryu right
 				
-				defeatRyuRight[0] =  ryuSpriteSheetRight.getSubimage(390,755,42,80);
-				defeatRyuRight[1] =  ryuSpriteSheetRight.getSubimage(448,772,40,65);
-				defeatRyuRight[2] =  ryuSpriteSheetRight.getSubimage(506,760,54,70);
-				defeatRyuRight[3] =  ryuSpriteSheetRight.getSubimage(565,755,47,76);
-				defeatRyuRight[4] =  ryuSpriteSheetRight.getSubimage(618,779,70,45);
-				defeatRyuRight[5] =  ryuSpriteSheetRight.getSubimage(696,803, 75,27);
+				defeatRyuRight[0] =  ryuSpriteSheetRight.getSubimage(1160,776,1215-1160,841-776);
+				defeatRyuRight[1] =  ryuSpriteSheetRight.getSubimage(1213,787,1291-1213,832-787);
+				defeatRyuRight[2] =  ryuSpriteSheetRight.getSubimage(1292,803-20,1371-1292,832-803+20);
+		
 
 				
 			}catch(Exception e){ }

@@ -29,7 +29,14 @@ public class StreetFighterLauncher extends JPanel {
 		Texture.loadMapTextures();
 		panel();
 		keys();
+		loadCharacterImages();
 		repaint();
+	}
+	void loadCharacterImages(){
+		Texture.loadRyuTextures();
+		Texture.loadEHondaTextures();
+		Texture.loadBlankaTextures();
+		Texture.loadDeeJayTextures();
 	}
 	void keys(){
 		select[1] = true; 

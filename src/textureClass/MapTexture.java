@@ -10,9 +10,11 @@ public class MapTexture extends Texture{
 	 * 1. Start Up Image
 	 * 
 	 */
-	public static BufferedImage[][] characterSelectSprites = new BufferedImage[3][3];
+	public static BufferedImage[] characterSelectSprites = new BufferedImage[4];
+	public static BufferedImage[] characterSelectSpritesFlipped = new BufferedImage[4];
 	public static BufferedImage[][] mapSelectSprites = new BufferedImage[3][3];
-	public static BufferedImage selector;
+	public static BufferedImage selector, player1Selector, player2Selector;
+	public static BufferedImage characterSelectBackground;
 	public static BufferedImage koLogo;
 	protected MapTexture(){
 		characterHeadSprites();
@@ -25,24 +27,26 @@ public class MapTexture extends Texture{
 		BufferedImage characterHeadSpriteSheet = ImageIO.read(getClass().getResource("/imgs/characters/CharacterHeads.png"));
 		//character heads
 		for(int index = 0; index < characterSelectSprites.length; index++){
-			for(int subIndex = 0; subIndex < characterSelectSprites[0].length; subIndex++){
-				characterSelectSprites[index][subIndex] = characterHeadSpriteSheet.getSubimage(xBuffer, yBuffer, 80, 112);
-				xBuffer+=80;
-				if(xBuffer>400){
-					xBuffer = 0;
-					yBuffer += 112;
-				}
-			}
+				characterSelectSprites[index] = characterHeadSpriteSheet.getSubimage(xBuffer, yBuffer, 80, 112);
+				xBuffer+=80;	
+		}
+		 
+		 xBuffer = 538;
+		 yBuffer = 200;
+		BufferedImage characterHeadSpriteSheetflipped = ImageIO.read(getClass().getResource("/imgs/characters/CharacterHeadsFlipped.png"));
+		//character heads
+		for(int index = 0; index < characterSelectSpritesFlipped.length; index++){
+			characterSelectSpritesFlipped[index] = characterHeadSpriteSheetflipped.getSubimage(xBuffer-80, yBuffer, 80, 112);
+				xBuffer-=80;	
 		}
 		}catch(Exception e) { }
 	}
 	void mapSprites(){
 		try{
-			
+			characterSelectBackground = ImageIO.read(getClass().getResource("/imgs/maps/CharacterSelectBackGround.png"));
 			//KO LOGO
 			koLogo = ImageIO.read(getClass().getResource("/imgs/maps/KO.png"));
 			koLogo = koLogo.getSubimage(0, 0, 460, 180);
-			
 			//maps
 			mapSelectSprites[0][0] = ImageIO.read(getClass().getResource("/imgs/maps/BrazilBackDrop.png"));
 			mapSelectSprites[0][1] = ImageIO.read(getClass().getResource("/imgs/maps/ThailandBackDrop.png"));
@@ -55,7 +59,9 @@ public class MapTexture extends Texture{
 			mapSelectSprites[2][2] = ImageIO.read(getClass().getResource("/imgs/maps/CityBackDrop.png"));
 
 			selector = ImageIO.read(getClass().getResource("/imgs/maps/Selector.png"));
-			
+			player1Selector = ImageIO.read(getClass().getResource("/imgs/maps/Player1Selector.png"));
+			player2Selector = ImageIO.read(getClass().getResource("/imgs/maps/Player2Selector.png"));
+
 			launcherSprites[0] = ImageIO.read(getClass().getResource("/imgs/maps/LauncherScreen.jpg"));
 		
 		}catch(Exception e){ }

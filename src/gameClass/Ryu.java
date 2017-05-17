@@ -83,91 +83,6 @@ public class Ryu extends Character {
 	}
 
 	@Override
-	void draw(Graphics g) {
-		if(defeated){
-			if(defeatedIndex<5){
-				g.drawImage(defeat[defeatedIndex],x,y+(int)(getInfo().getHeight()/2), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/2, null);
-			}else if(defeatedIndex<5){
-				g.drawImage(defeat[defeatedIndex],x,y+(int)(getInfo().getHeight()/2), (int)(getInfo().getHeight()), getInfo().getWidth()/2, null);
-			}else if(defeatedIndex<7){
-				g.drawImage(defeat[defeatedIndex],x,y+(int)(getInfo().getHeight()*.8), (int)(getInfo().getHeight()), (int)(getInfo().getWidth()/2), null);
-			}
-			return;
-		}
-		if(isGettingKnockedDown){
-			if(gettingKnockedDownIndex<5){
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()/2), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/2, null);
-			}else if(gettingKnockedDownIndex<6){
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()*.75), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/4, null);
-			}else if(gettingKnockedDownIndex<10){
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y+(int)(getInfo().getHeight()/2.5), (int)(getInfo().getWidth()), (int)(getInfo().getHeight()/1.9), null);
-			}else{
-				g.drawImage(knockDown[gettingKnockedDownIndex],x,y, (int)(getInfo().getWidth()), getInfo().getHeight(), null);
-			}
-			return;
-		}
-		if(isGettingHitTorso){
-			g.drawImage(hitTorso[gettingHitTorsoIndex],x,y, (int)(getInfo().getWidth()), getInfo().getHeight(), null);
-			return;
-		}
-
-		if(isGettingHitHead){
-			g.drawImage(hitHead[gettingHitHeadIndex],x,y, (int)(getInfo().getWidth()), getInfo().getHeight(), null);
-			return;
-		}
-
-
-		if(isSpecial){
-			if(specialIndex!=special.length-2){
-				g.drawImage(special[specialIndex],x,y, (int)(getInfo().getWidth()), getInfo().getHeight(), null);
-			}else{
-				g.drawImage(special[specialIndex],x,y, (int)(getInfo().getWidth()*1.7), getInfo().getHeight(), null);
-			}
-			return;
-		}
-		if(isPunching){
-			g.drawImage(punch[punchIndex],x,y, (int)(getInfo().getWidth()*1.1), getInfo().getHeight(), null);
-			return;
-		}
-		if(isLowPunching){
-			g.drawImage(sneakPunch[sneakPunchIndex],x,y + (int)(getInfo().getHeight()/2), (int)(getInfo().getWidth()*1.1), getInfo().getHeight()/2, null);
-			return;
-
-		}
-		if(isAerialPunching){
-			g.drawImage(sneakKick[sneakKickIndex],x,y + (int)(getInfo().getHeight()/2), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/2, null);
-			return;
-		}
-		if(isAerialKicking){
-			g.drawImage(aerialKick[aerialKickIndex],x,y, (int)(getInfo().getWidth()), getInfo().getHeight(), null);
-			return;
-		}
-		if(isLowKicking){
-			g.drawImage(sneakKick[sneakKickIndex],x,y + (int)(getInfo().getHeight()/2), (int)(getInfo().getWidth()*1.5), getInfo().getHeight()/2, null);
-			return;
-		}
-		if(isKicking){
-			g.drawImage(kick[kickIndex],x,y, (int)(getInfo().getWidth()*1.1), getInfo().getHeight(), null);
-			return;
-		}
-		if(xVelo==0&&yVelo==0){
-			if(!isSneaking){
-				g.drawImage(idle[idleIndex],x,y, getInfo().getWidth(), getInfo().getHeight(), null);
-			}else{
-				g.drawImage(idleSneak[0],x,y+(getInfo().getHeight()/2), getInfo().getWidth(), getInfo().getHeight()/2, null);
-
-			}
-		}else if(xVelo!=0 && yVelo== 0){
-			g.drawImage(walk[walkIndex],x,y, getInfo().getWidth(), getInfo().getHeight(), null);
-		}else if(xVelo==0&&yVelo!=0){
-			g.drawImage(verticalJump[vertialJumpIndex],x,y, (int)(getInfo().getWidth()*.9), (int)(getInfo().getHeight()*.9), null);
-		}else if(xVelo!=0&&yVelo!=0){
-			g.drawImage(diagonalJump[diagonalJumpIndex],x,y, (int)(getInfo().getWidth()*1.05), (int)(getInfo().getHeight()*1.05), null);
-		}
-
-	}
-
-	@Override
 	public String toString() {
 		return "RYU";
 	}
@@ -451,7 +366,7 @@ public class Ryu extends Character {
 				}		
 			}
 		});
-		defeat.start();		
+		defeat.start();
 	}
 
 }

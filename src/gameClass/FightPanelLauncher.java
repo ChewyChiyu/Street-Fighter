@@ -23,28 +23,18 @@ import textureClass.MapTexture;
 public class FightPanelLauncher extends JPanel implements Runnable{
 	private Thread gameLoop;
 	public static boolean isRunning;
-	protected Character c;
+	protected static Character c;
 	private Map m;
 	private GameType g;
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
 	protected static ArrayList<GameObject> sprites = new ArrayList<GameObject>();
-	protected Character c2;
-	protected FightPanelLauncher(Character c, Map m, GameType g){
+	protected static Character c2;
+	protected FightPanelLauncher(Character c, Character c2, Map m, GameType g){
 		//Player 1
-		this.c = c;
-		switch(g){
-		case FIGHT:
-			c2 = new EHonda(CharacterInfo.EHONDA, 5, false, false);
-			break;
-		case TRAINING:
-			c2 = new EHonda(CharacterInfo.EHONDA, 5, false, true);
-			break;
-		default:
-			break;
-
-		}
+		FightPanelLauncher.c = c;
+		FightPanelLauncher.c2 = c2;
 		this.m = m;
 		this.g = g;
 		sprites.add(c);
@@ -701,7 +691,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						}
 					}
 					//player increment check
-					if(c2.getX()-c.getX()<(c.getWidth()/2+c2.getWidth()/2)*1.3&&(!c2.defeated&&!c.defeated)){ //60 pixel buffer
+					if(c2.getX()-(c.getX()+c.getWidth()*5)<=100&&(!c.defeated||!c.defeated)){ //60 pixel buffer
 						c.setX(-c.getSpeed());
 						c2.setX(c.getSpeed());
 						//players never cross
@@ -940,8 +930,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		
 		g.setColor(Color.DARK_GRAY);
 		g.setFont(new Font("Aerial",Font.BOLD,40));
-		g.drawString(c.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.35), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.2));
-		g.drawString(c2.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.55), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.2));
+		g.drawString(c.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.30), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.1));
+		g.drawString(c2.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.60), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.1));
 		g.drawImage(MapTexture.koLogo, (int)(Constants.SCREEN_WIDTH.getIntValue()*.45),0,(int)(Constants.SCREEN_WIDTH.getIntValue()*.1),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.1),null);
 	}
 	void drawCharacters(Graphics g){
