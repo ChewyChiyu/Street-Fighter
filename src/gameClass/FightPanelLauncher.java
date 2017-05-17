@@ -691,7 +691,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						}
 					}
 					//player increment check
-					if(c2.getX()-(c.getX()+c.getWidth()*5)<=100&&(!c.defeated||!c.defeated)){ //60 pixel buffer
+					if(c2.getX()-(c.getX()+c.getWidth()*5)<=100 &&(!c.defeated&&!c.defeated)){ //60 pixel buffer
 						c.setX(-c.getSpeed());
 						c2.setX(c.getSpeed());
 						//players never cross
@@ -930,8 +930,8 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		
 		g.setColor(Color.DARK_GRAY);
 		g.setFont(new Font("Aerial",Font.BOLD,40));
-		g.drawString(c.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.30), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.1));
-		g.drawString(c2.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.60), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.1));
+		g.drawString(c.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.30), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.05));
+		g.drawString(c2.toString(), (int)(Constants.SCREEN_WIDTH.getIntValue()*.60), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.05));
 		g.drawImage(MapTexture.koLogo, (int)(Constants.SCREEN_WIDTH.getIntValue()*.45),0,(int)(Constants.SCREEN_WIDTH.getIntValue()*.1),(int)(Constants.SCREEN_HEIGHT.getIntValue()*.1),null);
 	}
 	void drawCharacters(Graphics g){

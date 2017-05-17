@@ -211,20 +211,14 @@ public class RyuTexture extends Texture{
 		knockDownRyuLeft[9] =  ryuSpriteSheetLeft.getSubimage(xStart-955-28,740,28,67);
 		knockDownRyuLeft[10] =  ryuSpriteSheetLeft.getSubimage(xStart-1008-45,754,45,77);
 
-		//defeat ryu right
 		
-		defeatRyuLeft[0] =  ryuSpriteSheetLeft.getSubimage(xStart-390-42,755,42,80);
-		defeatRyuLeft[1] =  ryuSpriteSheetLeft.getSubimage(xStart-448-40,772,40,65);
-		defeatRyuLeft[2] =  ryuSpriteSheetLeft.getSubimage(xStart-506-54,760,54,70);
-		defeatRyuLeft[3] =  ryuSpriteSheetLeft.getSubimage(xStart-565-47,755,47,76);
-		defeatRyuLeft[4] =  ryuSpriteSheetLeft.getSubimage(xStart-618-70,779,70,45);
-		defeatRyuLeft[5] =  ryuSpriteSheetLeft.getSubimage(xStart-696-75,803, 75,27);
+		
+		defeatRyuLeft[0] =  ryuSpriteSheetLeft.getSubimage(xStart-1160-(1215-1160),776,1215-1160,841-776);
+		defeatRyuLeft[1] =  ryuSpriteSheetLeft.getSubimage(xStart-1213-(1291-1213),787,1291-1213,832-787);
+		defeatRyuLeft[2] =  ryuSpriteSheetLeft.getSubimage(xStart-1292-(1371-1292),803-20,1371-1292,832-803+20);
 
 		
-		defeatRyuLeft[0] =  ryuSpriteSheetLeft.getSubimage(xStart-1160-1215-1160,776,1215-1160,841-776);
-		defeatRyuLeft[1] =  ryuSpriteSheetLeft.getSubimage(xStart-1213-1291-1213,787,1291-1213,832-787);
-		defeatRyuLeft[2] =  ryuSpriteSheetLeft.getSubimage(xStart-1292-1371-1292,803+20,1371-1292,832-803-20);
-
+		
 		
 		
 		}catch(Exception e) { }
