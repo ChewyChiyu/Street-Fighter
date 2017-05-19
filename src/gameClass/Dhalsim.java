@@ -217,7 +217,25 @@ public class Dhalsim extends Character{
 
 	@Override
 	void special() {
-		// TODO Auto-generated method stub
+		if(!isAttacking&&!isGettingKnockedDown){
+			Thread special = new Thread(new Runnable(){
+
+				@Override
+				public void run() {
+					isSpecial = true;
+					specialIndex = 0;
+					for(int index = 0; index < DhalsimTexture.speicalDhalsimRight.length-1; index++){
+						specialIndex++;
+						try{
+							Thread.sleep(50);
+						}catch(Exception e) { }
+					}
+					isSpecial = false;
+				}
+
+			});
+			special.start();
+		}
 		
 	}
 

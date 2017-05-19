@@ -881,12 +881,10 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					try{
 						Thread.sleep(3000);
 					}catch(Exception e ) { }
-					isRunning = false;
 					new StreetFighterLauncher();
-					c = null;
-					c2 = null;
+					frame.dispose();
+					stop();
 					sprites.clear();
-					frame.dispose();	
 					}
 					try{
 						Thread.sleep(1);
