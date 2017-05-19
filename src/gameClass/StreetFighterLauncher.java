@@ -37,6 +37,7 @@ public class StreetFighterLauncher extends JPanel {
 		Texture.loadEHondaTextures();
 		Texture.loadBlankaTextures();
 		Texture.loadDeeJayTextures();
+		Texture.loadDhalsimTextures();
 	}
 	void keys(){
 		select[1] = true; 

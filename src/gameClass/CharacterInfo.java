@@ -6,7 +6,7 @@ import textureClass.RyuTexture;
 
 public enum CharacterInfo {
 	//will change constant names when more characters are added
-	RYU(1,RyuTexture.idleRyuLeft[0].getWidth()*5,RyuTexture.idleRyuLeft[0].getHeight()*5), EHONDA(2,EHondaTexture.idleEHondaLeft[0].getWidth()*5,EHondaTexture.idleEHondaLeft[0].getHeight()*5), BLANKA(3,BlankaTexture.idleBlankaLeft[0].getWidth()*5,BlankaTexture.idleBlankaLeft[0].getHeight()*5), DEEJAY(4,200,500);
+	RYU(1,RyuTexture.idleRyuLeft[0].getWidth()*5,RyuTexture.idleRyuLeft[0].getHeight()*5), EHONDA(2,EHondaTexture.idleEHondaLeft[0].getWidth()*5,EHondaTexture.idleEHondaLeft[0].getHeight()*5), BLANKA(3,BlankaTexture.idleBlankaLeft[0].getWidth()*5,BlankaTexture.idleBlankaLeft[0].getHeight()*5), DEEJAY(4,200,500), DHALSIM(5,200,500);
 	private int location;
 	private int height;
 	private int width;
@@ -34,6 +34,8 @@ public enum CharacterInfo {
 			return new Blanka(CharacterInfo.BLANKA,5,right,automated);
 		case 4:
 			return new DeeJay(CharacterInfo.DEEJAY,5,right,automated);
+		case 5:
+			return new Dhalsim(CharacterInfo.DHALSIM,5,right,automated);
 		}
 		return null;
 	}

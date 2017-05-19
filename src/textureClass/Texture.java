@@ -4,7 +4,9 @@ package textureClass;
 public class Texture {
 
 	
-	
+	public static void loadDhalsimTextures(){
+		new DhalsimTexture();
+	}
 	public static void loadRyuTextures(){
 		new RyuTexture();
 	}

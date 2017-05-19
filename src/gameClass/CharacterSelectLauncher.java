@@ -26,7 +26,7 @@ public class CharacterSelectLauncher extends JPanel {
 	private GameType g;
 	private Character selectedCharacter = CharacterInfo.RYU.getCharacter(true,false);
 	private Character selectedCharacter2 = CharacterInfo.RYU.getCharacter(false,false);
-	private CharacterInfo[] characterList = {CharacterInfo.RYU,CharacterInfo.EHONDA,CharacterInfo.BLANKA,CharacterInfo.DEEJAY};
+	private CharacterInfo[] characterList = {CharacterInfo.RYU,CharacterInfo.EHONDA,CharacterInfo.BLANKA,CharacterInfo.DEEJAY, CharacterInfo.DHALSIM};
 	private JFrame frame;
 	private CardLayout cardLayout = new CardLayout();
 	private JPanel screen = new JPanel(cardLayout);
@@ -120,10 +120,13 @@ public class CharacterSelectLauncher extends JPanel {
 						selectedCharacter2 = CharacterInfo.EHONDA.getCharacter(false,true);
 						break;
 					case 2:
-						selectedCharacter2 = CharacterInfo.EHONDA.getCharacter(false,true);
+						selectedCharacter2 = CharacterInfo.BLANKA.getCharacter(false,true);
 						break;
 					case 3:
-						selectedCharacter2 = CharacterInfo.EHONDA.getCharacter(false,true);
+						selectedCharacter2 = CharacterInfo.DEEJAY.getCharacter(false,true);
+						break;
+					case 4:
+						selectedCharacter2 = CharacterInfo.DHALSIM.getCharacter(false,true);
 						break;
 					}
 				}
@@ -212,7 +215,7 @@ public class CharacterSelectLauncher extends JPanel {
 				c = Color.BLACK;
 				g.setColor(Color.RED);
 				g.setFont(new Font("Aerial",Font.BOLD,30));
-				g.drawString("P1", xBuffer+90, yBuffer-10);
+				g.drawString("P1", xBuffer+50, yBuffer-10);
 				
 			}else{
 				c = Color.GRAY;
@@ -221,9 +224,9 @@ public class CharacterSelectLauncher extends JPanel {
 			g.setColor(c);
 			BufferedImage display = MapTexture.characterSelectSprites[subIndex];
 			
-			g.drawImage(display, xBuffer, yBuffer, 200, 200,c, null);
+			g.drawImage(display, xBuffer, yBuffer, 100, 200,c, null);
 			if(select[subIndex]){
-				g.drawImage(MapTexture.player1Selector, xBuffer, yBuffer, 200, 200, null);
+				g.drawImage(MapTexture.player1Selector, xBuffer, yBuffer, 100, 200, null);
 				switch(characterList[subIndex]){
 				case EHONDA:
 					display = MapTexture.characterSelectSprites[1];
@@ -237,13 +240,16 @@ public class CharacterSelectLauncher extends JPanel {
 				case BLANKA:
 					display = MapTexture.characterSelectSprites[2];
 					break;
+				case DHALSIM:
+					display = MapTexture.characterSelectSprites[4];
+					break;
 				default:
 					break;
 				
 				}
 				g.drawImage(display, 0, (int)(Constants.SCREEN_HEIGHT.getIntValue()*.3), 500, 500, null);
 			}
-			xBuffer+=210; //5 pixel buffer
+			xBuffer+=110; //5 pixel buffer
 
 
 		}
@@ -257,7 +263,7 @@ public class CharacterSelectLauncher extends JPanel {
 				c = Color.BLACK;
 				g.setColor(Color.BLUE);
 				g.setFont(new Font("Aerial",Font.BOLD,30));
-				g.drawString("P2", xBuffer+90, yBuffer-10);
+				g.drawString("P2", xBuffer+50, yBuffer-10);
 				
 			}else{
 				c = Color.GRAY;
@@ -268,9 +274,9 @@ public class CharacterSelectLauncher extends JPanel {
 			
 			
 			
-			g.drawImage(display, xBuffer, yBuffer, 200, 200,c, null);
+			g.drawImage(display, xBuffer, yBuffer, 100, 200,c, null);
 			if(select2[subIndex]){
-				g.drawImage(MapTexture.player2Selector, xBuffer, yBuffer, 200, 200, null);
+				g.drawImage(MapTexture.player2Selector, xBuffer, yBuffer, 100, 200, null);
 				switch(characterList[subIndex]){
 				case EHONDA:
 					display = MapTexture.characterSelectSpritesFlipped[1];
@@ -284,13 +290,16 @@ public class CharacterSelectLauncher extends JPanel {
 				case BLANKA:
 					display = MapTexture.characterSelectSpritesFlipped[2];
 					break;
+				case DHALSIM:
+					display = MapTexture.characterSelectSpritesFlipped[4];
+					break;
 				default:
 					break;
 				
 				}
 				g.drawImage(display, (int)(Constants.SCREEN_WIDTH.getIntValue()*.7), 0, 500, 500, null);
 			}
-			xBuffer+=210; //5 pixel buffer
+			xBuffer+=110; //5 pixel buffer
 
 
 		}
@@ -306,7 +315,7 @@ public class CharacterSelectLauncher extends JPanel {
 				c = Color.BLACK;
 				g.setColor(Color.RED);
 				g.setFont(new Font("Aerial",Font.BOLD,30));
-				g.drawString("P1", xBuffer+90, yBuffer-10);
+				g.drawString("P1", xBuffer+50, yBuffer-10);
 				
 			}else{
 				c = Color.GRAY;
@@ -315,9 +324,9 @@ public class CharacterSelectLauncher extends JPanel {
 			g.setColor(c);
 			BufferedImage display = MapTexture.characterSelectSprites[subIndex];
 			
-			g.drawImage(display, xBuffer, yBuffer, 200, 200,c, null);
+			g.drawImage(display, xBuffer, yBuffer, 100, 200,c, null);
 			if(select[subIndex]){
-				g.drawImage(MapTexture.player1Selector, xBuffer, yBuffer, 200, 200, null);
+				g.drawImage(MapTexture.player1Selector, xBuffer, yBuffer, 100, 200, null);
 				switch(characterList[subIndex]){
 				case EHONDA:
 					display = MapTexture.characterSelectSprites[1];
@@ -331,6 +340,9 @@ public class CharacterSelectLauncher extends JPanel {
 				case BLANKA:
 					display = MapTexture.characterSelectSprites[2];
 					break;
+				case DHALSIM:
+					display = MapTexture.characterSelectSprites[4];
+					break;
 				default:
 					break;
 				
@@ -338,7 +350,7 @@ public class CharacterSelectLauncher extends JPanel {
 				g.drawImage(display, 0, (int)(Constants.SCREEN_HEIGHT.getIntValue()*.3), 500, 500, null);
 			}
 			//g.drawImage(MapTexture.characterSelectSprites[index][subIndex], xBuffer, yBuffer, 200,200,c,null);
-			xBuffer+=210; //5 pixel buffer
+			xBuffer+=110; //5 pixel buffer
 
 
 				}

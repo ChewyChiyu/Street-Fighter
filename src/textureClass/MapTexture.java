@@ -10,8 +10,8 @@ public class MapTexture extends Texture{
 	 * 1. Start Up Image
 	 * 
 	 */
-	public static BufferedImage[] characterSelectSprites = new BufferedImage[4];
-	public static BufferedImage[] characterSelectSpritesFlipped = new BufferedImage[4];
+	public static BufferedImage[] characterSelectSprites = new BufferedImage[5];
+	public static BufferedImage[] characterSelectSpritesFlipped = new BufferedImage[5];
 	public static BufferedImage[][] mapSelectSprites = new BufferedImage[3][3];
 	public static BufferedImage selector, player1Selector, player2Selector;
 	public static BufferedImage characterSelectBackground;
