@@ -71,7 +71,7 @@ public class Ryu extends Character {
 			Thread jump = new Thread(new Runnable(){
 				public void run(){
 					for(int index = 0; index < 100; index++){
-						y -= Constants.GRAVITY.getIntValue();
+						y -= 6;
 						try{
 							Thread.sleep(1);
 						}catch(Exception e) {}
@@ -320,7 +320,7 @@ public class Ryu extends Character {
 					gettingKnockedDownIndex++;
 					
 					try{
-						Thread.sleep(200);
+						Thread.sleep(100);
 					}catch(Exception e) { }
 				}		
 				isGettingKnockedDown = false;
@@ -332,10 +332,10 @@ public class Ryu extends Character {
 			for(int index = 0; index < 50; index++){	
 				y -= Constants.GRAVITY.getIntValue();
 				if(!right){
-					setX(5);
+					setX(6);
 				}
 				else{
-					setX(-5);
+					setX(-6);
 				}
 				try{
 					Thread.sleep(1);

@@ -70,7 +70,7 @@ public class EHonda extends Character {
 			Thread jump = new Thread(new Runnable(){
 				public void run(){
 					for(int index = 0; index < 100; index++){
-						y -= Constants.GRAVITY.getIntValue();
+						y -= 3;
 						try{
 							Thread.sleep(1);
 						}catch(Exception e) {}
@@ -143,16 +143,7 @@ public class EHonda extends Character {
 	@Override
 	void special() {
 		if(!isAttacking&&!isGettingKnockedDown){
-			int energyBallXVelo = 0;
-			int xBuffer = 0;
-			if(right){
-				energyBallXVelo = 10;
-				xBuffer = (int) (x+(getInfo().getWidth()));
-			}else{
-				energyBallXVelo = -10;
-				xBuffer = x-(getInfo().getWidth()/2);
-			}
-			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
+
 			Thread special = new Thread(new Runnable(){
 
 				@Override
@@ -162,7 +153,7 @@ public class EHonda extends Character {
 					for(int index = 0; index < EHondaTexture.speicalEHondaRight.length-1; index++){
 						specialIndex++;
 						try{
-							Thread.sleep(500);
+							Thread.sleep(100);
 						}catch(Exception e) { }
 					}
 					isSpecial = false;
@@ -328,10 +319,10 @@ public class EHonda extends Character {
 			for(int index = 0; index < 50; index++){	
 				y -= Constants.GRAVITY.getIntValue();
 				if(!right){
-					setX(5);
+					setX(6);
 				}
 				else{
-					setX(-5);
+					setX(-6);
 				}
 				try{
 					Thread.sleep(1);

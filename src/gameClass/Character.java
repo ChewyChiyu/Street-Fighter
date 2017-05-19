@@ -331,7 +331,7 @@ public abstract class Character extends GameObject {
 			if(!isSneaking){
 				g.drawImage(idle[idleIndex].getScaledInstance(idle[idleIndex].getWidth()*SCALE,idle[idleIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);
 			}else{
-				g.drawImage(idleSneak[0].getScaledInstance(idleSneak[0].getWidth()*SCALE,idleSneak[0].getHeight()*SCALE, Image.SCALE_DEFAULT),x,(int) (y+(idleSneak[0].getHeight()*SCALE)*.15), null);
+				g.drawImage(idleSneak[0].getScaledInstance(idleSneak[0].getWidth()*SCALE,(int) (idleSneak[0].getHeight()*SCALE*.8), Image.SCALE_DEFAULT),x,(int) (y+(idleSneak[0].getHeight()*SCALE)*.5), null);
 			}
 		}else if(xVelo!=0 && yVelo== 0){
 			g.drawImage(walk[walkIndex].getScaledInstance(walk[walkIndex].getWidth()*SCALE,walk[walkIndex].getHeight()*SCALE, Image.SCALE_DEFAULT),x,y, null);

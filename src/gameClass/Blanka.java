@@ -10,8 +10,8 @@ public class Blanka extends Character {
 	protected Blanka(CharacterInfo info, int speed, boolean right,boolean isAutomated) {
 		super(CharacterInfo.BLANKA, speed, right, isAutomated);
 		this.right = right;	
-		
-		
+
+
 
 		if(right){
 			idle = BlankaTexture.idleBlankaRight;
@@ -70,7 +70,7 @@ public class Blanka extends Character {
 			Thread jump = new Thread(new Runnable(){
 				public void run(){
 					for(int index = 0; index < 100; index++){
-						y -= Constants.GRAVITY.getIntValue();
+						y -= 4;
 						try{
 							Thread.sleep(1);
 						}catch(Exception e) {}
@@ -81,7 +81,7 @@ public class Blanka extends Character {
 		}
 	}
 
-	
+
 	@Override
 	public String toString() {
 		return "Blanka";
@@ -143,36 +143,26 @@ public class Blanka extends Character {
 
 	@Override
 	void special() {
-		if(!isAttacking&&!isGettingKnockedDown){
-			int energyBallXVelo = 0;
-			int xBuffer = 0;
-			if(right){
-				energyBallXVelo = 10;
-				xBuffer = (int) (x+(getInfo().getWidth()));
-			}else{
-				energyBallXVelo = -10;
-				xBuffer = x-(getInfo().getWidth()/2);
-			}
-			FightPanelLauncher.sprites.add(new EnergyBall(xBuffer,y+(Constants.ENERGYBALL_HEIGHT.getIntValue()),energyBallXVelo,0));
-			Thread special = new Thread(new Runnable(){
+		Thread special = new Thread(new Runnable(){
 
-				@Override
-				public void run() {
-					isSpecial = true;
-					specialIndex = 0;
-					for(int index = 0; index < BlankaTexture.speicalBlankaRight.length-1; index++){
-						specialIndex++;
-						try{
-							Thread.sleep(500);
-						}catch(Exception e) { }
-					}
-					isSpecial = false;
+			@Override
+			public void run() {
+				isSpecial = true;
+				specialIndex = 0;
+				for(int index = 0; index < BlankaTexture.speicalBlankaRight.length-1; index++){
+					specialIndex++;
+					try{
+						Thread.sleep(100);
+					}catch(Exception e) { }
 				}
+				isSpecial = false;
+			}
 
-			});
-			special.start();
-		}
+		});
+		special.start();
 	}
+
+
 
 	@Override
 	void aerialPunch() {
@@ -310,12 +300,12 @@ public class Blanka extends Character {
 	void getKnockedDown() {
 		Thread gettingKnocked = new Thread(new Runnable(){
 			public void run(){
-			
+
 				isGettingKnockedDown = true;
 				gettingKnockedDownIndex = 0;
 				for(int index = 0; index < BlankaTexture.knockDownBlankaRight.length-1; index++){
 					gettingKnockedDownIndex++;
-					
+
 					try{
 						Thread.sleep(200);
 					}catch(Exception e) { }
@@ -323,24 +313,24 @@ public class Blanka extends Character {
 				isGettingKnockedDown = false;
 			}
 		});
-		
+
 		Thread knockBack = new Thread(new Runnable(){
 			public void run(){
-			for(int index = 0; index < 50; index++){	
-				y -= Constants.GRAVITY.getIntValue();
-				if(!right){
-					setX(5);
+				for(int index = 0; index < 50; index++){	
+					y -= Constants.GRAVITY.getIntValue();
+					if(!right){
+						setX(6);
+					}
+					else{
+						setX(-6);
+					}
+					try{
+						Thread.sleep(1);
+					}catch(Exception e) { }
 				}
-				else{
-					setX(-5);
-				}
-				try{
-					Thread.sleep(1);
-				}catch(Exception e) { }
-			}
 			}
 		});
-		
+
 		knockBack.start();
 		gettingKnocked.start();
 

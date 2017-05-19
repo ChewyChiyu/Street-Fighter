@@ -6,54 +6,58 @@ import javax.imageio.ImageIO;
 
 public class EHondaTexture extends Texture{
 	//EHonda CHARACTER SPRITES RIGHT
-		public static BufferedImage[] idleEHondaRight = new BufferedImage[4];
-		public static BufferedImage[] walkEHondaRight = new BufferedImage[4];
-		public static BufferedImage[] verticalJumpEHondaRight = new BufferedImage[4];
-		public static BufferedImage[] diagonalJumpEHondaRight = new BufferedImage[4];
-		public static BufferedImage[] punchEHondaRight = new BufferedImage[3];
-		public static BufferedImage[] kickEHondaRight = new BufferedImage[3];
-		
-		public static BufferedImage[] idleSneakEHondaRight = new BufferedImage[2];
-		public static BufferedImage[] sneakpunchEHondaRight = new BufferedImage[7];
-		public static BufferedImage[] sneakkickEHondaRight = new BufferedImage[5];
-		public static BufferedImage[] aerialkickEHondaRight = new BufferedImage[3];
-		
-		public static BufferedImage[] speicalEHondaRight = punchEHondaRight;
-		
-		public static BufferedImage[] EHondaTorsoHitRight = new BufferedImage[3];
-		public static BufferedImage[] EHondaHeadHitRight = new BufferedImage[2];
-		public static BufferedImage[] knockDownEHondaRight = new BufferedImage[8];
-		public static BufferedImage[] defeatEHondaRight = new BufferedImage[5];
-		
-		//END OF EHonda CHARACTER SPRITES RIGHT
-		
-		
-		
-		
-		//EHonda CHARACTER SPRITES LEFT
-		public static BufferedImage[] idleEHondaLeft = new BufferedImage[4];
-		public static BufferedImage[] walkEHondaLeft = new BufferedImage[4];
-		public static BufferedImage[] verticalJumpEHondaLeft = new BufferedImage[4];
-		public static BufferedImage[] diagonalJumpEHondaLeft = new BufferedImage[4];
-		public static BufferedImage[] punchEHondaLeft = new BufferedImage[3];
-		public static BufferedImage[] kickEHondaLeft = new BufferedImage[3];
-		
-		public static BufferedImage[] idleSneakEHondaLeft = new BufferedImage[2];
-		public static BufferedImage[] sneakpunchEHondaLeft = new BufferedImage[7];
-		public static BufferedImage[] sneakkickEHondaLeft = new BufferedImage[5];
-		public static BufferedImage[] aerialkickEHondaLeft = new BufferedImage[3];
-		
-		public static BufferedImage[] speicalEHondaLeft = punchEHondaLeft;
-		
-		public static BufferedImage[] EHondaTorsoHitLeft = new BufferedImage[3];
-		public static BufferedImage[] EHondaHeadHitLeft = new BufferedImage[2];
-		public static BufferedImage[] knockDownEHondaLeft = new BufferedImage[8];
-		public static BufferedImage[] defeatEHondaLeft = new BufferedImage[5];
-				
-				//END OF EHonda CHARACTER SPRITES LEFT
+	public static BufferedImage[] idleEHondaRight = new BufferedImage[4];
+	public static BufferedImage[] walkEHondaRight = new BufferedImage[4];
+	public static BufferedImage[] verticalJumpEHondaRight = new BufferedImage[4];
+	public static BufferedImage[] diagonalJumpEHondaRight = new BufferedImage[4];
+	public static BufferedImage[] punchEHondaRight = new BufferedImage[3];
+	public static BufferedImage[] kickEHondaRight = new BufferedImage[3];
+
+	public static BufferedImage[] idleSneakEHondaRight = new BufferedImage[2];
+	public static BufferedImage[] sneakpunchEHondaRight = new BufferedImage[7];
+	public static BufferedImage[] sneakkickEHondaRight = new BufferedImage[5];
+	public static BufferedImage[] aerialkickEHondaRight = new BufferedImage[3];
+
+	public static BufferedImage[] speicalEHondaRight = new BufferedImage[6];
+
+
+
+
+
+	public static BufferedImage[] EHondaTorsoHitRight = new BufferedImage[3];
+	public static BufferedImage[] EHondaHeadHitRight = new BufferedImage[2];
+	public static BufferedImage[] knockDownEHondaRight = new BufferedImage[8];
+	public static BufferedImage[] defeatEHondaRight = new BufferedImage[5];
+
+	//END OF EHonda CHARACTER SPRITES RIGHT
+
+
+
+
+	//EHonda CHARACTER SPRITES LEFT
+	public static BufferedImage[] idleEHondaLeft = new BufferedImage[4];
+	public static BufferedImage[] walkEHondaLeft = new BufferedImage[4];
+	public static BufferedImage[] verticalJumpEHondaLeft = new BufferedImage[4];
+	public static BufferedImage[] diagonalJumpEHondaLeft = new BufferedImage[4];
+	public static BufferedImage[] punchEHondaLeft = new BufferedImage[3];
+	public static BufferedImage[] kickEHondaLeft = new BufferedImage[3];
+
+	public static BufferedImage[] idleSneakEHondaLeft = new BufferedImage[2];
+	public static BufferedImage[] sneakpunchEHondaLeft = new BufferedImage[7];
+	public static BufferedImage[] sneakkickEHondaLeft = new BufferedImage[5];
+	public static BufferedImage[] aerialkickEHondaLeft = new BufferedImage[3];
+
+	public static BufferedImage[] speicalEHondaLeft = new BufferedImage[6];
+
+	public static BufferedImage[] EHondaTorsoHitLeft = new BufferedImage[3];
+	public static BufferedImage[] EHondaHeadHitLeft = new BufferedImage[2];
+	public static BufferedImage[] knockDownEHondaLeft = new BufferedImage[8];
+	public static BufferedImage[] defeatEHondaLeft = new BufferedImage[5];
+
+	//END OF EHonda CHARACTER SPRITES LEFT
 	protected EHondaTexture(){
-	loadRight();	
-	loadLeft();
+		loadRight();	
+		loadLeft();
 	}
 	void loadLeft(){
 		try{
@@ -82,8 +86,8 @@ public class EHondaTexture extends Texture{
 			verticalJumpEHondaLeft[2] =  EHondaSpriteSheetLeft.getSubimage(xStart-712-56, 54, 56, 60);
 			verticalJumpEHondaLeft[3] =  EHondaSpriteSheetLeft.getSubimage(xStart-772-58, 50, 58, 86);
 
-		//	diagonalJumpEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(834, 64, 62, 68);
-		//	diagonalJumpEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(846, 7, 80, 125);
+			//	diagonalJumpEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(834, 64, 62, 68);
+			//	diagonalJumpEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(846, 7, 80, 125);
 			diagonalJumpEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(xStart-978-66, 32, 66, 76);
 			diagonalJumpEHondaLeft[1] = EHondaSpriteSheetLeft.getSubimage(xStart-1044-56, 34, 56, 62);
 			diagonalJumpEHondaLeft[2] = EHondaSpriteSheetLeft.getSubimage(xStart-1098-72, 24, 72, 88);
@@ -112,6 +116,8 @@ public class EHondaTexture extends Texture{
 			aerialkickEHondaLeft[2] = EHondaSpriteSheetLeft.getSubimage(xStart-964-(1031-964), 399, (1031-964), (463-399));
 
 
+
+
 			EHondaTorsoHitLeft[0] = EHondaSpriteSheetLeft.getSubimage(xStart-6-70, 919, 70, 75);
 			EHondaTorsoHitLeft[1] = EHondaSpriteSheetLeft.getSubimage(xStart-80-68, 924, 68, 69);
 			EHondaTorsoHitLeft[2] = EHondaSpriteSheetLeft.getSubimage(xStart-150-66, 916, 66, 75);
@@ -133,87 +139,103 @@ public class EHondaTexture extends Texture{
 			defeatEHondaLeft[2] = EHondaSpriteSheetLeft.getSubimage(xStart-148-96, 1094, 96, 48);
 			defeatEHondaLeft[3] = EHondaSpriteSheetLeft.getSubimage(xStart-240-68, 1051, 68, 82);
 			defeatEHondaLeft[4] = EHondaSpriteSheetLeft.getSubimage(xStart-312-88, 1089, 88, 51);
+		
+		
+			speicalEHondaLeft[0] = EHondaSpriteSheetLeft.getSubimage(xStart-8-105,655,105,73);
+			speicalEHondaLeft[1] = EHondaSpriteSheetLeft.getSubimage(xStart-121-81,642,81,86);
+			speicalEHondaLeft[2] = EHondaSpriteSheetLeft.getSubimage(xStart-212-96,655,96,73);
+			speicalEHondaLeft[3] = EHondaSpriteSheetLeft.getSubimage(xStart-315-86,655,86,73);
+			speicalEHondaLeft[4] = EHondaSpriteSheetLeft.getSubimage(xStart-411-104,642,104,86);
+			speicalEHondaLeft[5] = EHondaSpriteSheetLeft.getSubimage(xStart-524-74,655,74,73);
+		
 		}catch(Exception e) { }
 	}
 	void loadRight(){
-			try{
-				BufferedImage EHondaSpriteSheetRight = ImageIO.read(getClass().getResource("/imgs/characters/EHondaRight.png"));
-				idleEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(6, 48, 60, 84);
-				idleEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(74, 52, 68, 82);
-				idleEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(152, 56, 62, 78);
-				idleEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(225, 52, 63, 80);
+		try{
+			BufferedImage EHondaSpriteSheetRight = ImageIO.read(getClass().getResource("/imgs/characters/EHondaRight.png"));
+			idleEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(6, 48, 60, 84);
+			idleEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(74, 52, 68, 82);
+			idleEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(152, 56, 62, 78);
+			idleEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(225, 52, 63, 80);
 
-				walkEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(298, 52, 74, 82);
-				walkEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(374, 52, 68, 80);
-				walkEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(444, 54, 64, 80);
-				walkEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(512, 54, 64, 78);
+			walkEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(298, 52, 74, 82);
+			walkEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(374, 52, 68, 80);
+			walkEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(444, 54, 64, 80);
+			walkEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(512, 54, 64, 78);
 
-				punchEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(6, 174, 72, 78);
-				punchEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(80, 176, 90, 76);
-				punchEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(174, 172, 70, 82);
+			punchEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(6, 174, 72, 78);
+			punchEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(80, 176, 90, 76);
+			punchEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(174, 172, 70, 82);
 
-				kickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(6, 294, 68, 82);
-				kickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(80, 306, 94, 68);
-				kickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(174, 293, 72, 84);
+			kickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(6, 294, 68, 82);
+			kickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(80, 306, 94, 68);
+			kickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(174, 293, 72, 84);
 
-				verticalJumpEHondaRight[0] =  EHondaSpriteSheetRight.getSubimage(586, 64, 64, 78);
-				verticalJumpEHondaRight[1] =  EHondaSpriteSheetRight.getSubimage(650, 50, 60, 82);
-				verticalJumpEHondaRight[2] =  EHondaSpriteSheetRight.getSubimage(712, 54, 56, 60);
-				verticalJumpEHondaRight[3] =  EHondaSpriteSheetRight.getSubimage(772, 50, 58, 86);
+			verticalJumpEHondaRight[0] =  EHondaSpriteSheetRight.getSubimage(586, 64, 64, 78);
+			verticalJumpEHondaRight[1] =  EHondaSpriteSheetRight.getSubimage(650, 50, 60, 82);
+			verticalJumpEHondaRight[2] =  EHondaSpriteSheetRight.getSubimage(712, 54, 56, 60);
+			verticalJumpEHondaRight[3] =  EHondaSpriteSheetRight.getSubimage(772, 50, 58, 86);
 
 			//	diagonalJumpEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(834, 64, 62, 68);
 			//	diagonalJumpEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(846, 7, 80, 125);
-				diagonalJumpEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(978, 32, 66, 76);
-				diagonalJumpEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(1044, 34, 56, 62);
-				diagonalJumpEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(1098, 24, 72, 88);
-				diagonalJumpEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(1166, 24, 76, 90);
-				//diagonalJumpEHondaRight[6] = EHondaSpriteSheetRight.getSubimage(1236, 18, 82, 114);
+			diagonalJumpEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(978, 32, 66, 76);
+			diagonalJumpEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(1044, 34, 56, 62);
+			diagonalJumpEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(1098, 24, 72, 88);
+			diagonalJumpEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(1166, 24, 76, 90);
+			//diagonalJumpEHondaRight[6] = EHondaSpriteSheetRight.getSubimage(1236, 18, 82, 114);
 
-				idleSneakEHondaRight[0] =  EHondaSpriteSheetRight.getSubimage(1324, 64, 66, 70);
-				idleSneakEHondaRight[1] =  EHondaSpriteSheetRight.getSubimage(1390, 70, 60, 64);
+			idleSneakEHondaRight[0] =  EHondaSpriteSheetRight.getSubimage(1324, 64, 66, 70);
+			idleSneakEHondaRight[1] =  EHondaSpriteSheetRight.getSubimage(1390, 70, 60, 64);
 
-				sneakpunchEHondaRight[0] =  EHondaSpriteSheetRight.getSubimage(714, 306, 74, 70);
-				sneakpunchEHondaRight[1] =  EHondaSpriteSheetRight.getSubimage(798, 312, 94, 64);
-				sneakpunchEHondaRight[2] =  EHondaSpriteSheetRight.getSubimage(902, 314, 78, 62);
-				sneakpunchEHondaRight[3] =  EHondaSpriteSheetRight.getSubimage(988, 304, 74, 70);
-				sneakpunchEHondaRight[4] =  EHondaSpriteSheetRight.getSubimage(1078, 312, 74, 62);
-				sneakpunchEHondaRight[5] =  EHondaSpriteSheetRight.getSubimage(1162, 312, 90, 64);
-				sneakpunchEHondaRight[6] =  EHondaSpriteSheetRight.getSubimage(1256, 310, 72, 66);
+			sneakpunchEHondaRight[0] =  EHondaSpriteSheetRight.getSubimage(714, 306, 74, 70);
+			sneakpunchEHondaRight[1] =  EHondaSpriteSheetRight.getSubimage(798, 312, 94, 64);
+			sneakpunchEHondaRight[2] =  EHondaSpriteSheetRight.getSubimage(902, 314, 78, 62);
+			sneakpunchEHondaRight[3] =  EHondaSpriteSheetRight.getSubimage(988, 304, 74, 70);
+			sneakpunchEHondaRight[4] =  EHondaSpriteSheetRight.getSubimage(1078, 312, 74, 62);
+			sneakpunchEHondaRight[5] =  EHondaSpriteSheetRight.getSubimage(1162, 312, 90, 64);
+			sneakpunchEHondaRight[6] =  EHondaSpriteSheetRight.getSubimage(1256, 310, 72, 66);
 
-				sneakkickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(400, 402, 66, 70);
-				sneakkickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(472, 402, 86, 74);
-				sneakkickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(556, 407, 58, 67);
-				sneakkickEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(628, 407, 68, 63);
-				sneakkickEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(746, 409, 48, 64);
+			sneakkickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(400, 402, 66, 70);
+			sneakkickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(472, 402, 86, 74);
+			sneakkickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(556, 407, 58, 67);
+			sneakkickEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(628, 407, 68, 63);
+			sneakkickEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(746, 409, 48, 64);
 
-				aerialkickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(815, 408, (872-815), (463-408));
-				aerialkickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(876,402,(965-876),(470-402));
-				aerialkickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(964, 399, (1031-964), (463-399));
+			aerialkickEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(815, 408, (872-815), (463-408));
+			aerialkickEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(876,402,(965-876),(470-402));
+			aerialkickEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(964, 399, (1031-964), (463-399));
 
-				EHondaTorsoHitRight[0] = EHondaSpriteSheetRight.getSubimage(6, 919, 70, 75);
-				EHondaTorsoHitRight[1] = EHondaSpriteSheetRight.getSubimage(80, 924, 68, 69);
-				EHondaTorsoHitRight[2] = EHondaSpriteSheetRight.getSubimage(150, 916, 66, 75);
+			EHondaTorsoHitRight[0] = EHondaSpriteSheetRight.getSubimage(6, 919, 70, 75);
+			EHondaTorsoHitRight[1] = EHondaSpriteSheetRight.getSubimage(80, 924, 68, 69);
+			EHondaTorsoHitRight[2] = EHondaSpriteSheetRight.getSubimage(150, 916, 66, 75);
 
-				EHondaHeadHitRight[0] =  EHondaSpriteSheetRight.getSubimage(232, 907, 60, 87);
-				EHondaHeadHitRight[1] =  EHondaSpriteSheetRight.getSubimage(292, 910, 58, 86);
+			EHondaHeadHitRight[0] =  EHondaSpriteSheetRight.getSubimage(232, 907, 60, 87);
+			EHondaHeadHitRight[1] =  EHondaSpriteSheetRight.getSubimage(292, 910, 58, 86);
 
-				knockDownEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(454, 900, 68, 87);
-				knockDownEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(526, 901, 70, 86);
-				knockDownEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(598, 899, 72, 86);
-				knockDownEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(664, 950, 98, 48);
-				knockDownEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(760, 912, 72, 80);
-				knockDownEHondaRight[5] = EHondaSpriteSheetRight.getSubimage(846, 883, 54, 79);
-				knockDownEHondaRight[6] = EHondaSpriteSheetRight.getSubimage(904, 881, 74, 72);
-				knockDownEHondaRight[7] = EHondaSpriteSheetRight.getSubimage(984, 927, 66, 64);
+			knockDownEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(454, 900, 68, 87);
+			knockDownEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(526, 901, 70, 86);
+			knockDownEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(598, 899, 72, 86);
+			knockDownEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(664, 950, 98, 48);
+			knockDownEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(760, 912, 72, 80);
+			knockDownEHondaRight[5] = EHondaSpriteSheetRight.getSubimage(846, 883, 54, 79);
+			knockDownEHondaRight[6] = EHondaSpriteSheetRight.getSubimage(904, 881, 74, 72);
+			knockDownEHondaRight[7] = EHondaSpriteSheetRight.getSubimage(984, 927, 66, 64);
 
-				defeatEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(8, 1049, 70, 85);
-				defeatEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(82, 1052, 66, 81);
-				defeatEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(148, 1094, 96, 48);
-				defeatEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(240, 1051, 68, 82);
-				defeatEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(312, 1089, 88, 51);
+			defeatEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(8, 1049, 70, 85);
+			defeatEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(82, 1052, 66, 81);
+			defeatEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(148, 1094, 96, 48);
+			defeatEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(240, 1051, 68, 82);
+			defeatEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(312, 1089, 88, 51);
 
-			}catch(Exception e){e.printStackTrace(); }
-		
+			speicalEHondaRight[0] = EHondaSpriteSheetRight.getSubimage(8,655,105,73);
+			speicalEHondaRight[1] = EHondaSpriteSheetRight.getSubimage(121,642,81,86);
+			speicalEHondaRight[2] = EHondaSpriteSheetRight.getSubimage(212,655,96,73);
+			speicalEHondaRight[3] = EHondaSpriteSheetRight.getSubimage(315,655,86,73);
+			speicalEHondaRight[4] = EHondaSpriteSheetRight.getSubimage(411,642,104,86);
+			speicalEHondaRight[5] = EHondaSpriteSheetRight.getSubimage(524,655,74,73);
+
+		}catch(Exception e){e.printStackTrace(); }
+
 	}
-	
+
 }

@@ -31,6 +31,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 	private JPanel screen = new JPanel(cardLayout);
 	protected static ArrayList<GameObject> sprites = new ArrayList<GameObject>();
 	protected static Character c2;
+	protected int RUNTIME = 10;
 	protected FightPanelLauncher(Character c, Character c2, Map m, GameType g){
 		//Player 1
 		FightPanelLauncher.c = c;
@@ -691,7 +692,10 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 						}
 					}
 					//player increment check
-					if(c2.getX()-(c.getX()+c.getWidth()*5)<=100 &&(!c.defeated&&!c.defeated)){ //60 pixel buffer
+					if(c2.getX()-(c.getX()+c.getBody().getWidth())<=0){ 
+						if(c.defeated||c2.defeated){
+							return;
+						}
 						c.setX(-c.getSpeed());
 						c2.setX(c.getSpeed());
 						//players never cross
@@ -719,23 +723,38 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 					
 					
 					if(c.isPunching){
-						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.8);
 						attackY = c.getBody().getCenterY();
 
 					}
 					if(c2.isPunching){
-						attackX2 = c2.getBody().getCenterX() - (int)(c2.getBody().getWidth()*.7);
+						attackX2 = c2.getBody().getCenterX() - (int)(c2.getBody().getWidth()*.8);
 						attackY2 = c2.getBody().getCenterY();
+					}
+					if(c.isSpecial){
+						if(!c.getInfo().equals(CharacterInfo.RYU)){
+							 //RYU has energy bolt only
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.9);
+						attackY = c.getBody().getCenterY();
+					}
+					}
+					if(c2.isSpecial){
+						if(!c2.getInfo().equals(CharacterInfo.RYU)){
+							 //RYU has energy bolt only
+						
+						attackX2 = c2.getBody().getCenterX() - (int)(c2.getBody().getWidth()*.9);
+						attackY2 = c2.getBody().getCenterY();
+						}
 					}
 
 					if(c.isKicking){
-						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.7);
-						attackY = c.getBody().getY()-c.getHead().getHeight()/2;
+						attackX = c.getBody().getCenterX() + (int)(c.getBody().getWidth()*.8);
+						attackY = (int) (c.getBody().getY()+c.getBody().getHeight()*.4);
 
 					}
 					if(c2.isKicking){
-						attackX2= c2.getBody().getCenterX() - (int)(c2.getBody().getWidth()*.7);
-						attackY2 = c2.getBody().getY()-c2.getHead().getHeight()/2;
+						attackX2= c2.getBody().getCenterX() - (int)(c2.getBody().getWidth()*.8);
+						attackY2 = (int) (c2.getBody().getY()+c2.getBody().getHeight()*.4);
 					}
 					if(c.isLowPunching){
 						attackX = c.getLegs().getCenterX() + (int)(c.getLegs().getWidth());
@@ -854,6 +873,28 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 				}
 			}
 		});
+		Thread checkIFLose = new Thread(new Runnable(){
+			public void run(){
+				while(isRunning){
+					if(c.defeated||c2.defeated){
+						RUNTIME = 20;
+					try{
+						Thread.sleep(3000);
+					}catch(Exception e ) { }
+					isRunning = false;
+					new StreetFighterLauncher();
+					c = null;
+					c2 = null;
+					sprites.clear();
+					frame.dispose();	
+					}
+					try{
+						Thread.sleep(1);
+					}catch(Exception e) { }
+				}
+			}
+		});
+		checkIFLose.start();
 		hitCheck.start();
 		boundCheck.start();
 		moveHitBox.start();
@@ -869,7 +910,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		while(isRunning){
 			update();
 			try{
-				Thread.sleep(10);
+				Thread.sleep(RUNTIME);
 			}catch(Exception e) { }
 		}
 
@@ -879,6 +920,7 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 		physics();
 		updateLocations();
 	}
+	
 	void physics(){
 		for(int index = 0; index < sprites.size(); index++){
 			GameObject c = sprites.get(index);
@@ -918,6 +960,13 @@ public class FightPanelLauncher extends JPanel implements Runnable{
 			g.setColor(Color.WHITE);
 			g.drawString("PRESS P TO UNPAUSE", (int)(Constants.SCREEN_WIDTH.getIntValue()*.05), (int)(Constants.SCREEN_HEIGHT.getIntValue()*.3));
 		}
+		
+		
+		if(c.defeated||c2.defeated){
+			g.drawImage(MapTexture.koEndLogo, 0, 0,(int)(Constants.SCREEN_WIDTH.getIntValue()), (int)(Constants.SCREEN_HEIGHT.getIntValue()), null);
+		}
+		
+		
 	}
 	void drawCharacterHealth(Graphics g){
 		//player one health

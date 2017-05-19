@@ -11,14 +11,14 @@ public class DeeJayTexture extends Texture{
 		public static BufferedImage[] verticalJumpDeeJayRight = new BufferedImage[7];
 		public static BufferedImage[] diagonalJumpDeeJayRight = new BufferedImage[7];
 		public static BufferedImage[] punchDeeJayRight = new BufferedImage[3];
-		public static BufferedImage[] kickDeeJayRight = new BufferedImage[3];
+		public static BufferedImage[] kickDeeJayRight = new BufferedImage[8];
 		
 		public static BufferedImage[] idleSneakDeeJayRight = new BufferedImage[1];
 		public static BufferedImage[] sneakpunchDeeJayRight = new BufferedImage[2];
 		public static BufferedImage[] sneakkickDeeJayRight = new BufferedImage[3];
 		public static BufferedImage[] aerialkickDeeJayRight = new BufferedImage[2];
 		
-		public static BufferedImage[] speicalDeeJayRight = punchDeeJayRight;
+		public static BufferedImage[] speicalDeeJayRight = new BufferedImage[6];
 		
 		public static BufferedImage[] DeeJayTorsoHitRight = new BufferedImage[4];
 		public static BufferedImage[] DeeJayHeadHitRight = new BufferedImage[4];
@@ -36,14 +36,14 @@ public class DeeJayTexture extends Texture{
 		public static BufferedImage[] verticalJumpDeeJayLeft = new BufferedImage[7];
 		public static BufferedImage[] diagonalJumpDeeJayLeft = new BufferedImage[7];
 		public static BufferedImage[] punchDeeJayLeft = new BufferedImage[3];
-		public static BufferedImage[] kickDeeJayLeft = new BufferedImage[3];
+		public static BufferedImage[] kickDeeJayLeft = new BufferedImage[8];
 		
 		public static BufferedImage[] idleSneakDeeJayLeft = new BufferedImage[1];
 		public static BufferedImage[] sneakpunchDeeJayLeft = new BufferedImage[2];
 		public static BufferedImage[] sneakkickDeeJayLeft = new BufferedImage[3];
 		public static BufferedImage[] aerialkickDeeJayLeft = new BufferedImage[2];
 		
-		public static BufferedImage[] speicalDeeJayLeft = punchDeeJayLeft;
+		public static BufferedImage[] speicalDeeJayLeft = new BufferedImage[6];
 		
 		public static BufferedImage[] DeeJayTorsoHitLeft = new BufferedImage[4];
 		public static BufferedImage[] DeeJayHeadHitLeft = new BufferedImage[4];
@@ -74,10 +74,16 @@ public class DeeJayTexture extends Texture{
 			punchDeeJayLeft[1] = DeeJaySpriteSheetLeft.getSubimage(xStart-63-(75),160,75,85);
 			punchDeeJayLeft[2] = DeeJaySpriteSheetLeft.getSubimage(xStart-145-(55),160,55,85);
 
-			kickDeeJayLeft[0] = DeeJaySpriteSheetLeft.getSubimage(xStart-6-(54),273,54,90);
-			kickDeeJayLeft[1] = DeeJaySpriteSheetLeft.getSubimage(xStart-65-(70),270,70,93);
-			kickDeeJayLeft[2] = DeeJaySpriteSheetLeft.getSubimage(xStart-145-(55),275,55,85);
-
+			kickDeeJayLeft[0] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-2-65,747,65,87);
+			kickDeeJayLeft[1] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-74-65,746,65,88);
+			kickDeeJayLeft[2] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-135-55,747,55,90);
+			kickDeeJayLeft[3] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-196-55,747,55,90);
+			kickDeeJayLeft[4] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-255-84,741,84,96);
+			kickDeeJayLeft[5] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-343-84,741,84,96);
+			kickDeeJayLeft[6] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-432-68,750,68,87);
+			kickDeeJayLeft[7] = 	DeeJaySpriteSheetLeft.getSubimage(xStart-504-59,753,59,84);
+			
+			
 			verticalJumpDeeJayLeft[0] =  DeeJaySpriteSheetLeft.getSubimage(xStart-508-(42),44,42,76);
 			verticalJumpDeeJayLeft[1] =  DeeJaySpriteSheetLeft.getSubimage(xStart-555-(45),11,45,115);
 			verticalJumpDeeJayLeft[2] =  DeeJaySpriteSheetLeft.getSubimage(xStart-600-(35),25,35,90);
@@ -135,6 +141,14 @@ public class DeeJayTexture extends Texture{
 			defeatDeeJayLeft[2] = DeeJaySpriteSheetLeft.getSubimage(xStart-894-(977-894),1270, 977-894, 1330-1270);
 			defeatDeeJayLeft[3] = DeeJaySpriteSheetLeft.getSubimage(xStart-1077-( 1174-1077),1299-25, 1174-1077, 1329-1299+25);
 
+			speicalDeeJayLeft[0] = DeeJaySpriteSheetLeft.getSubimage(xStart-4-56,872,56,97);
+			speicalDeeJayLeft[1] = DeeJaySpriteSheetLeft.getSubimage(xStart-73-63,882,63,87);
+			speicalDeeJayLeft[2] = DeeJaySpriteSheetLeft.getSubimage(xStart-145-71,885,71,84);
+			speicalDeeJayLeft[3] = DeeJaySpriteSheetLeft.getSubimage(xStart-226-67,864,67,105);
+			speicalDeeJayLeft[4] = DeeJaySpriteSheetLeft.getSubimage(xStart-306-66,856,66,113);
+			speicalDeeJayLeft[5] = DeeJaySpriteSheetLeft.getSubimage(xStart-387-55,883,55,86);
+
+			
 
 		}catch(Exception e) { }
 	}
@@ -156,10 +170,18 @@ public class DeeJayTexture extends Texture{
 				punchDeeJayRight[1] = DeeJaySpriteSheetRight.getSubimage(63,160,75,85);
 				punchDeeJayRight[2] = DeeJaySpriteSheetRight.getSubimage(145,160,55,85);
 
-				kickDeeJayRight[0] = DeeJaySpriteSheetRight.getSubimage(6,273,54,90);
-				kickDeeJayRight[1] = DeeJaySpriteSheetRight.getSubimage(65,270,70,93);
-				kickDeeJayRight[2] = DeeJaySpriteSheetRight.getSubimage(145,275,55,85);
+				
+				kickDeeJayRight[0] = 	DeeJaySpriteSheetRight.getSubimage(2,747,65,87);
+				kickDeeJayRight[1] = 	DeeJaySpriteSheetRight.getSubimage(74,746,55,88);
+				kickDeeJayRight[2] = 	DeeJaySpriteSheetRight.getSubimage(135,747,55,90);
+				kickDeeJayRight[3] = 	DeeJaySpriteSheetRight.getSubimage(196,747,55,90);
+				kickDeeJayRight[4] = 	DeeJaySpriteSheetRight.getSubimage(255,741,84,96);
+				kickDeeJayRight[5] = 	DeeJaySpriteSheetRight.getSubimage(343,741,84,96);
+				kickDeeJayRight[6] = 	DeeJaySpriteSheetRight.getSubimage(432,750,68,87);
+				kickDeeJayRight[7] = 	DeeJaySpriteSheetRight.getSubimage(504,753,59,84);
 
+				
+				
 				verticalJumpDeeJayRight[0] =  DeeJaySpriteSheetRight.getSubimage(508,44,42,76);
 				verticalJumpDeeJayRight[1] =  DeeJaySpriteSheetRight.getSubimage(555,11,45,115);
 				verticalJumpDeeJayRight[2] =  DeeJaySpriteSheetRight.getSubimage(600,25,35,90);
@@ -216,6 +238,14 @@ public class DeeJayTexture extends Texture{
 				defeatDeeJayRight[2] = DeeJaySpriteSheetRight.getSubimage(894,1270, 977-894, 1330-1270);
 				defeatDeeJayRight[3] = DeeJaySpriteSheetRight.getSubimage(1077,1299-25, 1174-1077, 1329-1299+25);
 
+				speicalDeeJayRight[0] = DeeJaySpriteSheetRight.getSubimage(4,872,56,97);
+				speicalDeeJayRight[1] = DeeJaySpriteSheetRight.getSubimage(73,882,63,87);
+				speicalDeeJayRight[2] = DeeJaySpriteSheetRight.getSubimage(145,885,71,84);
+				speicalDeeJayRight[3] = DeeJaySpriteSheetRight.getSubimage(226,864,67,105);
+				speicalDeeJayRight[4] = DeeJaySpriteSheetRight.getSubimage(306,856,66,113);
+				speicalDeeJayRight[5] = DeeJaySpriteSheetRight.getSubimage(387,883,55,86);
+				
+				
 			}catch(Exception e){e.printStackTrace(); }
 		
 	}

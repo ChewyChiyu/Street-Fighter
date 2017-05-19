@@ -9,7 +9,7 @@ public class BlankaTexture extends Texture{
 		public static BufferedImage[] idleBlankaRight = new BufferedImage[4];
 		public static BufferedImage[] walkBlankaRight = new BufferedImage[5];
 		public static BufferedImage[] verticalJumpBlankaRight = new BufferedImage[4];
-		public static BufferedImage[] diagonalJumpBlankaRight = new BufferedImage[5];
+		public static BufferedImage[] diagonalJumpBlankaRight = new BufferedImage[8];
 		public static BufferedImage[] punchBlankaRight = new BufferedImage[3];
 		public static BufferedImage[] kickBlankaRight = new BufferedImage[3];
 		
@@ -18,7 +18,7 @@ public class BlankaTexture extends Texture{
 		public static BufferedImage[] sneakkickBlankaRight = new BufferedImage[3];
 		public static BufferedImage[] aerialkickBlankaRight = new BufferedImage[3];
 		
-		public static BufferedImage[] speicalBlankaRight = punchBlankaRight;
+		public static BufferedImage[] speicalBlankaRight = new BufferedImage[8];
 		
 		public static BufferedImage[] BlankaTorsoHitRight = new BufferedImage[2];
 		public static BufferedImage[] BlankaHeadHitRight = new BufferedImage[2];
@@ -34,7 +34,7 @@ public class BlankaTexture extends Texture{
 		public static BufferedImage[] idleBlankaLeft = new BufferedImage[4];
 		public static BufferedImage[] walkBlankaLeft = new BufferedImage[5];
 		public static BufferedImage[] verticalJumpBlankaLeft = new BufferedImage[4];
-		public static BufferedImage[] diagonalJumpBlankaLeft = new BufferedImage[5];
+		public static BufferedImage[] diagonalJumpBlankaLeft = new BufferedImage[8];
 		public static BufferedImage[] punchBlankaLeft = new BufferedImage[3];
 		public static BufferedImage[] kickBlankaLeft = new BufferedImage[3];
 		
@@ -43,7 +43,7 @@ public class BlankaTexture extends Texture{
 		public static BufferedImage[] sneakkickBlankaLeft = new BufferedImage[3];
 		public static BufferedImage[] aerialkickBlankaLeft = new BufferedImage[3];
 		
-		public static BufferedImage[] speicalBlankaLeft = punchBlankaLeft;
+		public static BufferedImage[] speicalBlankaLeft = new BufferedImage[8];
 		
 		public static BufferedImage[] BlankaTorsoHitLeft = new BufferedImage[2];
 		public static BufferedImage[] BlankaHeadHitLeft = new BufferedImage[2];
@@ -90,11 +90,14 @@ public class BlankaTexture extends Texture{
 		//	diagonalJumpBlankaLeft[0] = BlankaSpriteSheetLeft.getSubimage(834, 64, 62, 68);
 		//	diagonalJumpBlankaLeft[0] = BlankaSpriteSheetLeft.getSubimage(846, 7, 80, 125);
 			
-			diagonalJumpBlankaLeft[0] = BlankaSpriteSheetLeft.getSubimage(xStart-452-59,266,59,86);
-			diagonalJumpBlankaLeft[1] = BlankaSpriteSheetLeft.getSubimage(xStart-530-65,280,65,70);
-			diagonalJumpBlankaLeft[2] = BlankaSpriteSheetLeft.getSubimage(xStart-613-63,300,63,54);
-			diagonalJumpBlankaLeft[3] = BlankaSpriteSheetLeft.getSubimage(xStart-697-64,280,64,67);
-			diagonalJumpBlankaLeft[4] = BlankaSpriteSheetLeft.getSubimage(xStart-765-57,265,57,89);
+			diagonalJumpBlankaLeft[0] = BlankaSpriteSheetLeft.getSubimage(xStart-409-37,932,37,88);
+			diagonalJumpBlankaLeft[1] = BlankaSpriteSheetLeft.getSubimage(xStart-451-37,937,37,68);
+			diagonalJumpBlankaLeft[2] = BlankaSpriteSheetLeft.getSubimage(xStart-519-37,951,37,48);
+			diagonalJumpBlankaLeft[3] = BlankaSpriteSheetLeft.getSubimage(xStart-589-37,949,37,52);
+			diagonalJumpBlankaLeft[4] = BlankaSpriteSheetLeft.getSubimage(xStart-640-37,951,37,50);
+			diagonalJumpBlankaLeft[5] = BlankaSpriteSheetLeft.getSubimage(xStart-695-37,948,37,53);
+			diagonalJumpBlankaLeft[6] = BlankaSpriteSheetLeft.getSubimage(xStart-749-37,951,37,50);
+			diagonalJumpBlankaLeft[7] = BlankaSpriteSheetLeft.getSubimage(xStart-813-37,962,37,57);
 			
 //
 			idleSneakBlankaLeft[0] =  BlankaSpriteSheetLeft.getSubimage(xStart-950-50,51,50,65);
@@ -133,6 +136,18 @@ public class BlankaTexture extends Texture{
 			defeatBlankaLeft[3] = BlankaSpriteSheetLeft.getSubimage(xStart-250-80,1410,80,60);
 			defeatBlankaLeft[4] = BlankaSpriteSheetLeft.getSubimage(xStart-330-107,1440,107,47);
 
+		
+
+			speicalBlankaLeft[0] = BlankaSpriteSheetLeft.getSubimage(xStart-6-55,726-10,55,65+10);
+			speicalBlankaLeft[1] = BlankaSpriteSheetLeft.getSubimage(xStart-69-52,727-10,52,64+10);
+			speicalBlankaLeft[2] = BlankaSpriteSheetLeft.getSubimage(xStart-131-55,726-10,55,65+10);
+			speicalBlankaLeft[3] = BlankaSpriteSheetLeft.getSubimage(xStart-194-52,727-10,52,64+10);
+			speicalBlankaLeft[4] = BlankaSpriteSheetLeft.getSubimage(xStart-255-73,717-10,73,74+10);
+			speicalBlankaLeft[5] = BlankaSpriteSheetLeft.getSubimage(xStart-338-50,734-10,50,57+10);
+			speicalBlankaLeft[6] = BlankaSpriteSheetLeft.getSubimage(xStart-396-73,717-10,73,74+10);
+			speicalBlankaLeft[7] = BlankaSpriteSheetLeft.getSubimage(xStart-479-50,734-10,50,57+10);
+			
+			
 		}catch(Exception e) { }
 	}
 	void loadRight(){
@@ -165,11 +180,15 @@ public class BlankaTexture extends Texture{
 			//	diagonalJumpBlankaRight[0] = BlankaSpriteSheetRight.getSubimage(834, 64, 62, 68);
 			//	diagonalJumpBlankaRight[0] = BlankaSpriteSheetRight.getSubimage(846, 7, 80, 125);
 				
-				diagonalJumpBlankaRight[0] = BlankaSpriteSheetRight.getSubimage(452,266,59,86);
-				diagonalJumpBlankaRight[1] = BlankaSpriteSheetRight.getSubimage(530,280,65,70);
-				diagonalJumpBlankaRight[2] = BlankaSpriteSheetRight.getSubimage(613,300,63,54);
-				diagonalJumpBlankaRight[3] = BlankaSpriteSheetRight.getSubimage(697,280,64,67);
-				diagonalJumpBlankaRight[4] = BlankaSpriteSheetRight.getSubimage(765,265,57,89);
+				diagonalJumpBlankaRight[0] = BlankaSpriteSheetRight.getSubimage(409,932,37,88);
+				diagonalJumpBlankaRight[1] = BlankaSpriteSheetRight.getSubimage(451,937,65,68);
+				diagonalJumpBlankaRight[2] = BlankaSpriteSheetRight.getSubimage(519,951,64,48);
+				diagonalJumpBlankaRight[3] = BlankaSpriteSheetRight.getSubimage(589,949,48,52);
+				diagonalJumpBlankaRight[4] = BlankaSpriteSheetRight.getSubimage(640,951,51,50);
+				diagonalJumpBlankaRight[5] = BlankaSpriteSheetRight.getSubimage(695,948,48,53);
+				diagonalJumpBlankaRight[6] = BlankaSpriteSheetRight.getSubimage(749,951,51,50);
+				diagonalJumpBlankaRight[7] = BlankaSpriteSheetRight.getSubimage(813,962,50,57);
+
 				
 //
 				idleSneakBlankaRight[0] =  BlankaSpriteSheetRight.getSubimage(950,51,50,65);
@@ -208,6 +227,15 @@ public class BlankaTexture extends Texture{
 				defeatBlankaRight[3] = BlankaSpriteSheetRight.getSubimage(250,1410,80,60);
 				defeatBlankaRight[4] = BlankaSpriteSheetRight.getSubimage(330,1440,107,47);
 
+				
+				speicalBlankaRight[0] = BlankaSpriteSheetRight.getSubimage(6,726-10,55,65+10);
+				speicalBlankaRight[1] = BlankaSpriteSheetRight.getSubimage(69,727-10,52,64+10);
+				speicalBlankaRight[2] = BlankaSpriteSheetRight.getSubimage(131,726-10,55,65+10);
+				speicalBlankaRight[3] = BlankaSpriteSheetRight.getSubimage(194,727-10,52,64+10);
+				speicalBlankaRight[4] = BlankaSpriteSheetRight.getSubimage(255,717-10,73,74+10);
+				speicalBlankaRight[5] = BlankaSpriteSheetRight.getSubimage(338,734-10,50,57+10);
+				speicalBlankaRight[6] = BlankaSpriteSheetRight.getSubimage(396,717-10,73,74+10);
+				speicalBlankaRight[7] = BlankaSpriteSheetRight.getSubimage(479,734-10,50,57+10);
 			}catch(Exception e){e.printStackTrace(); }
 		
 	}

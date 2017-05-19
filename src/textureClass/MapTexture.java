@@ -16,6 +16,7 @@ public class MapTexture extends Texture{
 	public static BufferedImage selector, player1Selector, player2Selector;
 	public static BufferedImage characterSelectBackground;
 	public static BufferedImage koLogo;
+	public static BufferedImage koEndLogo;
 	protected MapTexture(){
 		characterHeadSprites();
 		mapSprites();
@@ -47,6 +48,7 @@ public class MapTexture extends Texture{
 			//KO LOGO
 			koLogo = ImageIO.read(getClass().getResource("/imgs/maps/KO.png"));
 			koLogo = koLogo.getSubimage(0, 0, 460, 180);
+			koEndLogo = ImageIO.read(getClass().getResource("/imgs/maps/KOEND.png"));
 			//maps
 			mapSelectSprites[0][0] = ImageIO.read(getClass().getResource("/imgs/maps/BrazilBackDrop.png"));
 			mapSelectSprites[0][1] = ImageIO.read(getClass().getResource("/imgs/maps/ThailandBackDrop.png"));
