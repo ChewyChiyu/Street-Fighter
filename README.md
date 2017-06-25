@@ -1,1 +1,2 @@
 # Street-Fighter
+Cringe mode
